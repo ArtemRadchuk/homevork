@@ -1,8 +1,8 @@
 public class Age {
     public static void main(String[] args) {
-        int vasyaAge = 10;
+        int vasyaAge = 30;
         int katyaAge = 20;
-        int mishaAge = 30;
+        int mishaAge = 20;
         int minimalage = -1;
         int middleage = -1;
         int maxage = -1;
@@ -43,6 +43,7 @@ public class Age {
             middleage = vasyaAge;
         }
 
+
         System.out.println("Младшему");
         System.out.println(minimalage);
         System.out.println("Среднему");
@@ -51,3 +52,4 @@ public class Age {
         System.out.println(maxage);
     }
 }
+
