@@ -1,8 +1,8 @@
 public class Age {
     public static void main(String[] args) {
-        int vasyaAge = 30;
+        int vasyaAge = 10;
         int katyaAge = 20;
-        int mishaAge = 20;
+        int mishaAge = 30;
         int minimalage = -1;
         int middleage = -1;
         int maxage = -1;
