@@ -13,7 +13,7 @@ public class Main {
         if (powderAmount >= 400 & sugarAmount >= 10 & milkAmount >= 1000 & oilAmount >= 30 ) {
             System.out.println("Pancakes");
         }
-        if (milkAmount >= 300 & powderAmount >= 5 & eggsCount >= 5){
+        if (milkAmount >= 150 & powderAmount >= 3 & eggsCount >= 3){
             System.out.println("Omelette");
         }
         if (appleCount >= 3 & milkAmount >= 100 & powderAmount >= 300 & eggsCount >= 4){
