@@ -1,9 +1,9 @@
 public class Main {
 
     public static void main(String[] args) {
-        int milkAmount = 200; // ml
+        int milkAmount = 300; // ml
         int powderAmount = 5; // g
-        int eggsCount = 3; // items
+        int eggsCount = 5; // items
         int sugarAmount = 5; // g
         int oilAmount = 30; // ml
         int appleCount = 8;
