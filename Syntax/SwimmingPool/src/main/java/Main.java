@@ -8,8 +8,10 @@ public class Main {
         while (tvolume < volume){
             tvolume = tvolume + fillingSpeed - devastationSpeed;
             t++;
-            if(tvolume ==volume){}
-            System.out.println(t+ " minutes");
+            if(tvolume ==volume) {
+                System.out.println(t + " minutes");
+                break;
+            }
         }
     }
 }
