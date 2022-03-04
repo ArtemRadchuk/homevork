@@ -39,7 +39,4 @@ public class Arithmetic {
         }  else
             System.out.println("Числа одинаковые");
     }
-
-    public static void main(String[] args) {
-    }
 }
