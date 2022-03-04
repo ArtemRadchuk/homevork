@@ -6,6 +6,9 @@ public class Printer {
     int hMPage = 0 ;
     int getPage = 0;
 
+    public static void main(String[] args) {
+
+    }
     public void append(String text, int page){
         this.text = text;
         this.page = page;

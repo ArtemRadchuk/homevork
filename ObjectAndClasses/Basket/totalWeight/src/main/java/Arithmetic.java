@@ -1,25 +1,45 @@
+import java.util.Scanner;
 
 public class Arithmetic {
-   static int numA ;
-   static int numB ;
+    public int firstNum, secondNum;
 
-    public Arithmetic(int numA, int numB) {
-        this.numA = numA;
-        this.numB = numB;
+    public Arithmetic(int firstNum, int secondNum){
+        this.firstNum = firstNum;
+        this.secondNum = secondNum;
+        System.out.println("Введите 1 число");
+        firstNum = new Scanner(System.in).nextInt();
+        System.out.println("Введите 2 число");
+        secondNum = new Scanner(System.in).nextInt();
+    }
+
+    public void multiplication(){
+        System.out.println(firstNum * secondNum);
+    }
+
+    public void sum(){
+        System.out.println(firstNum + secondNum);
+    }
+
+    public void max(){
+        if(firstNum > secondNum){
+            System.out.println(firstNum + " Больше");
+        }
+        else if (firstNum < secondNum){
+            System.out.println(secondNum + " Больше");
+        }  else
+            System.out.println("Числа одинаковые");
+    }
+
+    public void min(){
+        if(firstNum > secondNum){
+            System.out.println(firstNum + " Меньше");
+        }
+        else if (firstNum < secondNum){
+            System.out.println(secondNum + " Меньше");
+        }  else
+            System.out.println("Числа одинаковые");
     }
 
     public static void main(String[] args) {
-        Arithmetic a = new Arithmetic(2, 4);
-        System.out.println("Сумма = "+ (numB + numA));
-        System.out.println("Произведение = " + numA * numB);
-        if(numA > numB) {
-            System.out.println(numA + " Больше");
-            System.out.println(numB + " Меньше");
-        } else{
-            System.out.println(numA +" Меньше");
-            System.out.println(numB +" Больше");
-        }
     }
 }
-
-
