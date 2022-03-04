@@ -33,7 +33,7 @@ public static void increaseCount(int count) {
 public void add(String name, int price) {
         add(name, price, 1);
         }
-public void add(String name, int price, int count, double weight) {   //add с добавленным параметром weight
+public void add(String name, int price, int count, double weight) {   //add с добавленным параметром  weight
         this.weight = weight;
         }
 
