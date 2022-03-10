@@ -1,25 +1,25 @@
 
 public final class Dimension {
-    int width;
-    int height;
-    int length;
-    String address;
-    int mass;
+    private int width;
+    private int height;
+    private int length;
+    private String address;
+    private int mass;
 
     public void findVolume() {
         int size = width * height * length;
     }
 
-    public Cargo clone(Cargo cargo, String address, int mass,int width, int height, int length) {
-     return new Cargo(
+    public Cargo clone(Cargo cargo, String address, int mass, int width, int height, int length) {
+        return new Cargo(
                 mass,
                 width,
                 height,
                 length,
                 address,
-                true,
-                "aasdasd",
-                true);
+                cargo.isFlip(),
+                cargo.getRegNum(),
+                cargo.isBrittle());
     }
 
     public void setWidth(int width) {
