@@ -1,3 +1,4 @@
+
 public final class Dimension {
     int width;
     int height;
@@ -9,13 +10,16 @@ public final class Dimension {
         int size = width * height * length;
     }
 
-    public void clone(Cargo cargo, String address) {
-        Cargo cargo1 = new Cargo();
-        cargo1.setAddress(address);
-        cargo1.setMass(cargo.getMass());
-        cargo1.setWidth(cargo.getWidth());
-        cargo1.setHeight(cargo.getHeight());
-        cargo1.setLength(cargo.getLength());
+    public Cargo clone(Cargo cargo, String address, int mass,int width, int height, int length) {
+     return new Cargo(
+                mass,
+                width,
+                height,
+                length,
+                address,
+                true,
+                "aasdasd",
+                true);
     }
 
     public void setWidth(int width) {

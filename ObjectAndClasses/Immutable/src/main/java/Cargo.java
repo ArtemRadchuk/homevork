@@ -1,74 +1,67 @@
 public final class Cargo {
-    private int mass;
-    private  int width;
-    private int height;
-    private int length;
-    private String address;
-    private boolean flip;
-    private String regNum;
-    private boolean brittle;
+    private final int mass;
+    private final int width;
+    private final int height;
+    private final int length;
+    private final String address;
+    private final boolean flip;
+    private final String regNum;
+    private final boolean brittle;
+
+    public Cargo(int mass, int width, int height, int length, String address, boolean flip, String regNum, boolean brittle) {
+        this.mass = mass;
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.address = address;
+        this.flip = flip;
+        this.regNum = regNum;
+        this.brittle = brittle;
+    }
 
     public int getMass() {
         return mass;
-    }
-
-    public void setMass(int mass) {
-        this.mass = mass;
     }
 
     public int getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public int getLength() {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public boolean isFlip() {
         return flip;
     }
 
-    public void setFlip(boolean flip) {
-        this.flip = flip;
-    }
-
     public String getRegNum() {
         return regNum;
-    }
-
-    public void setRegNum(String regNum) {
-        this.regNum = regNum;
     }
 
     public boolean isBrittle() {
         return brittle;
     }
 
-    public void setBrittle(boolean brittle) {
-        this.brittle = brittle;
+    @Override
+    public String toString() {
+        return "Cargo{" +
+                "mass=" + mass +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", address='" + address + '\'' +
+                ", flip=" + flip +
+                ", regNum='" + regNum + '\'' +
+                ", brittle=" + brittle +
+                '}';
     }
 }
