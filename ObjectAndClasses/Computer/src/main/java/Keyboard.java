@@ -1,7 +1,7 @@
 public final class Keyboard {
-    final String kType;
-    final boolean light;
-    final int kWeight;
+    private final String kType;
+    private final boolean light;
+    private final int kWeight;
 
     public Keyboard(String kType, boolean light, int kWeight) {
         this.kType = kType;

@@ -1,7 +1,7 @@
 public final class Drive {
-    final String dType;
-    final int dVolume;
-    final int dWeight;
+    private final String dType;
+    private final int dVolume;
+    private final int dWeight;
 
     public Drive(String dType, int dVolume, int dWeight) {
         this.dType = dType;

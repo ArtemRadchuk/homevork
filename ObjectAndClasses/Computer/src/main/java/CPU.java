@@ -1,8 +1,8 @@
 public final class CPU {
-   final int frequency;
-   final int core;
-   final int efficiency;
-   final int cpuWeight;
+    private final int frequency;
+    private final int core;
+    private final int efficiency;
+    private final int cpuWeight;
 
     public CPU(int frequency, int core, int efficiency, int cpuWeight) {
         this.frequency = frequency;

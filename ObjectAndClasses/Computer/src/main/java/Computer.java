@@ -18,8 +18,8 @@ public class Computer {
         this.ram = ram;
     }
 
-    public void getCurrentMass() {
-        int currentMass = cpu.getCpuWeight() + keyboard.getKWeight() + monitor.getMWeight() + ram.getRamWeight() + drive.dWeight;
+    public void CurrentMass() {
+        int currentMass = cpu.getCpuWeight() + keyboard.getKWeight() + monitor.getMWeight() + ram.getRamWeight() + drive.getDWeight();
         this.currentMass = currentMass;
     }
     public int setCurrentMass(){

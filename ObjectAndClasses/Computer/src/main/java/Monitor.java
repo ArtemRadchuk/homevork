@@ -1,7 +1,7 @@
-public final class Monitor  {
-    final int diagonal;
-    final String mType;
-    final int mWeight;
+public final class Monitor {
+    private final int diagonal;
+    private final String mType;
+    private final int mWeight;
 
     public Monitor(int diagonal, String mType, int mWeight) {
         this.diagonal = diagonal;
