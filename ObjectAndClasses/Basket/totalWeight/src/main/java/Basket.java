@@ -37,20 +37,19 @@ public class Basket {
     public static void addBasket(int quantity, int totalCost) {
         this.quantity = this.quantity + quantity;
         this.totalCost = this.totalCost + totalCost;
-        return quantity;
-        return totalCost;
+        return;
     }
 
     public static void averagePrice(int quantity, int totalCost) {
         quantity = this.quantity;
         totalCost = this.totalCost;
-        System.out.println("Средняя цена товаров корзины - " + totalCost / quantity);
+        return;
     }
 
     public static void busketCost(int totalCost, int totalBasket){ //Средняя стоимость корзины
         totalBasket = this.totalBasket;
         totalCost = this.totalCost;
-        System.out.println("Средняя стоимость корзины - " + totalCost / totalBasket );
+        return;
     }
 
     public void add(String name, int price) { //нужно ли прописать totalBasket++ при добавление корзины чтобы знать их количество
