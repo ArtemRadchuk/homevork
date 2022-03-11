@@ -20,4 +20,7 @@ public final class Drive {
     public int getDWeight() {
         return dWeight;
     }
+    public String toString(){
+        return "Тип диска - " + dType + ", объем диска - " + dVolume + ", вес - " + dWeight;
+    }
 }

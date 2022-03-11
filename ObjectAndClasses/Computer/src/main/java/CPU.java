@@ -26,4 +26,13 @@ public final class CPU {
     public int getCpuWeight() {
         return cpuWeight;
     }
-}
+
+    @Override
+    public String toString() {
+        return
+                "Частота процессора - " + frequency +
+                ", ядер - " + core +
+                ", производительность - " + efficiency +
+                ",вес процессора - " + cpuWeight;}
+    }
+

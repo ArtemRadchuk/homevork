@@ -20,4 +20,13 @@ public final class Keyboard {
     public int getKWeight() {
         return kWeight;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Тип клавиатура - '" + kType +
+                ", подсветка - " + light +
+                ", вес клавиатура - " + kWeight
+                ;
+    }
 }

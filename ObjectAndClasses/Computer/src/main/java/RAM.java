@@ -22,4 +22,11 @@ public final class RAM {
         return ramWeight;
     }
 
+    @Override
+    public String toString() {
+        return
+                "rТип оперативной памяти - " + rType + '\'' +
+                ", объем оперативной памяти - " + ramVolume +
+                ", вес оперативной памяти - " + ramWeight ;
+    }
 }

@@ -20,4 +20,12 @@ public final class Monitor {
     public int getMWeight() {
         return mWeight;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Диагональ монитора - " + diagonal +
+                ", тип монитора - " + mType + '\'' +
+                ", вес монитора - " + mWeight ;
+    }
 }
