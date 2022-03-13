@@ -23,19 +23,9 @@ public class ArithmeticCalculator {
         this.secondNum = secondNum;
     }
 
-    public static void main(String[] args) {
-        Operation operation = Operation.ADD;
-        switch (operation) {
-            case ADD:
-            System.out.println(firstNum + secondNum);
-            break;
-            case SUBTRACT:
-                System.out.println(firstNum - secondNum);
-                break;
-            case MULTIPLY:
-                System.out.println((firstNum * secondNum));
-                break;
-        }
+    public void calculate(){
+        Operation operation;
+
     }
 
 }
