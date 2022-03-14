@@ -2,7 +2,7 @@ public class ArithmeticCalculator {
     public static int firstNum;
     public static int secondNum;
 
-    public ArithmeticCalculator() {
+    public ArithmeticCalculator(int firstNum, int secondNum) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
     }
@@ -23,19 +23,19 @@ public class ArithmeticCalculator {
         this.secondNum = secondNum;
     }
 
-    public static void main(String[] args) {
-        Operation operation = Operation.ADD;
+    public void calculate(Operation operation) {
         switch (operation) {
             case ADD:
-            System.out.println(firstNum + secondNum);
-            break;
+                System.out.println(firstNum + secondNum);
+                break;
             case SUBTRACT:
                 System.out.println(firstNum - secondNum);
                 break;
             case MULTIPLY:
-                System.out.println((firstNum * secondNum));
+                System.out.println(firstNum * secondNum);
                 break;
         }
     }
+
 
 }
