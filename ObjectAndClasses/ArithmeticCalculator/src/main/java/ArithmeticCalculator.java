@@ -23,13 +23,19 @@ public class ArithmeticCalculator {
         this.secondNum = secondNum;
     }
 
-    public void calculate(Operation operation){
-//        Operation operation;
+    public void calculate(Operation operation) {
+        switch (operation) {
+            case ADD:
+                System.out.println(firstNum + secondNum);
+                break;
+            case SUBTRACT:
+                System.out.println(firstNum - secondNum);
+                break;
+            case MULTIPLY:
+                System.out.println(firstNum * secondNum);
+                break;
+        }
     }
 
-    public void calculate(String operation){
-//        Operation operation;
-
-    }
 
 }
