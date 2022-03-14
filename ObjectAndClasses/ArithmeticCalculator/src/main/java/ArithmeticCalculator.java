@@ -2,7 +2,7 @@ public class ArithmeticCalculator {
     public static int firstNum;
     public static int secondNum;
 
-    public ArithmeticCalculator() {
+    public ArithmeticCalculator(int firstNum, int secondNum) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
     }
@@ -23,8 +23,12 @@ public class ArithmeticCalculator {
         this.secondNum = secondNum;
     }
 
-    public void calculate(){
-        Operation operation;
+    public void calculate(Operation operation){
+//        Operation operation;
+    }
+
+    public void calculate(String operation){
+//        Operation operation;
 
     }
 
