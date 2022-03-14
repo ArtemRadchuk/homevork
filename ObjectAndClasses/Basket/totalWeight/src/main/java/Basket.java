@@ -46,7 +46,6 @@ public class Basket {
 
     public static int busketCost(int totalCost, int totalBasket) { //Средняя стоимость корзины
         return totalCost / totalBasket;
-    }
 
     public void add(String name, int price) { //нужно ли прописать totalBasket++ при добавление корзины чтобы знать их количество
         add(name, price, 1);
