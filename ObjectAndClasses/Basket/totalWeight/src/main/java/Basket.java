@@ -26,6 +26,7 @@ public class Basket {
         this.totalPrice = totalPrice;
     }
 
+
     public static int getCount() {
         return count;
     }
@@ -34,21 +35,17 @@ public class Basket {
         Basket.count = Basket.count + count;
     }
 
-    public static void addBasket(int quantity, int totalCost) {
-        this.quantity = this.quantity + quantity;
-        this.totalCost = this.totalCost + totalCost;
+    public static void addBasket() { //Добавление к общей стоимости корзин и количеству товаров
+        quantity = quantity++;
+        totalCost = totalCost + count;
         return;
     }
 
-    public static void averagePrice(int quantity, int totalCost) {
-        quantity = this.quantity;
-        totalCost = this.totalCost;
+    public static int averagePrice() { //Метод рассчета средней цены товара во всех корзинах
         return totalCost / quantity;
     }
 
-    public static void busketCost(int totalCost, int totalBasket) { //Средняя стоимость корзины
-        totalBasket = this.totalBasket;
-        totalCost = this.totalCost;
+    public static int busketCost(int totalCost, int totalBasket) { //Средняя стоимость корзины
         return totalCost / totalBasket;
     }
 
