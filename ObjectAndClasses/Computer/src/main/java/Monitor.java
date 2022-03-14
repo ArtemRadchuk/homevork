@@ -1,7 +1,7 @@
 public final class Monitor {
-    private final int diagonal;
+    private final double diagonal;
     private final String mType;
-    private final int mWeight;
+    private final double mWeight;
 
     public Monitor(int diagonal, String mType, int mWeight) {
         this.diagonal = diagonal;
@@ -9,7 +9,7 @@ public final class Monitor {
         this.mWeight = mWeight;
     }
 
-    public int getDiagonal() {
+    public double getDiagonal() {
         return diagonal;
     }
 
@@ -17,7 +17,7 @@ public final class Monitor {
         return mType;
     }
 
-    public int getMWeight() {
+    public double getMWeight() {
         return mWeight;
     }
 

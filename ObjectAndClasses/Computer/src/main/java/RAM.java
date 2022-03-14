@@ -1,7 +1,7 @@
 public final class RAM {
     private String rType;
     private int ramVolume;
-    private int ramWeight;
+    private double ramWeight;
 
     public RAM(String type, int ramVolume, int ramWeight) {
         this.rType = type;
@@ -18,7 +18,7 @@ public final class RAM {
         return ramVolume;
     }
 
-    public int getRamWeight() {
+    public double getRamWeight() {
         return ramWeight;
     }
 

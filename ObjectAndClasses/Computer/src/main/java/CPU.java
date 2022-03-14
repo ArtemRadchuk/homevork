@@ -1,8 +1,8 @@
 public final class CPU {
-    private final int frequency;
+    private final double frequency;
     private final int core;
-    private final int efficiency;
-    private final int cpuWeight;
+    private final double efficiency;
+    private final double cpuWeight;
 
     public CPU(int frequency, int core, int efficiency, int cpuWeight) {
         this.frequency = frequency;
@@ -11,7 +11,7 @@ public final class CPU {
         this.cpuWeight = cpuWeight;
     }
 
-    public int getFrequency() {
+    public double getFrequency() {
         return frequency;
     }
 
@@ -19,11 +19,11 @@ public final class CPU {
         return core;
     }
 
-    public int getEfficiency() {
+    public double getEfficiency() {
         return efficiency;
     }
 
-    public int getCpuWeight() {
+    public double getCpuWeight() {
         return cpuWeight;
     }
 

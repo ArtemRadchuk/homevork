@@ -6,7 +6,7 @@ public class Computer {
     private Keyboard keyboard;
     private CPU cpu;
     private RAM ram;
-    private int currentMass;
+    private double currentMass;
 
     public Computer(String vendor, String name, Drive drive, Monitor monitor, Keyboard keyboard, CPU cpu, RAM ram) {
         this.vendor = vendor;
@@ -18,10 +18,8 @@ public class Computer {
         this.ram = ram;
     }
 
-    public void CurrentMass() {
-        int currentMass = cpu.getCpuWeight() + keyboard.getKWeight() + monitor.getMWeight() + ram.getRamWeight() + drive.getDWeight();
-        this.currentMass = currentMass;
-        return;
+    public double currentMass() {
+         return cpu.getCpuWeight() + keyboard.getKWeight() + monitor.getMWeight() + ram.getRamWeight() + drive.getDWeight();
     }
 
     public Drive getDrive() {

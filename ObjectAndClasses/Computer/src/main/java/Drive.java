@@ -1,7 +1,7 @@
 public final class Drive {
     private final String dType;
     private final int dVolume;
-    private final int dWeight;
+    private final double dWeight;
 
     public Drive(String dType, int dVolume, int dWeight) {
         this.dType = dType;
@@ -17,7 +17,7 @@ public final class Drive {
         return dVolume;
     }
 
-    public int getDWeight() {
+    public double getDWeight() {
         return dWeight;
     }
     public String toString(){
