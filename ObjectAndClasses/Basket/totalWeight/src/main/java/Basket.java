@@ -1,7 +1,7 @@
 public class Basket {
-    private static int count = 0;
+    private static int count = 0; //2
     private String items = "";
-    private int totalPrice = 0;
+    private int totalPrice = 0; //114
     private int limit;
     private double totalWeight = 0; //Итоговый вес
     private double weight = 0;//Инициализация переменной weight
@@ -35,13 +35,12 @@ public class Basket {
         Basket.count = Basket.count + count;
     }
 
-    public static void addBasket() { //Добавление к общей стоимости корзин и количеству товаров
-        quantity = quantity++;
-        totalCost = totalCost + count;
-        return;
+    public static void addProduct(int price, int count) { //Добавление к общей стоимости корзин и количеству товаров
+        quantity = quantity + count;
+        totalCost = totalCost + price;
     }
 
-    public static int averagePrice() { //Метод рассчета средней цены товара во всех корзинах
+    public static double averagePrice() { //Метод рассчета средней цены товара во всех корзинах
         return totalCost / quantity;
     }
 
@@ -51,10 +50,12 @@ public class Basket {
 
     public void add(String name, int price) { //нужно ли прописать totalBasket++ при добавление корзины чтобы знать их количество
         add(name, price, 1);
+        addProduct(price, count)
     }
 
     public void add(String name, int price, int count, double weight) {   //add с добавленным параметром  weight
         add(name, price, 1, weight);
+        addProduct(price, count)
         this.weight = weight;
     }
 
@@ -75,8 +76,10 @@ public class Basket {
 
         items = items + "\n" + name + " - " +
                 count + " шт. - " + price;
-        totalPrice = totalPrice + count * price;
-        totalWeight = totalWeight + count * weight; //Рассчет веса корзины
+        public static void total () {
+            totalPrice = totalPrice + count * price;
+            totalWeight = totalWeight + count * weight; //Рассчет веса корзины
+        }
     }
 
     public void clear() {
