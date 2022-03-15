@@ -8,10 +8,9 @@ public class Main {
         // TODO: ниже напишите код для выполнения задания:
         //  С помощью цикла и преобразования чисел в символы найдите все коды
         //  букв русского алфавита — заглавных и строчных, в том числе буквы Ё.
-        int i = container.getCount();
-        Character letter = (char) i;
-        for (char a = 'А'; a <= 'я'; a ++)
-        System.out.println(a);
-
+        for (char a = 'А'; a <= 'я'; a ++) {
+            int b = a;
+            System.out.println(a + " - " + b);
+        }
     }
 }
