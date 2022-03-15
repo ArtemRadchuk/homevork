@@ -1,5 +1,5 @@
 public class Container {
-    private int count;
+    int count;
 
     public Container() {
     }
