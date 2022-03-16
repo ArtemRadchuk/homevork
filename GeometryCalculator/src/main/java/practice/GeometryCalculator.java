@@ -41,7 +41,7 @@ public class GeometryCalculator {
     // перед расчетом площади рекомендуется проверить возможен ли такой треугольник
     // методом isTrianglePossible, если невозможен вернуть -1.0
     public static double getTriangleSquare(double a, double b, double c) {
-        if (a > 0 && b > 0 && c > 0) {
+        if (isTrianglePossible(a,b,c)) {
             double p = (a + b + c) / 2;
             double S = Math.sqrt(p * (p - a) * (p - b) * (p - c));
             return S;
