@@ -1,31 +1,37 @@
 package practice;
+
 import javax.imageio.stream.ImageOutputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.zip.DataFormatException;
 
 
 public class Birthdays {
 
     public static void main(String[] args) {
 
-        int day = 31;
-        int month = 12;
-        int year = 1990;
-
+        int day = 17;
+        int month = 3;
+        int year = 2021;
         System.out.println(collectBirthdays(year, month, day));
-
     }
 
     public static String collectBirthdays(int year, int month, int day) {
         LocalDate birthday = LocalDate.of(year, month, day);
         LocalDate today = LocalDate.now();
-        int myYear = 0;
-        System.out.println(myYear + " - " + birthday + " - " + birthday.getDayOfWeek() );
-        for (; birthday.isBefore(today) == true; ) {
+        int myYear = -1;
+        StringBuilder result = new StringBuilder();
+        for (; birthday.isBefore(today) || birthday.isEqual(today) == true; ) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "dd.MM.yyyy - E", Locale.ENGLISH);
+            String formattedString = birthday.format(formatter);
             myYear++;
             birthday = birthday.plusYears(1);
-            System.out.println(myYear + " - " + birthday + " - " + birthday.getDayOfWeek() );
+            result.append(myYear + " - " + formattedString + "\n");
+           // System.out.println(myYear + " - " + formattedString);
         }
-         return "";
+        return result.toString();
     }
 }
 
