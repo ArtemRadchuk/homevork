@@ -19,9 +19,10 @@ public class SplitText {
         int max = substring.length;
         String out = "";
         for (int numberOfString = 0; numberOfString < max; numberOfString++) {
+            substring[numberOfString] = substring[numberOfString].replaceAll(" ","");
             out = out + substring[numberOfString] + "\n";
         }
-        return out;
+        return out.trim();
     }
 }
 
