@@ -31,3 +31,6 @@ LIST
 0 - make a cup of tea
 DELETE 100
 Дело с таким номером не существует
+
+материалы:
+https://www.youtube.com/watch?v=rVQGQuLlp2A
