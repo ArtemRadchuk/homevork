@@ -39,6 +39,7 @@ public class CoolNumbers {
     }
 
     public static boolean bruteForceSearchInList(List<String> list, String number) {
+        long time = System.currentTimeMillis();
         Collections.sort(CoolNumber);
         String[] array = CoolNumber.toArray(new String[0]);
         boolean out = false;
@@ -47,10 +48,16 @@ public class CoolNumbers {
                 out = true;
             }
         }
+        if (out == true) {
+            System.out.println("Поиск перебором: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+        } else {
+            System.out.println("Поиск перебором: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+        }
         return out;
     }
 
     public static boolean binarySearchInList(List<String> sortedList, String number) {
+        long time = System.currentTimeMillis();
         Collections.sort(CoolNumber);
         sortedList.addAll(CoolNumber);
         String[] array = CoolNumber.toArray(new String[0]);
@@ -68,23 +75,35 @@ public class CoolNumbers {
                 out = true;
             }
         }
+        if (out == true) {
+            System.out.println("Бинарный поиск: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+        } else {
+            System.out.println("Бинарный поиск: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+        }
         return out;
     }
 
     public static boolean searchInHashSet(HashSet<String> hashSet, String number) {
+        long time = System.currentTimeMillis();
         hashSet.addAll(CoolNumber);
         if (hashSet.contains(number)) {
+            System.out.println("Поиск в HashSet: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
             return true;
         } else {
+            System.out.println("Поиск в HashSet: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
             return false;
         }
+
     }
 
     public static boolean searchInTreeSet(TreeSet<String> treeSet, String number) {
+        long time = System.currentTimeMillis();
         treeSet.addAll(CoolNumber);
         if (treeSet.contains(number)) {
+            System.out.println("Поиск в TreeSet: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
             return true;
         } else {
+            System.out.println("Поиск в TreeSet: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
             return false;
         }
     }
