@@ -3,6 +3,8 @@ package practice;
 import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Main {
     /*
@@ -15,6 +17,6 @@ public class Main {
     public static void main(String[] args) {
         CoolNumbers a = new CoolNumbers();
         a.generateCoolNumbers();
-        System.out.println(a);
+
     }
 }

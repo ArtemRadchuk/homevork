@@ -1,14 +1,12 @@
 package practice;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CoolNumbers {
     public static ArrayList<String> CoolNumber = new ArrayList<>();
 
     public static List<String> generateCoolNumbers() {
-        int N = 1;
+        int N = 0;
         int NMax = 9;
         int R = 1;
         int RMax = 199;
@@ -19,7 +17,7 @@ public class CoolNumbers {
         String[] allLetter = new String[]{};
         allLetter = a.split("");
         for (R = 1; R <= RMax; R++) {
-            for (N = 1; N <= NMax; N++) {
+            for (N = 0; N <= NMax; N++) {
                 for (int num = 0; num < allLetter.length; num++) {
                     for (int num1 = 0; num1 < allLetter.length; num1++) {
                         for (int num2 = 0; num2 < allLetter.length; num2++) {
@@ -38,7 +36,7 @@ public class CoolNumbers {
         return CoolNumber;
     }
 
-    public static boolean bruteForceSearchInList(List<String> list, String number) {
+    public static boolean bruteForceSearchInList(String number) {
         long time = System.currentTimeMillis();
         Collections.sort(CoolNumber);
         String[] array = CoolNumber.toArray(new String[0]);
@@ -49,9 +47,9 @@ public class CoolNumbers {
             }
         }
         if (out == true) {
-            System.out.println("Поиск перебором: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск перебором: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         } else {
-            System.out.println("Поиск перебором: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск перебором: Номер не найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         }
         return out;
     }
@@ -76,9 +74,9 @@ public class CoolNumbers {
             }
         }
         if (out == true) {
-            System.out.println("Бинарный поиск: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Бинарный поиск: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         } else {
-            System.out.println("Бинарный поиск: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Бинарный поиск: Номер не найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         }
         return out;
     }
@@ -87,10 +85,10 @@ public class CoolNumbers {
         long time = System.currentTimeMillis();
         hashSet.addAll(CoolNumber);
         if (hashSet.contains(number)) {
-            System.out.println("Поиск в HashSet: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск в HashSet: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
             return true;
         } else {
-            System.out.println("Поиск в HashSet: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск в HashSet: Номер не найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
             return false;
         }
 
@@ -100,10 +98,10 @@ public class CoolNumbers {
         long time = System.currentTimeMillis();
         treeSet.addAll(CoolNumber);
         if (treeSet.contains(number)) {
-            System.out.println("Поиск в TreeSet: Номер найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск в TreeSet: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
             return true;
         } else {
-            System.out.println("Поиск в TreeSet: Номер не найден. Поиск занял:" + (System.currentTimeMillis() - time));
+            System.out.println("Поиск в TreeSet: Номер не найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
             return false;
         }
     }

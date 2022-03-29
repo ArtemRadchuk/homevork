@@ -34,7 +34,7 @@ class SearchCoolNumbersTest {
     @DisplayName("Поиск перебором - номер есть в списке")
     void bruteForceSearchFound() {
         List<String> list = new ArrayList<>(NUMBERS);
-        assertTrue(CoolNumbers.bruteForceSearchInList(list, EXISTED_CAR_NUMBER),
+        assertTrue(CoolNumbers.bruteForceSearchInList(EXISTED_CAR_NUMBER),
                 "Номер есть в списке, но не найден методом прямого перебора");
     }
 
@@ -42,7 +42,7 @@ class SearchCoolNumbersTest {
     @DisplayName("Поиск перебором - номера нет в списке")
     void bruteForceSearchNotFound() {
         List<String> list = new ArrayList<>(NUMBERS);
-        assertFalse(CoolNumbers.bruteForceSearchInList(list, NOT_CAR_NUMBER),
+        assertFalse(CoolNumbers.bruteForceSearchInList(NOT_CAR_NUMBER),
                 "Номера нет в списке, но метод его нашел.");
     }
 
