@@ -1,0 +1,49 @@
+во всех заданиях использовать stream api лямбда выражения
+
+Задание 1
+использовать лямбда выражения
+Что нужно сделать
+
+Задание выполняйте в проекте
+
+AdvancedOOPFeatures/homework_1
+В классе Main реализуйте метод sortBySalaryAndAlphabet(), который должен выполнить сортировку
+переданного списка сотрудников по заработной плате и алфавиту. То есть в начале списка будут минимальные значения зарплат,
+если значение зарплат одинаковое у сотрудников, то сотрудники с одинаковой зарплатой должны быть отсортированы по Ф. И. О.
+Проверьте ваш метод с помощью тестов.
+
+Задание 2
+
+Задание выполняйте в проекте
+
+AdvancedOOPFeatures/homework_2/Employees
+
+
+Что нужно сделать
+
+В классе Main реализуйте метод findEmployeeWithHighestSalary(), который должен выделить сотрудников, пришедших в выбранном году,
+и среди них выявить сотрудника с максимальным значением заработной платы, используя Stream API.
+Проверьте ваш метод с помощью теста.
+
+Задание 3
+
+Задание выполняйте в проекте
+
+AdvancedOOPFeatures/homework_2/Employees
+
+
+Что нужно сделать
+
+В классе Main реализуйте метод findEmployeeWithHighestSalary(), который должен выделить сотрудников, пришедших в выбранном году,
+и среди них выявить сотрудника с максимальным значением заработной платы, используя Stream API.
+Проверьте ваш метод с помощью теста.
+
+материалы
+https://annimon.com/article/2778
+https://habr.com/ru/company/luxoft/blog/270383/
+https://skillbox.ru/media/base/java-stream-api-kopilka-retseptov/
+https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/
+https://habr.com/ru/post/348536/
+https://metanit.com/java/tutorial/10.6.php
+https://habr.com/ru/post/512730/
+https://coderlessons.com/articles/java/uchebnik-po-liambda-vyrazheniiam-java
