@@ -13,8 +13,8 @@ public class TestSortBySalaryAndAlphabet {
     void sort() {
         List<Employee> actualStaff = Employee.loadStaffFromFile("data/staff.txt");
         List<Employee> expectedStaff = Employee.loadStaffFromFile("data/sortedStaff.txt");
-        Main.sortBySalaryAndAlphabet(actualStaff);
-        assertIterableEquals(expectedStaff, actualStaff, "сортировка выполнена не по условию");
+        List<Employee> sortedStaff = Main.sortBySalaryAndAlphabet(actualStaff);
+        assertIterableEquals(expectedStaff, sortedStaff, "сортировка выполнена не по условию");
     }
 
 }
