@@ -2,9 +2,7 @@ package practice;
 
 import org.checkerframework.checker.units.qual.C;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class Main {
     /*
@@ -15,8 +13,17 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        CoolNumbers a = new CoolNumbers();
-        a.generateCoolNumbers();
+      String number = "А777ВЕ168";
+        CoolNumbers coolNumbers = new CoolNumbers();
+        coolNumbers.generateCoolNumbers();
+        coolNumbers.bruteForceSearchInList(number);
+        coolNumbers.binarySearchInList((coolNumbers.generateCoolNumbers()), number);
+        TreeSet<String> tree = new TreeSet<>();
+        tree.addAll(CoolNumbers.generateCoolNumbers());
+        CoolNumbers.searchInTreeSet(tree, number);
+        HashSet<String> hash = new HashSet<>();
+        hash.addAll(CoolNumbers.generateCoolNumbers());
+        CoolNumbers.searchInHashSet(hash,number);
 
     }
 }
