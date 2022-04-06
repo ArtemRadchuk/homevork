@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailList {
-    Set<String> emailList = new TreeSet<>();
+    private Set<String> emailList = new TreeSet<>();
 
     public void add(String email) {
         // TODO: валидный формат email добавляется, email это строка, она быть может любой
@@ -13,8 +13,7 @@ public class EmailList {
         email = email.toLowerCase();
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(email);
-        boolean matches = matcher.matches();
-        if (matches == true) {
+        if (matcher.matches() == true) {
             emailList.add(email);
         } else {
             System.out.println("Невалидный email");
@@ -23,9 +22,7 @@ public class EmailList {
 
     public List<String> getSortedEmails() {
         // TODO: возвращается сортированный список электронных адресов в алфавитном порядке
-        List<String> list = new ArrayList<>();
-        list.addAll(emailList);
-        return list;
+        return emailList.stream().toList();
     }
 
 }
