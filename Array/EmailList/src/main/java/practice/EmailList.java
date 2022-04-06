@@ -19,10 +19,13 @@ public class EmailList {
             System.out.println("Невалидный email");
         }
     }
+public void getEmailList(){
+    System.out.println(emailList);
+}
 
     public List<String> getSortedEmails() {
         // TODO: возвращается сортированный список электронных адресов в алфавитном порядке
-        return emailList.stream().toList();
+        return emailList.stream().sorted().toList();
     }
 
 }

@@ -1,12 +1,14 @@
 package practice;
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Main {
     public static final String WRONG_EMAIL_ANSWER = "Неверный формат email";
-    
+
     /* TODO:
         Пример вывода списка Email, после ввода команды LIST в консоль:
         test@test.com
@@ -28,9 +30,26 @@ public class Main {
             if (input.equals("0")) {
                 break;
             }
-            
             //TODO: write code here
-            
+            EmailList emailList = new EmailList();
+            String command = "";
+            if (input.toUpperCase(Locale.ROOT).indexOf("L") != 0 && input.toUpperCase(Locale.ROOT).indexOf("S") != 0) {
+                command = input.substring(0, input.indexOf(" ")).toUpperCase(Locale.ROOT);
+            } else {
+                command = input.substring(0, input.length());
+            }
+            switch (command) {
+                case "ADD":
+                    String mail = input.substring(input.indexOf(" "), input.length()).trim();
+                    emailList.add(mail);
+                    System.out.println(emailList.getSortedEmails());
+                    break;
+                case "SORT":
+                    emailList.getSortedEmails();
+                    break;
+                case "LIST":
+                    emailList.getEmailList();
+            }
         }
     }
 }
