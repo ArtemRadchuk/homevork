@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -42,7 +44,6 @@ public class Main {
                 case "ADD":
                     String mail = input.substring(input.indexOf(" "), input.length()).trim();
                     emailList.add(mail);
-                    System.out.println(emailList.getSortedEmails());
                     break;
                 case "SORT":
                     emailList.getSortedEmails();
