@@ -1,6 +1,7 @@
 package practice;
 
 public class IndividualBusinessman extends Client {
+
     @Override
     public void put(double amountToPut) {
         int minPut = 1000;
@@ -12,12 +13,8 @@ public class IndividualBusinessman extends Client {
     }
 
     @Override
-    public double getAmount() {
-        return super.getAmount();
-    }
+    public void info() {
+        System.out.println("Доступные операции:" + "\n" + "1. Показать баланс. " + "\n" + "2. Пополнить баланс. " + "\n" + "3. Снять со счета (Комиссия 1% если снятие меньше 1000. Комиссия 0.5% если снятие 1000 или больше). ");
 
-    @Override
-    public void take(double amountToTake) {
-        super.take(amountToTake);
     }
 }
