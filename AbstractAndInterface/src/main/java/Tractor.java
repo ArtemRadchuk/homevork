@@ -1,6 +1,6 @@
-import javax.sound.midi.Soundbank;
+import Interfaces.plough;
 
-public class Tractor extends Car implements Car.plough {
+public class Tractor extends Car implements plough {
 
     public Tractor(int maximumSpeed, String model, int tankCapacity, String color) {
         super(maximumSpeed, model, tankCapacity, color);

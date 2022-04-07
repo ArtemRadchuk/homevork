@@ -2,7 +2,7 @@ public abstract class Car {
     int maximumSpeed;
     String model;
     int tankCapacity;
-   private String color;
+    private String color;
 
     public Car(int maximumSpeed, String model, int tankCapacity, String color) {
         this.maximumSpeed = maximumSpeed;
@@ -12,11 +12,11 @@ public abstract class Car {
     }
 
     public void drive() {
-        System.out.println("начинает ехать");
+        System.out.println("Машина начинает ехать");
     }
 
     public void brake() {
-        System.out.println("тормозит");
+        System.out.println("Машина тормозит");
     }
 
     public int getMaximumSpeed() {
@@ -51,26 +51,7 @@ public abstract class Car {
         this.color = color;
     }
 
-    interface launchControl{
-        default void launch(){
-            System.out.println("Старт с лаунчем");
-        }
-    }
-interface climateControl{
-        default void climate(){
-            System.out.println("Включен климат контроль");
-        }
 }
-    interface plough {
-        default void plowDown(){
-            System.out.println("Плуг опущен");
-        }
-        default void plough() {
-            System.out.println("Вспахиваем");
-        }
-        default void plowUp(){
-            System.out.println("Плуг поднят");
-        }
 
-    }
-}
+
+
