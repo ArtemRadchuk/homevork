@@ -10,14 +10,13 @@ public class Main {
         List<Employee> staff = Employee.loadStaffFromFile(STAFF_TXT);
         List<Employee> sortedStaff = sortBySalaryAndAlphabet(staff);
         System.out.println(sortedStaff);
-
     }
 
     public static List<Employee> sortBySalaryAndAlphabet(List<Employee> staff) {
         return staff.stream().sorted(Comparator.comparing(Employee::getName)).sorted(Comparator.comparing(Employee::getSalary)).toList();
     }
 
-    public Employee sortBySalaryAndDate(List<Employee> staff, Date date) {
+    public static Employee findEmployeeWithHighestSalary(List<Employee> staff, Date date) {
         return staff.stream().filter(s -> s.getWorkStart().equals(date)).toList().get(0);
     }
 }
