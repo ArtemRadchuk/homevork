@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static Employee findEmployeeWithHighestSalary(List<Employee> staff, Date date) {
-        return staff.stream().filter(Employee -> Employee.getWorkStart().getYear() == date.getYear()).sorted(Comparator.comparing(Employee::getSalary).reversed()).toList().get(0);
+        return staff.stream().filter(Employee -> Employee.getWorkStart().getYear() == date.getYear()).max(Comparator.comparing(Employee::getSalary)).get();
     }
 }
 
