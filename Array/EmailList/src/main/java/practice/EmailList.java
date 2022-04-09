@@ -13,15 +13,16 @@ public class EmailList {
         email = email.toLowerCase();
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(email);
-        if (matcher.matches() == true) {
+        if (matcher.matches()) {
             emailList.add(email);
         } else {
             System.out.println("Невалидный email");
         }
     }
-public void getEmailList(){
-    System.out.println(emailList);
-}
+
+    public void getEmailList() {
+        System.out.println(emailList);
+    }
 
     public List<String> getSortedEmails() {
         // TODO: возвращается сортированный список электронных адресов в алфавитном порядке
