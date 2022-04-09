@@ -40,9 +40,10 @@ public class CoolNumbers {
         for (String s : CoolNumbers.generateCoolNumbers()) {
             if (s.equals(number)) {
                 isFind = true;
+                break;
             }
         }
-        if (isFind == true) {
+        if (isFind) {
             System.out.println("Поиск перебором: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         } else {
             System.out.println("Поиск перебором: Номер не найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
@@ -52,10 +53,9 @@ public class CoolNumbers {
 
     public static boolean binarySearchInList(List<String> sortedList, String number) {
         long time = System.currentTimeMillis();
-        String[] array = sortedList.toArray(new String[sortedList.size()]);
-        Arrays.sort(array);
+        Collections.sort(sortedList);
         boolean out = false;
-        if (Arrays.binarySearch(array, number) >= 0) {
+        if (Collections.binarySearch(sortedList, number) >= 0) {
             out = true;
             System.out.println("Бинарный поиск: Номер найден. Поиск занял: " + (System.currentTimeMillis() - time) + "нс");
         } else {
