@@ -13,27 +13,25 @@ public class Main {
     public static void main(String[] args) {
         PhoneBook myPhoneBook = new PhoneBook();
         Scanner scanner = new Scanner(System.in);
+        final Pattern pattern = Pattern.compile("[0-9]");
         while (true) {
             //System.out.println("Введите номер, имя или команду: ");
             String input = scanner.nextLine();
+            Matcher matcher = pattern.matcher(input);
             if (input.equals("0")) {
                 break;
             }
-            Pattern pattern = Pattern.compile("[0-9]");
-            Matcher matcher = pattern.matcher(input);
             if (input.equals("LIST")) {
                 myPhoneBook.getAllContacts();
             }
-            if (matcher.find() && input.equals("LIST") == false) {
+            if (matcher.find()) {
                 System.out.println("Введите имя");
                 String name = scanner.nextLine();
                 myPhoneBook.addContact(input, name);
-                System.out.println("Контакт сохранен!");
-            } else if (matcher.find() == false && input.equals("LIST") == false) {
+            } else if (!matcher.find()) {
                 System.out.println("Введите номер");
                 String phone = scanner.nextLine();
                 myPhoneBook.addContact(phone, input);
-                System.out.println("Контакт сохранен!");
             }
         }
     }

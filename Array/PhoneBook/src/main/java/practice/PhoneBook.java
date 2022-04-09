@@ -18,11 +18,14 @@ public class PhoneBook {
             if (phoneBook.containsValue(phone)) {
                 phoneBook.remove(getName(phone));
                 phoneBook.put(name, phone);
+                System.out.println("Контакт перезаписан");
             } else if (phoneBook.containsKey(name)) {
                 String addPhone = phoneBook.get(name) + ", " + phone;
                 phoneBook.put(name, addPhone);
-            } else if (phone != "" && name != "") {
+                System.out.println("Контакт сохранен!");
+            } else if (!phone.isEmpty() && !name.isEmpty()) {
                 phoneBook.put(name, phone);
+                System.out.println("Контакт сохранен!");
             }
         } else {
             System.out.println("Некорректный формат имени или номера");
@@ -30,9 +33,9 @@ public class PhoneBook {
     }
 
     private boolean phoneValidate(String phone) {
-        Pattern pattern = Pattern.compile("\\d");
+        Pattern pattern = Pattern.compile("[0-9]{11}");
         Matcher matcher = pattern.matcher(phone);
-        return matcher.find();
+        return matcher.matches();
     }
 
     private boolean nameValidate(String name) {
@@ -43,11 +46,11 @@ public class PhoneBook {
 
     public String getName(String phone) {
         String output = "";
-        Collection<String> collection = phoneBook.keySet();
-        for (String key : collection) {
-            String find = phoneBook.get(key);
-            if (key != null && phone.equals(find)) {
-                output = output + key;
+        Collection<String> names = phoneBook.keySet();
+        for (String name : names) {
+            String find = phoneBook.get(name);
+            if (phone.equals(find)) {
+                output = output + name;
             }
         }
         return output;
@@ -82,9 +85,9 @@ public class PhoneBook {
         // если контактов нет в телефонной книге - вернуть пустой TreeSet
         Set<String> List = new TreeSet<>();
         for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
-            String key = entry.getKey();
+            String name = entry.getKey();
             String value = entry.getValue();
-            List.add(key + " - " + value);
+            List.add(name + " - " + value);
         }
         System.out.println(List);
         return List;
