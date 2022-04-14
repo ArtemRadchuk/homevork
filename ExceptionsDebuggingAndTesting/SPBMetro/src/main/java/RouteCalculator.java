@@ -20,12 +20,10 @@ public class RouteCalculator {
         if (route != null) {
             return route;
         }
-
         route = getRouteWithOneConnection(from, to);
         if (route != null) {
             return route;
         }
-
         route = getRouteWithTwoConnections(from, to);
         return route;
     }
@@ -81,7 +79,6 @@ public class RouteCalculator {
         }
 
         List<Station> route = new ArrayList<>();
-
         List<Station> fromLineStations = from.getLine().getStations();
         List<Station> toLineStations = to.getLine().getStations();
         for (Station srcStation : fromLineStations) {
@@ -93,11 +90,12 @@ public class RouteCalculator {
                     if (route.isEmpty() || route.size() > way.size()) {
                         route.clear();
                         route.addAll(way);
+                        return route;
                     }
                 }
             }
         }
-        return route;
+        return null;
     }
 
     private boolean isConnected(Station station1, Station station2) {
@@ -111,13 +109,13 @@ public class RouteCalculator {
         List<Station> connectedRoute = new ArrayList<>();
         for (Station srcStation : fromConnected) {
             for (Station dstStation : toConnected) {
-                connectedRoute = getRouteOnTheLine(srcStation,dstStation);
+                connectedRoute = getRouteOnTheLine(srcStation, dstStation);
                 if (srcStation.getLine().equals(dstStation.getLine())) {
                     return getRouteOnTheLine(srcStation, dstStation);
                 }
             }
         }
-        return connectedRoute;
+        return null;
     }
 
     private List<Station> getRouteWithTwoConnections(Station from, Station to) {
@@ -132,10 +130,8 @@ public class RouteCalculator {
 
         for (Station srcStation : fromLineStations) {
             for (Station dstStation : toLineStations) {
-                System.out.println("|" + dstStation + " " + srcStation + "|");
                 List<Station> connectedLineRoute =
                         getRouteViaConnectedLine(srcStation, dstStation);
-                System.out.println(getRouteViaConnectedLine(srcStation, dstStation) + "1111");
                 if (connectedLineRoute == null) {
                     continue;
                 }

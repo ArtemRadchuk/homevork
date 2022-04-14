@@ -1,11 +1,14 @@
 import core.Line;
 import core.Station;
+import org.apache.logging.log4j.Level;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +16,7 @@ import java.util.Scanner;
 public class Main {
     private static final String DATA_FILE = "src/main/resources/map.json";
     private static Scanner scanner;
-
+    private static Logger logger = LogManager.getLogger();
     private static StationIndex stationIndex;
 
     public static void main(String[] args) {
@@ -23,7 +26,6 @@ public class Main {
         for (; ; ) {
             Station from = takeStation("Введите станцию отправления:");
             Station to = takeStation("Введите станцию назначения:");
-
             List<Station> route = calculator.getShortestRoute(from, to);
             System.out.println("Маршрут:");
             printRoute(route);
@@ -60,8 +62,10 @@ public class Main {
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if (station != null) {
+                logger.info(line);
                 return station;
             }
+            logger.error(line);
             System.out.println("Станция не найдена :(");
         }
     }
