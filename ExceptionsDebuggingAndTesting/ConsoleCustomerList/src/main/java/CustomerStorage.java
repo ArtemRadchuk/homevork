@@ -18,16 +18,15 @@ public class CustomerStorage {
 
         String[] components = data.split("\\s+");
         String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
-        if (emailValidate(components[INDEX_EMAIL]) && phoneValidate(components[INDEX_PHONE]) == false && components.length == 4) {
+        if (emailValidate(components[INDEX_EMAIL]) && phoneValidate(components[INDEX_PHONE]) && components.length == 4) {
             storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
-        } else if (emailValidate(components[INDEX_EMAIL]) == false) {
+        } else if (!emailValidate(components[INDEX_EMAIL])) {
             throw new RuntimeException("thisIsNotAnEmail");
-        } else if (phoneValidate(components[INDEX_PHONE])) {
+        } else if (!phoneValidate(components[INDEX_PHONE])) {
             throw new RuntimeException("+thisIsNotANumber");
-        }else if(components.length > 4){
+        } else if (components.length > 4) {
             throw new RuntimeException();
         }
-
     }
 
     public boolean emailValidate(String email) {
@@ -37,9 +36,9 @@ public class CustomerStorage {
     }
 
     public boolean phoneValidate(String phone) {
-        Pattern phonePattern = Pattern.compile("[A-Z]", Pattern.CASE_INSENSITIVE);
+        Pattern phonePattern = Pattern.compile("^\\+\\d{11}",Pattern.CASE_INSENSITIVE);
         Matcher matcher = phonePattern.matcher(phone);
-        return matcher.find();
+        return matcher.matches();
     }
 
     public void listCustomers() {
