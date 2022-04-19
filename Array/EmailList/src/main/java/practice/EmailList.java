@@ -5,28 +5,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailList {
-    private Set<String> emailList = new TreeSet<>();
+    private static List<String> emailList = new ArrayList<>();
 
     public void add(String email) {
-        // TODO: валидный формат email добавляется, email это строка, она быть может любой
-        // принять решение добавлять аргумент email или нет должен этот метод
         email = email.toLowerCase();
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(email);
         if (matcher.matches()) {
             emailList.add(email);
+            System.out.println("Почта добавлена");
         } else {
             System.out.println("Невалидный email");
         }
     }
 
     public void getEmailList() {
-        System.out.println(emailList);
+        for (String mail : emailList) {
+            System.out.println(mail);
+        }
     }
 
     public List<String> getSortedEmails() {
-        // TODO: возвращается сортированный список электронных адресов в алфавитном порядке
-        return emailList.stream().sorted().toList();
+        emailList = emailList.stream().sorted().toList();
+        System.out.println("Почты отсортированы");
+        return emailList;
     }
 
 }
