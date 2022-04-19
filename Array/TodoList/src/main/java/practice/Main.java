@@ -12,8 +12,9 @@ public class Main {
         // TODO: написать консольное приложение для работы со списком дел todoList
         String command;
         String inSide = "";
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            String input = new Scanner(System.in).nextLine();
+            String input = scanner.nextLine();
             String[] divineInput = input.split(" ");
             if (divineInput.length > 1) {
                 command = input.substring(0, input.indexOf(" ")).toUpperCase(Locale.ROOT);
@@ -55,6 +56,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Команда не распознана");
+                    break;
             }
         }
     }
