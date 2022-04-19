@@ -15,7 +15,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         final Pattern pattern = Pattern.compile("[0-9]");
         while (true) {
-            //System.out.println("Введите номер, имя или команду: ");
+            System.out.println("Введите номер, имя или команду: ");
             String input = scanner.nextLine();
             Matcher matcher = pattern.matcher(input);
             if (input.equals("0")) {

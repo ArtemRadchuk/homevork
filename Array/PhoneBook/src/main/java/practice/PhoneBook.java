@@ -1,7 +1,5 @@
 package practice;
 
-import org.antlr.v4.runtime.tree.Tree;
-
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,21 +8,17 @@ public class PhoneBook {
     private HashMap<String, String> phoneBook = new HashMap<>();
 
     public void addContact(String phone, String name) {
-        // проверьте корректность формата имени и телефона
-        // (рекомедуется написать отдельные методы для проверки является строка именем/телефоном)
-        // если такой номер уже есть в списке, то перезаписать имя абонента
-
         if (nameValidate(name) && phoneValidate(phone)) {
-            if (phoneBook.containsValue(phone)) {
-                phoneBook.remove(getName(phone));
-                phoneBook.put(name, phone);
+            if (phoneBook.containsKey(phone)) {
+                phoneBook.remove(phone);
+                phoneBook.put(phone, name);
                 System.out.println("Контакт перезаписан");
-            } else if (phoneBook.containsKey(name)) {
+            } else if (phoneBook.containsValue(name)) {
                 String addPhone = phoneBook.get(name) + ", " + phone;
-                phoneBook.put(name, addPhone);
+                phoneBook.put(phone, name);
                 System.out.println("Контакт сохранен!");
             } else if (!phone.isEmpty() && !name.isEmpty()) {
-                phoneBook.put(name, phone);
+                phoneBook.put(phone, name);
                 System.out.println("Контакт сохранен!");
             }
         } else {
@@ -44,49 +38,40 @@ public class PhoneBook {
         return matcher.find();
     }
 
-    public String getName(String phone) {
+    public String getPhone(String name) {
         String output = "";
-        Collection<String> names = phoneBook.keySet();
-        for (String name : names) {
-            String find = phoneBook.get(name);
-            if (phone.equals(find)) {
-                output = output + name;
+        Collection<String> phones = phoneBook.keySet();
+        for (String phone : phones) {
+            String find = phoneBook.get(phone);
+            if (name.equals(find)) {
+                output = output + phone;
             }
         }
         return output;
     }
 
     public String getContactByPhone(String phone) {
-        // формат одного контакта "Имя - Телефон"
-        // если контакт не найдены - вернуть пустую строку
-        String output = "";
-        Collection<String> collection = phoneBook.keySet();
-        for (String key : collection) {
-            String find = phoneBook.get(key);
-            if (key != null && phone.equals(find)) {
-                output = output + key;
-            }
-        }
-        return output + " - " + phone;
+        return phoneBook.get(phone) + " - " + phone;
     }
 
     public Set<String> getContactByName(String name) {
-        // формат одного контакта "Имя - Телефон"
-        // если контакт не найден - вернуть пустой TreeSet
-        String contactPhone = phoneBook.get(name);
         Set<String> phone = new TreeSet<>();
-        phone.add(name + " - " + contactPhone);
+        Collection<String> collection = phoneBook.keySet();
+        for (String key : collection) {
+            String find = phoneBook.get(key);
+            if (key != null && name.equals(find)) {
+                phone.add(name + " - " + key);
+            }
+        }
         return phone;
 
     }
 
     public Set<String> getAllContacts() {
-        // формат одного контакта "Имя - Телефон"
-        // если контактов нет в телефонной книге - вернуть пустой TreeSet
         Set<String> List = new TreeSet<>();
         for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
-            String name = entry.getKey();
-            String value = entry.getValue();
+            String name = entry.getValue();
+            String value = entry.getKey();
             List.add(name + " - " + value);
         }
         System.out.println(List);
