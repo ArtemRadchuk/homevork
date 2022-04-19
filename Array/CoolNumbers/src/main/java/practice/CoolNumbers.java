@@ -6,17 +6,12 @@ public class CoolNumbers {
     private static ArrayList<String> coolNumber = new ArrayList<>();
 
     public static List<String> generateCoolNumbers() {
-        int N = 0;
         int NMax = 9;
-        int R = 1;
         int RMax = 199;
-        String X = "";
-        String Y = "";
-        String Z = "";
         final String possibleLetters = "АВЕКМНОРСТУХ";
         final String[] allLetter = possibleLetters.split("");
-        for (R = 1; R <= RMax; R++) {
-            for (N = 0; N <= NMax; N++) {
+        for (int R = 1; R <= RMax; R++) {
+            for (int N = 0; N <= NMax; N++) {
                 for (int num = 0; num < allLetter.length; num++) {
                     for (int num1 = 0; num1 < allLetter.length; num1++) {
                         for (int num2 = 0; num2 < allLetter.length; num2++) {
