@@ -1,5 +1,3 @@
-import net.sf.saxon.trans.SymbolicName;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,22 +10,28 @@ public class FileUtils {
         List<String> fileArray = new ArrayList<>(); //Массив имен файлов в папке
         List<String> dir = new ArrayList<>();
         String uRL = path;
+        try {
+            folder.isDirectory();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Переданный путь не ведет к директории");
+        }
         for (File file : folder.listFiles()) {
             if (!file.isDirectory()) {
                 weight = weight + file.length();
-            } else if (file.isDirectory()) {
+            } else {
                 dir.add(file.getName());
-            }
-            for (String s : dir) {
-                File files = new File(uRL + "\\" + s);
-                for (File f : files.listFiles()) {
-                    dir.add(f.getName());
-                    if (!f.isDirectory()) {
-                        weight = weight + f.length();
-                        dir.remove(f.getName());
-                    } else if (f.isDirectory()) {
-                        for (File g : f.listFiles()) {
-                            dir.add(g.getName());
+                for (String s : dir) {
+                    File files = new File(uRL + "\\" + s);
+                    for (File f : files.listFiles()) {
+                        dir.add(f.getName());
+                        if (!f.isDirectory()) {
+                            weight = weight + f.length();
+                            dir.remove(f.getName());
+                        } else {
+                            for (File g : f.listFiles()) {
+                                dir.add(g.getName());
+                            }
                         }
                     }
                 }
@@ -43,15 +47,20 @@ public class FileUtils {
             weight = weight / 1024;
         }
         String prefix = "";
-        if (bite == 0) {
-            prefix = "байт";
-        } else if (bite == 1) {
-            prefix = "Килобайт";
-        } else if (bite == 2) {
-            prefix = "Мегабайт";
-        } else if (bite == 3) {
-            prefix = "Гигабайт";
+        switch (bite) {
+            case 1:
+                prefix = "Килобайт";
+                break;
+            case 2:
+                prefix = "Мегабайт";
+                break;
+            case 3:
+                prefix = "Гигабайт";
+                break;
+            default:
+                prefix = "Байт";
         }
+
         return prefix;
     }
 }

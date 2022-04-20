@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -10,9 +9,9 @@ public class Main {
         String input = new Scanner(System.in).nextLine();
         try {
             FileInputStream file = new FileInputStream(input);
+            long fileWeight = FileUtils.calculateFolderSize(input);
         } catch (FileNotFoundException e) {
-            System.out.println("");
+            e.printStackTrace();
         }
-        long fileWeight = FileUtils.calculateFolderSize(input);
-      }
     }
+}
