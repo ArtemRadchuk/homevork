@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -8,8 +8,8 @@ public class Main {
         String src = new Scanner(System.in).nextLine();
         System.out.println("Введите путь, куда копировать файл");
         String dest = new Scanner(System.in).nextLine();
-        FileUtils.copyFolder(src,dest);
-        for (StackTraceElement element: elements) {
+        FileUtils.copyFolder(src, dest);
+        for (StackTraceElement element : elements) {
             System.err.println(element);
         }
 
