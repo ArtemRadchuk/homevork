@@ -11,8 +11,6 @@ public class Movements {
 
     public Movements(String pathMovementsCsv) {
         List<String> readCsv = null;
-        List<Double> income = new ArrayList<>();
-        List<Double> expense = null;
         List<String> a = new ArrayList<>();
         try {
             Path path = Paths.get(pathMovementsCsv);
@@ -28,35 +26,47 @@ public class Movements {
             for (int i = 0; i < str.length; i++) {
                 if (!str[i].equals("")) {
                     a.add(str[i]);
-
                 }
             }
         }
+        String money = null;
         for (String m : a) {
             String out = m.substring(4);
             out = out.replaceAll("\"", "");
             String[] st = out.split(",");
-            String money;
             if (!st[0].equals("0")) {
                 if (st.length == 3) {
                     money = st[1] + "," + st[2];
-                    System.out.println(money + "method1");
                 } else if (st.length == 4) {
                     money = st[1] + "," + st[2] + "," + st[3];
-                    System.out.println(money + "method2");
                 }
             } else if (st[0].equals("0")) {
                 money = st[2] + "," + st[3];
-                System.out.println(money + "method3");
+            }
+            String [] splittedString =  money.split(",");
+            if (splittedString.length == 3) {
+                if (splittedString[0].equals("0")) {
+                    expenseSum = expenseSum + Double.parseDouble(splittedString[1] + "." + splittedString[2]);
+                } else {
+                    incomeSum = incomeSum + Double.parseDouble(splittedString[0] + "." + splittedString[1]);
+                }
+            }else if (splittedString.length == 2){
+                if (splittedString[0].equals("0")) {
+                    expenseSum = expenseSum + Double.parseDouble(  splittedString[1]);
+                } else {
+                    incomeSum = incomeSum + Double.parseDouble(splittedString[0]);
+                }
             }
         }
     }
 
     public double getExpenseSum() {
+        System.out.println("Сумма расходов: " + expenseSum + " руб.");
         return expenseSum;
     }
 
     public double getIncomeSum() {
+        System.out.println("Сумма доходов: " + incomeSum + " руб.");
         return incomeSum;
     }
 }
