@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movements {
+    public double incomeSum = 0;
+    public double expenseSum = 0;
 
     public Movements(String pathMovementsCsv) {
         List<String> readCsv = null;
         List<Double> income = new ArrayList<>();
         List<Double> expense = null;
-        double incomeSum = 0;
-        double expenseSum = 0;
+        List<String> a = new ArrayList<>();
         try {
             Path path = Paths.get(pathMovementsCsv);
             readCsv = Files.readAllLines(path);
@@ -20,46 +21,42 @@ public class Movements {
             e.printStackTrace();
         }
         for (String s : readCsv) {
-            String string = s;
-            String[] str = string.split("   ");
-            str[0] = " ";
+            s.replaceAll(" ", "");
+            String[] str = s.trim().split("MCC");
+            str[0] = "";
 
             for (int i = 0; i < str.length; i++) {
-                if (str[i].trim().equals("")) {
-                    continue;
-                }
-                if (str[i].indexOf("/") > -1){
-                    String a =  str[i+3].substring(str[i+3].lastIndexOf(" "),str[i+3].length());
-                   // System.out.println(a + "------");
-                    income.add(Double.parseDouble(a));
-                }
-               /* if (str[i].indexOf("\\") > -1){
-                    String a =  str[i+3].substring(str[i+3].lastIndexOf(" "),str[i].length());
-                    System.out.println(a+ "------");
-                 //   expense.add(Double.parseDouble(a));
-                }
-            System.out.println(i + " " + str[i].trim());
-            }*/
-        }
-        for (double a: income) {
-            System.out.println(a + "........");
-            incomeSum = incomeSum+ a;
-        }
+                if (!str[i].equals("")) {
+                    a.add(str[i]);
 
-        /*for (double a: expense) {
-            expenseSum = expenseSum+ a;
+                }
+            }
         }
-        System.out.println(incomeSum + " " + expenseSum);
-    }*/}
-        System.out.println(incomeSum+"--11--");}
+        for (String m : a) {
+            String out = m.substring(4);
+            out = out.replaceAll("\"", "");
+            String[] st = out.split(",");
+            String money;
+            if (!st[0].equals("0")) {
+                if (st.length == 3) {
+                    money = st[1] + "," + st[2];
+                    System.out.println(money + "method1");
+                } else if (st.length == 4) {
+                    money = st[1] + "," + st[2] + "," + st[3];
+                    System.out.println(money + "method2");
+                }
+            } else if (st[0].equals("0")) {
+                money = st[2] + "," + st[3];
+                System.out.println(money + "method3");
+            }
+        }
+    }
 
     public double getExpenseSum() {
-        double expenseSum;
-        return 0.0;
+        return expenseSum;
     }
 
     public double getIncomeSum() {
-        double incomeSum = 0;
         return incomeSum;
     }
 }
