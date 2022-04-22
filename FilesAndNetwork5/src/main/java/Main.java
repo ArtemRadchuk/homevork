@@ -40,54 +40,64 @@ public class Main {
             index++;
         }
         index = 0;
-        String start = "\"stations\"" + " : " + "{";
+        out.println("{");
+        String start = "\t\"stations\"" + " : " + "{";
         out.println(start);
         for (Element num : allMetroNum) { //Нумерация метро
             metroNumber[index] = Integer.parseInt(num.toString().substring(num.toString().indexOf(">") + 1, num.toString().indexOf(".")));
             index++;
         }
         int lineIndex = 0;
-        for (index = 0; index < metroNames.length; index++) { //Запись в файл
+        for (index = 0; index < metroNames.length; index++) { //Запись в файл метро
             if (metroNumber[index] == 1) {
                 int numberLine = lineIndex + 1;
                 if (numberLine > 1) {
-                    out.println("\t],");
+                    out.println("\t\t],");
                 }
-                out.println("\t\"" + numberLine + "\" : [");
-                //out.println(metroLineNames[lineIndex]);
+                out.println("\t\t\"" + numberLine + "\" : [");
                 lineIndex++;
             }
             if (metroNames[index] != null) { //\"" + metroNumber[index] + "\"" + " - " + "\"
-                out.println("\t\t\"" + metroNames[index] + "\"" + ",");
+                if (metroNumber[index + 1] != 1 && metroNumber[index + 1] != 0) {
+                    out.println("\t\t\t\"" + metroNames[index] + "\"" + ",");
+                } else {
+                    out.println("\t\t\t\"" + metroNames[index] + "\"");
+                }
             } else {
                 break;
             }
         }
-        String startLines = "\"lines\"" + " : " + "[";
+        String startLines = "\t\"lines\"" + " : " + "[";
         int numberOfLine = 1;
-        out.println("\t\t]");
-        out.println("\t},");
+        out.println("\t\t\t]");
+        out.println("\t\t},");
         out.println(startLines);
-        for (index = 0; index < metroLineNames.length; index++) {
+        for (index = 0; index < metroLineNames.length; index++) { //Запись линий
             if (metroLineNames[index] != null) {
                 out.println("\t{");
                 if (numberOfLine < 16) {
                     out.println("\t\t\"number\" : " + numberOfLine + ",");
-                }else {
-                    switch (numberOfLine){
+                } else {
+                    switch (numberOfLine) {
                         case 16:
-                            out.println("\t\t\"number\" : " + "D1" + ",");
+                            out.println("\t\t\"number\" : " + "\"D1\"" + ",");
                             break;
                         case 17:
-                            out.println("\t\t\"number\" : " + "D2" + ",");
+                            out.println("\t\t\"number\" : " + "\"D2\"" + ",");
                             break;
                     }
                 }
-                out.println("\t\t\"name\" : " + "\"" + metroLineNames[index] + "\",");
-                out.println("\t},");
+                out.println("\t\t\"name\" : " + "\"" + metroLineNames[index] + "\"");
+                if (metroLineNames[index+1] != null) {
+                    out.println("\t\t},");
+                }else{
+                    out.println("\t\t}");
+                }
                 numberOfLine++;
             }
         }
+        out.println("\t]");
+        out.println("}");
         out.close();
     }
 }
