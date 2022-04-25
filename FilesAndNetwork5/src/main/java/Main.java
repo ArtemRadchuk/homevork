@@ -7,7 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     private static String METRO_URL = "https://skillbox-java.github.io/";
@@ -16,12 +20,46 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Document document = Jsoup.connect(METRO_URL).maxBodySize(0).get();
-        readAndWriteMetro(document);
+        readSiteAndWriteMapFile(document);
+        numberOfStation();
+    }
+
+    private static void numberOfStation() throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get("map.json"));
+        int number = 0;
+        int numberOfLine = 1;
+        for (String li : lines) {
+            Pattern pattern = Pattern.compile("[\"]+[\\d]+[\"]");
+            Pattern pattern1 = Pattern.compile("[\\]]");
+            Matcher matcher = pattern.matcher(li);
+            Matcher matcher1 = pattern1.matcher(li);
+            if (number > 50) {
+                break;
+            }
+            if (matcher.find()) {
+                number = 0;
+            }
+            if (matcher1.find()) {
+                switch (numberOfLine) {
+                    case 16:
+                        System.out.println("МЦД-1 - " + (number - 1) + " станций");
+                        break;
+                    case 17:
+                        System.out.println("МЦД-2 - " + (number - 1) + " станций");
+                        break;
+                    default:
+                        System.out.println(numberOfLine + " линия - " + (number - 1) + " станций");
+                }
+                numberOfLine++;
+                number = 0;
+            }
+            number++;
+        }
     }
 
 
-    private static void readAndWriteMetro(Document doc) throws FileNotFoundException {
-        PrintWriter out = new PrintWriter("map.json");
+    private static void readSiteAndWriteMapFile(Document doc) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter(file.getName());
         Elements allMetro = doc.select("span.name");
         Elements allMetroNum = doc.select("span.num");
         Elements lines = doc.select("#metrodata > div > div.js-toggle-depend.s-depend-control-single");
@@ -88,9 +126,9 @@ public class Main {
                     }
                 }
                 out.println("\t\t\"name\" : " + "\"" + metroLineNames[index] + "\"");
-                if (metroLineNames[index+1] != null) {
+                if (metroLineNames[index + 1] != null) {
                     out.println("\t\t},");
-                }else{
+                } else {
                     out.println("\t\t}");
                 }
                 numberOfLine++;
