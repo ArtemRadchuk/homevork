@@ -1,14 +1,15 @@
 package Entitys;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Subscriptions")
-public class Subscriptions {
+public class Subscriptions implements Serializable {
     @EmbeddedId
-    private Key id;
+    private Linked_key key;
 
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;

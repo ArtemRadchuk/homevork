@@ -2,8 +2,6 @@ package Entitys;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "PurchaseList")
