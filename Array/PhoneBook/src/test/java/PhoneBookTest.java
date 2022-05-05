@@ -74,7 +74,7 @@ class PhoneBookTest {
     void addContactWithTwoNumbers() {
         phoneBook.addContact("79001234567", "Маша");
         phoneBook.addContact("79007654321", "Маша");
-        Set<String> expected = new TreeSet<>(List.of("Маша - 79001234567, 79007654321"));
+        Set<String> expected = new TreeSet<>(List.of("Маша - 79001234567, Маша - 79007654321"));
         assertEquals(expected, phoneBook.getAllContacts());
     }
 

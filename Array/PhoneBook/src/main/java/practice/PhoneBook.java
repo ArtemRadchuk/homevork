@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhoneBook {
+
     private HashMap<String, String> phoneBook = new HashMap<>();
 
     public void addContact(String phone, String name) {
@@ -68,14 +69,14 @@ public class PhoneBook {
     }
 
     public Set<String> getAllContacts() {
-        Set<String> List = new TreeSet<>();
+        Set<String> contactList = new TreeSet<>();
         for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
             String name = entry.getValue();
             String value = entry.getKey();
-            List.add(name + " - " + value);
+            contactList.add(name + " - " + value);
         }
-        System.out.println(List);
-        return List;
+        System.out.println(contactList);
+        return contactList;
     }
 
     // для обхода Map используйте получение пары ключ->значение Map.Entry<String,String>
