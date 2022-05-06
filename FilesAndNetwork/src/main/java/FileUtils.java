@@ -1,40 +1,23 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FileUtils {
+public static long weight = 0L;
 
     public static long calculateFolderSize(String path) {
+
         File folder = new File(path);
-        long weight = 0L;
-        List<String> fileArray = new ArrayList<>(); //Массив имен файлов в папке
-        List<String> dir = new ArrayList<>();
-        String uRL = path;
         try {
             folder.isDirectory();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Переданный путь не ведет к директории");
+            System.err.println("Переданный путь не ведет к директории");
         }
         for (File file : folder.listFiles()) {
-            if (!file.isDirectory()) {
+            if (file.isFile()) {
                 weight = weight + file.length();
+                System.out.println(file.length() + " - " + file.getAbsolutePath());
             } else {
-                dir.add(file.getName());
-                for (String s : dir) {
-                    File files = new File(uRL + "\\" + s);
-                    for (File f : files.listFiles()) {
-                        dir.add(f.getName());
-                        if (!f.isDirectory()) {
-                            weight = weight + f.length();
-                            dir.remove(f.getName());
-                        } else {
-                            for (File g : f.listFiles()) {
-                                dir.add(g.getName());
-                            }
-                        }
-                    }
-                }
+                calculateFolderSize(path + "\\" + file.getName());
             }
         }
         System.out.println(weight + " " + bytePrefix(weight));
@@ -60,7 +43,6 @@ public class FileUtils {
             default:
                 prefix = "Байт";
         }
-
         return prefix;
     }
 }
