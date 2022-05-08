@@ -8,7 +8,7 @@ import java.util.Objects;
 @Table(name = "Subscriptions")
 public class Subscriptions {
     @EmbeddedId
-    private Key id;
+    private subscriptionsKey id;
 
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;

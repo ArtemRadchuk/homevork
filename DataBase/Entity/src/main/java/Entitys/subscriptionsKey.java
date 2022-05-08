@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class Key implements Serializable {
+public class subscriptionsKey implements Serializable {
 
     @Column(name = "student_id")
     private int studentId;
@@ -34,7 +34,7 @@ public class Key implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Key key = (Key) o;
+        subscriptionsKey key = (subscriptionsKey) o;
         return studentId == key.studentId && courseId == key.courseId;
     }
 
