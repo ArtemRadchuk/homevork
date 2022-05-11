@@ -1,7 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Objects;
+import java.util.Arrays;
 
 class imageQueue extends Thread {
     private File[] files;
@@ -59,23 +59,49 @@ class imageQueue extends Thread {
 public class Main {
 
     public static void main(String[] args) {
-        String srcFolder = "/users/sortedmap/Desktop/src";
-        String dstFolder = "/users/sortedmap/Desktop/dst";
+        String srcFolder = "C:/Users/User/image";
+        String dstFolder = "C:/Users/User/toImage";
         File srcDir = new File(srcFolder);
         File[] files = srcDir.listFiles();
         int step = (files).length / Runtime.getRuntime().availableProcessors();
+        int re = (files).length % Runtime.getRuntime().availableProcessors();
 
-
-        int var = 0;
-        File[] temp = new File[step];
-
-        for (File file : files) {
-            temp[var++] = file;
+        int fileIndex = 0;
+        for (int j = 0; j < Runtime.getRuntime().availableProcessors(); j++) {
+            if (re > 0) {
+                step++;
+                re--;
+            }
+            File[] temp = new File[step];
+            for (int i = 0; i < step; i++) {
+                temp[i] = files[fileIndex];
+                fileIndex++;
+            }
+            new imageQueue(temp, dstFolder).start();
+            step = (files).length / Runtime.getRuntime().availableProcessors();
+        }
+       /* for (File file : files) {
+            if (re > 0) {
+                step++;
+                re = 0;
+                a--;
+            }
+            File[] temp = new File[step];
+            temp[var] = file;
+            var++;
+            for (int j = 0; j < temp.length; j++) {
+                System.out.println(temp[j] + " " + j + "--- темп");
+            }
             if (var == step) {
                 new imageQueue(temp, dstFolder).start();
+                i++;
+                step = (files).length / Runtime.getRuntime().availableProcessors();
                 temp = new File[step];
                 var = 0;
+                re = a;
             }
-        }
+        }*/
+
+
     }
 }
