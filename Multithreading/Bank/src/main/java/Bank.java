@@ -20,6 +20,7 @@ public class Bank {
      */
     public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
         System.out.println(getSumAllAccounts());
+        long startTime = System.currentTimeMillis();
         for (String account : blockedAccount) {
             if (account.equals(fromAccountNum) || account.equals(toAccountNum)) {
                 System.out.println("Аккаунт заблокирован!");
@@ -43,6 +44,9 @@ public class Bank {
                 accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
             }
         }
+        long allTime  = System.currentTimeMillis() - startTime;
+        System.out.println("Время транзакции: " + allTime);
+        System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт "+ toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
         System.out.println(getSumAllAccounts());
     }
 
