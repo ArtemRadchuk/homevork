@@ -11,12 +11,13 @@ public class transferThread extends Thread {
         this.bank = bank;
     }
 
-    @Override
     public void run() {
         try {
-            bank.transfer(fromAccountNum,toAccountNum,amount);
+            bank.transfer(fromAccountNum, toAccountNum, amount);
+            System.out.println("Операция успешно завершена!");
         } catch (InterruptedException e) {
             e.printStackTrace();
+            System.err.println("Ошибка операции");
         }
     }
 }
