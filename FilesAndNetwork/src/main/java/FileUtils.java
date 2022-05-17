@@ -1,10 +1,9 @@
 import java.io.File;
 
 public class FileUtils {
-public static long weight = 0L;
+    public static long weight = 0L;
 
     public static long calculateFolderSize(String path) {
-
         File folder = new File(path);
         try {
             folder.isDirectory();
@@ -15,12 +14,11 @@ public static long weight = 0L;
         for (File file : folder.listFiles()) {
             if (file.isFile()) {
                 weight = weight + file.length();
-                System.out.println(file.length() + " - " + file.getAbsolutePath());
             } else {
                 calculateFolderSize(path + "\\" + file.getName());
             }
         }
-        System.out.println(weight + " " + bytePrefix(weight));
+        System.out.println("Размер папки " + folder.getAbsolutePath() + " составляет: " + weight + " " + bytePrefix(weight));
         return weight;
     }
 
