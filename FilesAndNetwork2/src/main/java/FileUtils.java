@@ -21,6 +21,7 @@ public class FileUtils {
                     Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("файл создан");
                 } catch (IOException e) {
+                    e.printStackTrace();`
                     System.out.println("Не удалось копировать файл");
                 }
             } else {
@@ -31,6 +32,7 @@ public class FileUtils {
                     FileUtils.copyFolder(f.getPath(), dst.toString());
                     System.out.println("Директория скопирована");
                 } catch (IOException e) {
+                    e.printStackTrace();
                     System.out.println("Не удалось создать директорию " + dst);
                     break;
                 }
@@ -44,6 +46,7 @@ public class FileUtils {
             File file = new File(inputFile);
         } catch (Exception e) {
             System.out.println("Файл не найден");
+            e.printStackTrace();
         }
     }
 }
