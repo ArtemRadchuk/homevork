@@ -21,7 +21,7 @@ public class FileUtils {
                     Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("файл создан");
                 } catch (IOException e) {
-                    e.printStackTrace();`
+                    e.printStackTrace();
                     System.out.println("Не удалось копировать файл");
                 }
             } else {
