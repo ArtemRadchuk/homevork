@@ -12,6 +12,16 @@ public class Bank {
         return random.nextBoolean();
     }
 
+    public boolean blockCheck(String fromAccountNum, String toAccountNum) {
+        for (String account : blockedAccount) {
+            if (account.equals(fromAccountNum) || account.equals(toAccountNum)) {
+                System.out.println("Аккаунт заблокирован!");
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * TODO: реализовать метод. Метод переводит деньги между счетами. Если сумма транзакции > 50000,
      * то после совершения транзакции, она отправляется на проверку Службе Безопасности – вызывается
@@ -21,33 +31,36 @@ public class Bank {
     public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
         System.out.println(getSumAllAccounts());
         long startTime = System.currentTimeMillis();
-        for (String account : blockedAccount) {
-            if (account.equals(fromAccountNum) || account.equals(toAccountNum)) {
-                System.out.println("Аккаунт заблокирован!");
-                break;
-            }
-        }
-
-        if (accounts.get(fromAccountNum).getMoney() >= amount) {
-            if (amount > 50000) {
-                if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                    blockedAccount.add(fromAccountNum);
-                    blockedAccount.add(toAccountNum);
-                    System.out.println("Аккаунт был заблокирован!");
-                } else {
-                    accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
-                    accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+        if (accounts.get(fromAccountNum) != null && accounts.get(toAccountNum) != null) {
+            if (!blockCheck(fromAccountNum, toAccountNum)) {
+                if (accounts.get(fromAccountNum).getMoney() >= amount) {
+                    if (amount > 50000) {
+                        if (isFraud(fromAccountNum, toAccountNum, amount)) {
+                            blockedAccount.add(fromAccountNum);
+                            blockedAccount.add(toAccountNum);
+                            System.out.println("Аккаунт был заблокирован!");
+                        } else {
+                            accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
+                            accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+                            System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт " + toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
+                            System.out.println("Операция успешно завершена!");
+                        }
+                    } else {
+                        accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
+                        accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+                        System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт " + toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
+                        System.out.println("Операция успешно завершена!");
+                    }
                 }
+                long allTime = System.currentTimeMillis() - startTime;
+                System.out.println("Время транзакции: " + allTime);
+                System.out.println(getSumAllAccounts());
             } else {
-
-                accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
-                accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+                System.out.println("Перевод не возможен!");
             }
+        } else {
+            System.out.println("Одного из аккаунтов не существует!");
         }
-        long allTime  = System.currentTimeMillis() - startTime;
-        System.out.println("Время транзакции: " + allTime);
-        System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт "+ toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
-        System.out.println(getSumAllAccounts());
     }
 
     /**
