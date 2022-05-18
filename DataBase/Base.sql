@@ -3,15 +3,15 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public."Author "
+CREATE TABLE IF NOT EXISTS public."Author"
 (
-    "Full name" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Author _pkey" PRIMARY KEY ("Full name")
+    "Full_name" text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Author_pkey" PRIMARY KEY ("Full_name")
 );
 
 CREATE TABLE IF NOT EXISTS public."Book"
 (
-    "Author " text COLLATE pg_catalog."default" NOT NULL,
+    "Author" text COLLATE pg_catalog."default" NOT NULL,
     "Name" text COLLATE pg_catalog."default" NOT NULL,
     "Genre" text COLLATE pg_catalog."default" NOT NULL,
     "Value" integer NOT NULL,
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS public."Book"
 
 CREATE TABLE IF NOT EXISTS public."Reader"
 (
-    "Full name" text COLLATE pg_catalog."default" NOT NULL,
+    "Full_name" text COLLATE pg_catalog."default" NOT NULL,
     "Basket" integer,
-    CONSTRAINT "Reader_pkey" PRIMARY KEY ("Full name")
+    CONSTRAINT "Reader_pkey" PRIMARY KEY ("Full_name")
 );
 
 CREATE TABLE IF NOT EXISTS public.genre
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS public.genre
 );
 
 ALTER TABLE IF EXISTS public."Book"
-    ADD CONSTRAINT author_fk FOREIGN KEY ("Author ")
-    REFERENCES public."Author " ("Full name") MATCH SIMPLE
+    ADD CONSTRAINT author_fk FOREIGN KEY ("Author")
+    REFERENCES public."Author " ("Full_name") MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
