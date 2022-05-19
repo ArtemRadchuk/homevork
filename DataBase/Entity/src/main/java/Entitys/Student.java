@@ -1,7 +1,7 @@
 package Entitys;
 
 import javax.persistence.*;
-
+//одна подписка - множество студентов
 @Entity
 @Table(name = "students")
 public class Student {
