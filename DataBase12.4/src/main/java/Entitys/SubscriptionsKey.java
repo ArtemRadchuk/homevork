@@ -1,5 +1,6 @@
 package Entitys;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +23,7 @@ public class SubscriptionsKey {
 }
 @Getter
 @Setter
-@DaTa
+@EqualsAndHashCode
 class Subscriptions_Key implements Serializable {
     private Long studentId;
     private Long courseId;

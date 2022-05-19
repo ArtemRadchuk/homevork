@@ -1,6 +1,7 @@
 package Entitys;
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,6 +15,11 @@ public class Courses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @OneToMany
+    @JoinTable(name = "subscription_key", joinColumns = {@JoinColumn(name = "courseId")},
+            inverseJoinColumns = {@JoinColumn(name = "studentId")})
+    private List courses;
 
     @Column(name = "name", length = 500)
     private String name;

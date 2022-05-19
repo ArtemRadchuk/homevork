@@ -17,7 +17,7 @@ public class Subscriptions {
     private int courseId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id")
     private Students student;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

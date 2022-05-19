@@ -3,18 +3,13 @@ package Entitys;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "Student")
 public class Students {
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "SUBSCRIPTIONS1_STUDENT_ID", referencedColumnName = "STUDENT_ID"),
-            @JoinColumn(name = "SUBSCRIPTIONS1_COURSE_ID", referencedColumnName = "COURSE_ID")
-    })
-    private Subscriptions subscriptions1;
 
     public Students() {
     }
@@ -23,6 +18,11 @@ public class Students {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @ManyToOne
+    @JoinTable(name = "subscription_key", joinColumns = {@JoinColumn(name = "studentId")},
+            inverseJoinColumns = {@JoinColumn(name = "courseId")})
+    private List students;
 
     @Column(name = "name", nullable = false, length = 45)
     private String name;
@@ -35,14 +35,6 @@ public class Students {
 
     @OneToMany(mappedBy = "student")
     private Set<Subscriptions> subscriptions = new LinkedHashSet<>();
-
-    public Subscriptions getSubscriptions1() {
-        return subscriptions1;
-    }
-
-    public void setSubscriptions1(Subscriptions subscriptions1) {
-        this.subscriptions1 = subscriptions1;
-    }
 
     public Set<Subscriptions> getSubscriptions() {
         return subscriptions;
