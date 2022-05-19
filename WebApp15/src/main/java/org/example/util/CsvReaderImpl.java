@@ -1,13 +1,13 @@
-package org.example.Reader;
+package org.example.util;
 
-import org.example.Question;
+import org.example.domain.Question;
 
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvReaderImpl implements CsvReader {
+public class CsvReaderImpl {
     public String url;
     public List<Question> questionsList = new ArrayList<>();
 
@@ -15,7 +15,7 @@ public class CsvReaderImpl implements CsvReader {
         this.url = url;
     }
 
-    @Override
+
     public List<Question> readCsv() throws IOException {
         File file = new File(url);
         FileReader fileReader = new FileReader(file);

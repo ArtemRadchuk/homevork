@@ -1,15 +1,15 @@
-package org.example.QuestionPrinter;
+package org.example.service;
 
-import org.example.Question;
-import org.example.Reader.CsvReaderImpl;
+import org.example.domain.Question;
+import org.example.util.CsvReaderImpl;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class GetQuestionsImpl implements GetQuestions {
+public class QuestionServiceImpl implements QuestionService {
 CsvReaderImpl reader;
 
-    public GetQuestionsImpl(CsvReaderImpl reader) {
+    public QuestionServiceImpl(CsvReaderImpl reader) {
         this.reader = reader;
     }
 
