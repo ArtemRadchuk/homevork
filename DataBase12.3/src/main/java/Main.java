@@ -1,3 +1,5 @@
+import service.StudentPrinterImpl;
+
 import java.sql.*;
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         connect = DriverManager.getConnection(URL, USER_NAME, USER_PASSWORD);
-        new ViewResult(connect).getStudent(18);
+        new StudentPrinterImpl(connect).printStudent(18);
         connect.close();
     }
 }
