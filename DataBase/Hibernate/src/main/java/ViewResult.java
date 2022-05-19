@@ -11,6 +11,8 @@ public class ViewResult {
         this.connect = connect;
     }
 
+    //разделить работу класса на различные классы (дао - для взаимодействия с бд,
+    // сервис - для взаимодействия уже с этими данными)
     public void getStudent(int course_id) throws SQLException {
         int student_count = 0;
         List<Integer> allStudentId = new ArrayList<>();
