@@ -1,16 +1,20 @@
+package service;
+
 import java.io.File;
 
-public class StartResize {
+public class ResizeService {
+    private final int PROCESSORS_QUANTITY = Runtime.getRuntime().availableProcessors();
     public void resize(String srcFolder, String dstFolder) {
+
         File srcDir = new File(srcFolder);
         File[] files = srcDir.listFiles();
-        int step = (files).length / Runtime.getRuntime().availableProcessors();
-        int re = (files).length % Runtime.getRuntime().availableProcessors();
+        int step = (files).length / PROCESSORS_QUANTITY;
+        int remains = (files).length % PROCESSORS_QUANTITY;
         int fileIndex = 0;
-        for (int j = 0; j < Runtime.getRuntime().availableProcessors(); j++) {
-            if (re > 0) {
+        for (int j = 0; j < PROCESSORS_QUANTITY; j++) {
+            if (remains > 0) {
                 step++;
-                re--;
+                remains--;
             }
             File[] temp = new File[step];
             for (int i = 0; i < step; i++) {
@@ -18,7 +22,7 @@ public class StartResize {
                 fileIndex++;
             }
             new ImageQueue(temp, dstFolder).start();
-            step = (files).length / Runtime.getRuntime().availableProcessors();
+            step = (files).length / PROCESSORS_QUANTITY;
         }
     }
 }
