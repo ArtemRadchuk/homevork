@@ -8,11 +8,13 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="readCsv"
-          class="org.example.CsvReaderImpl">
+          class="org.example.Reader.CsvReaderImpl">
+        <constructor-arg name="url" value="C:/Users/User/IdeaProjects/homework/WebApp15/src/main/resources/Csv/testData.csv">
+        </constructor-arg>
     </bean>
 
     <bean id="view"
-          class="org.example.GetQuestionsImpl">
+          class="org.example.QuestionPrinter.GetQuestionsImpl">
         <constructor-arg name="reader" ref="readCsv">
         </constructor-arg>
     </bean>
