@@ -1,3 +1,7 @@
+package domain;
+
+import domain.Account;
+
 import java.util.*;
 
 public class Bank {
@@ -31,35 +35,34 @@ public class Bank {
     public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
         System.out.println(getSumAllAccounts());
         long startTime = System.currentTimeMillis();
-        if (accounts.get(fromAccountNum) != null && accounts.get(toAccountNum) != null) {
-            if (!blockCheck(fromAccountNum, toAccountNum)) {
-                if (accounts.get(fromAccountNum).getMoney() >= amount) {
-                    if (amount > 50000) {
-                        if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                            blockedAccount.add(fromAccountNum);
-                            blockedAccount.add(toAccountNum);
-                            System.out.println("Аккаунт был заблокирован!");
-                        } else {
-                            accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
-                            accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
-                            System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт " + toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
-                            System.out.println("Операция успешно завершена!");
-                        }
+        if (accounts.get(fromAccountNum) != null && accounts.get(toAccountNum) != null && !blockCheck(fromAccountNum, toAccountNum)) {
+            if (accounts.get(fromAccountNum).getMoney() >= amount) {
+                if (amount > 50000) {
+                    if (isFraud(fromAccountNum, toAccountNum, amount)) {
+                        blockedAccount.add(fromAccountNum);
+                        blockedAccount.add(toAccountNum);
+                        System.out.println("Аккаунт был заблокирован!");
                     } else {
                         accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
                         accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
                         System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт " + toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
                         System.out.println("Операция успешно завершена!");
                     }
+                } else {
+                    accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
+                    accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+                    System.out.println("Перевод с аккаунта " + fromAccountNum + " на аккаунт " + toAccountNum + " выполнен." + "\nВсего переведено: " + amount);
+                    System.out.println("Операция успешно завершена!");
                 }
-                long allTime = System.currentTimeMillis() - startTime;
-                System.out.println("Время транзакции: " + allTime);
-                System.out.println(getSumAllAccounts());
             } else {
-                System.out.println("Перевод не возможен!");
+                System.out.println("Недостаточно денег на счету");
             }
+            long allTime = System.currentTimeMillis() - startTime;
+            System.out.println("Время транзакции: " + allTime);
+            System.out.println(getSumAllAccounts());
         } else {
-            System.out.println("Одного из аккаунтов не существует!");
+            System.out.println("Перевод не возможен!");
+            System.out.println("Одного из аккаунтов не существует или он заблокирован!");
         }
     }
 

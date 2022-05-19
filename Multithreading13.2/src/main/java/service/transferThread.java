@@ -1,3 +1,7 @@
+package service;
+
+import domain.Bank;
+
 public class transferThread extends Thread {
     String fromAccountNum;
     String toAccountNum;

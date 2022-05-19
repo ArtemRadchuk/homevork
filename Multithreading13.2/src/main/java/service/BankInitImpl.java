@@ -1,5 +1,11 @@
-public class BankInit {
+package service;
 
+import domain.Account;
+import domain.Bank;
+
+public class BankInitImpl implements BankInit {
+
+    @Override
     public Bank init(Bank bank){
         Account account_1 = new Account();
         Account account_2 = new Account();

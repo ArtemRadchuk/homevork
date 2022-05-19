@@ -1,7 +1,12 @@
+package service;
+
+import domain.Bank;
+
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Service {
+public class ServiceImpl implements Service{
+    @Override
     public void startService(Bank bank){
         while (true) {
             System.out.println("Выберите действие: TRANS - перевести деньги, BALANCE - показать баланс кошелька");
