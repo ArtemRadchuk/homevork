@@ -14,6 +14,7 @@ public class Courses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @OneToMany
     @JoinTable(name = "linked_key", joinColumns = {@JoinColumn(name = "courseId")},
             inverseJoinColumns = {@JoinColumn(name = "studentId")})
     private Integer id;

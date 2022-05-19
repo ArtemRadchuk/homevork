@@ -26,13 +26,13 @@ public class LinkedPurchaseList implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Student student;
+    private Students student;
 
-    public Student getStudent() {
+    public Students getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(Students student) {
         this.student = student;
     }
 
