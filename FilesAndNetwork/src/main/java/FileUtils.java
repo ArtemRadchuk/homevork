@@ -15,7 +15,8 @@ public class FileUtils {
             if (file.isFile()) {
                 weight = weight + file.length();
             } else {
-                calculateFolderSize(path + "\\" + file.getName());
+
+                calculateFolderSize(path + File.separator + file.getName());
             }
         }
         System.out.println("Размер папки " + folder.getAbsolutePath() + " составляет: " + weight + " " + bytePrefix(weight));
