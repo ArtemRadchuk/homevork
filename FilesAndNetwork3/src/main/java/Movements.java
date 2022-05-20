@@ -11,37 +11,37 @@ public class Movements {
 
     public Movements(String pathMovementsCsv) {
         List<String> readCsv = null;
-        List<String> a = new ArrayList<>();
+        List<String> moneyList = new ArrayList<>();
         try {
             Path path = Paths.get(pathMovementsCsv);
             readCsv = Files.readAllLines(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String s : readCsv) {
-            s.replaceAll(" ", "");
-            String[] str = s.trim().split("MCC");
-            str[0] = "";
+        for (String string : readCsv) {
+            string.replaceAll(" ", "");
+            String[] stringArray = string.trim().split("MCC");
+            stringArray[0] = "";
 
-            for (int i = 0; i < str.length; i++) {
-                if (!str[i].equals("")) {
-                    a.add(str[i]);
+            for (int i = 0; i < stringArray.length; i++) {
+                if (!stringArray[i].equals("")) {
+                    moneyList.add(stringArray[i]);
                 }
             }
         }
         String money = null;
-        for (String m : a) {
-            String out = m.substring(4);
+        for (String string : moneyList) {
+            String out = string.substring(4);
             out = out.replaceAll("\"", "");
-            String[] st = out.split(",");
-            if (!st[0].equals("0")) {
-                if (st.length == 3) {
-                    money = st[1] + "," + st[2];
-                } else if (st.length == 4) {
-                    money = st[1] + "," + st[2] + "," + st[3];
+            String[] stingArray = out.split(",");
+            if (!stingArray[0].equals("0")) {
+                if (stingArray.length == 3) {
+                    money = stingArray[1] + "," + stingArray[2];
+                } else if (stingArray.length == 4) {
+                    money = stingArray[1] + "," + stingArray[2] + "," + stingArray[3];
                 }
-            } else if (st[0].equals("0")) {
-                money = st[2] + "," + st[3];
+            } else if (stingArray[0].equals("0")) {
+                money = stingArray[2] + "," + stingArray[3];
             }
             String [] splittedString =  money.split(",");
             if (splittedString.length == 3) {
