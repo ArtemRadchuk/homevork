@@ -20,7 +20,7 @@ CsvReaderImpl reader;
     @Override
     public void getQuestions(CsvReaderImpl reader) throws IOException {
         reader.readCsv();
-        int i = 0;
+        int rightAnswerQuantity = 0;
         for (Question question: reader.questionsList) {
             System.out.println(question.getQuestion() + "?");
             for (int j = 0; j < question.getAnswerOption().length; j++) {
@@ -31,10 +31,10 @@ CsvReaderImpl reader;
             }
             int answer = Integer.parseInt(new Scanner(System.in).nextLine());
             if (question.getAnswerOption()[answer-1].trim().equals(question.getRightAnswer().trim())){
-                i++;
-                System.out.println(i);
+                rightAnswerQuantity++;
+                System.out.println(rightAnswerQuantity);
             }
         }
-    System.out.println(i + " Ответов из 5 верны");
+    System.out.println(rightAnswerQuantity + " Ответов из 5 верны");
     }
 }

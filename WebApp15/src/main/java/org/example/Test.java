@@ -8,8 +8,8 @@ import java.io.*;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        ClassPathXmlApplicationContext a = new ClassPathXmlApplicationContext("applicationContext.xml");
-        QuestionServiceImpl view = a.getBean("view", QuestionServiceImpl.class);
-        view.getQuestions(view.getReader());
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        QuestionServiceImpl service = applicationContext.getBean("view", QuestionServiceImpl.class);
+        service.getQuestions(service.getReader());
     }
 }
