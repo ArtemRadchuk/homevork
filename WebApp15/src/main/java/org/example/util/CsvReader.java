@@ -7,11 +7,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvReaderImpl {
+public class CsvReader {
     public String url;
     public List<Question> questionsList = new ArrayList<>();
 
-    public CsvReaderImpl(String url) {
+    public CsvReader(String url) {
         this.url = url;
     }
 
