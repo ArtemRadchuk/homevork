@@ -2,12 +2,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class XMLHandler extends DefaultHandler {
     private static SimpleDateFormat birthDayFormat = new SimpleDateFormat("yyyy.MM.dd");
