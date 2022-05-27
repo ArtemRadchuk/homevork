@@ -1,24 +1,25 @@
 package org.example.service;
 
 import org.example.domain.Question;
-import org.example.util.CsvReaderImpl;
+import org.example.util.CsvReader;
+
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class QuestionServiceImpl implements QuestionService {
-CsvReaderImpl reader;
+CsvReader reader;
 
-    public QuestionServiceImpl(CsvReaderImpl reader) {
+    public QuestionServiceImpl(CsvReader reader) {
         this.reader = reader;
     }
 
-    public CsvReaderImpl getReader() {
+    public CsvReader getReader() {
         return reader;
     }
 
     @Override
-    public void getQuestions(CsvReaderImpl reader) throws IOException {
+    public void getQuestions(CsvReader reader) throws IOException {
         reader.readCsv();
         int rightAnswerQuantity = 0;
         for (Question question: reader.questionsList) {

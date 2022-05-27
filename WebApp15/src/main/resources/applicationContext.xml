@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="readCsv"
-          class="org.example.util.CsvReaderImpl">
+          class="org.example.util.CsvReader">
         <constructor-arg name="url" value="classpath:csv/testData.csv"/>
     </bean>
 
