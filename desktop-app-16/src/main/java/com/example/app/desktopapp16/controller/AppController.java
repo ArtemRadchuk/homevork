@@ -6,9 +6,7 @@ import com.example.app.desktopapp16.service.ValidateServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,8 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-
 
 public class AppController {
     private Stage stage;
@@ -72,7 +68,6 @@ public class AppController {
                 stage.setHeight(360);
                 stage.setWidth(300);
                 stage.setScene(AppApplication.scene);
-
                 stage.show();
             }
         });
@@ -86,7 +81,7 @@ public class AppController {
         hBox.setSpacing(10);
         vBox.getChildren().addAll(hBox, button);
         stage = AppApplication.stage;
-        stage.setWidth(300);
+        stage.setWidth(301);
         stage.setHeight(360);
         hBox.setAlignment(Pos.CENTER);
         vBox.setAlignment(Pos.CENTER);

@@ -13,9 +13,6 @@ public class AppApplication extends Application {
     public static Parent root;
     public static  Scene scene;
 
-    public AppApplication() throws IOException {
-    }
-
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("Введите ФИО");
