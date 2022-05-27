@@ -9,7 +9,7 @@
 
     <bean id="readCsv"
           class="org.example.util.CsvReader">
-        <constructor-arg name="url" value="classpath:csv/testData.csv"/>
+        <constructor-arg name="url" value="./src/main/resources/csv/testData.csv"/>
     </bean>
 
     <bean id="view"
