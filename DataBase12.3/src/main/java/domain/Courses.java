@@ -1,16 +1,22 @@
 package domain;
 
+import org.hibernate.annotations.GeneratorType;
+
 import javax.persistence.*;
 
 @Entity
+@Table (name = "courses")
 public class Courses {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name")
     private String name;
+
+    private int duration;
 
     @Column(name = "type")
     private String type;
@@ -19,16 +25,16 @@ public class Courses {
     private String description;
 
     @Column(name = "teacher_id")
-    private long teacher_id;
+    private long teacherId;
 
     @Column(name = "student_count")
-    private int student_count;
+    private int studentCount;
 
     @Column(name = "price")
     private int price;
 
     @Column(name = "price_per_hour")
-    private int price_per_hour;
+    private int pricePerHour;
 
 
     public Long getId() {
@@ -64,19 +70,19 @@ public class Courses {
     }
 
     public long getTeacher_id() {
-        return teacher_id;
+        return teacherId;
     }
 
     public void setTeacher_id(long teacher_id) {
-        this.teacher_id = teacher_id;
+        this.teacherId = teacher_id;
     }
 
     public int getStudent_count() {
-        return student_count;
+        return studentCount;
     }
 
     public void setStudent_count(int student_count) {
-        this.student_count = student_count;
+        this.studentCount = student_count;
     }
 
     public int getPrice() {
@@ -88,11 +94,11 @@ public class Courses {
     }
 
     public int getPrice_per_hour() {
-        return price_per_hour;
+        return pricePerHour;
     }
 
-    public void setPrice_per_hour(int price_per_hour) {
-        this.price_per_hour = price_per_hour;
+    public void setPrice_per_hour(int pricePerHour) {
+        this.pricePerHour = pricePerHour;
     }
 }
 
