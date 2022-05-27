@@ -1,7 +1,8 @@
 package service;
 
 import dao.Dao;
-import java.sql.*;
+import domain.Course;
+
 
 
 public class StudentPrinterImpl implements StudentPrinter {
@@ -14,11 +15,7 @@ public class StudentPrinterImpl implements StudentPrinter {
 
     @Override
     public void printStudent(int courseId) {
-        dao.getCourseName(courseId);
-        dao.getStudent(courseId);
-
-        for (String student: Dao.studentList) {
-            System.out.println(student);
-        }
+        Course course = dao.getCourse(courseId);
+        System.out.println("Курс: " + course.getName() + ", количество студентов:  " + course.getStudent_count() + " человек.");
     }
 }
