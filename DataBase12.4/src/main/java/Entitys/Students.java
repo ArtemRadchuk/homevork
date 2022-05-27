@@ -10,10 +10,11 @@ public class Students {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany
+    private Integer id;
     /*@OneToMany
     @JoinTable(name = "subscriptions")
     @JoinColumn(name = "student_id")*/
-    private Integer id;
 
     private String name;
 
