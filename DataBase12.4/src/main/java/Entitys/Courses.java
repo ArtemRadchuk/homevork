@@ -13,10 +13,9 @@ public class Courses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany
+   /* @OneToMany
     @JoinTable(name = "subscription_key", joinColumns = {@JoinColumn(name = "courseId")},
-            inverseJoinColumns = {@JoinColumn(name = "studentId")})
-    private List courses;
+            inverseJoinColumns = {@JoinColumn(name = "studentId")})*/
 
     @Column(name = "name", length = 500)
     private String name;

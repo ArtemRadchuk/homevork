@@ -2,20 +2,17 @@ package Entitys;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "students")
 public class Students {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany
+    /*@OneToMany
     @JoinTable(name = "subscriptions")
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id")*/
     private Integer id;
 
     private String name;

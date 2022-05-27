@@ -13,7 +13,7 @@ public class Subscriptions {
     @EmbeddedId
     private SubscriptionKey subscriptionKey;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinTable(name = "students", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
@@ -21,7 +21,7 @@ public class Subscriptions {
     @ManyToOne
     @JoinTable(name = "courses", joinColumns = @JoinColumn(name = "course_id"))
     @Column(name = "course_id", insertable = false, updatable = false)
-    private int courseId;
+    private int courseId;*/
 
     @Column(name = "subscription_date", nullable = false)
     private LocalDateTime subscriptionDate;
@@ -50,26 +50,35 @@ public class Subscriptions {
 
     @Embeddable
     public class SubscriptionKey implements Serializable {
-        @Column(name = "student_id")
+
+        @ManyToOne
+        @JoinTable(name = "students", joinColumns = @JoinColumn(name = "id"))
         private int studentId;
 
+        @ManyToOne
+        @JoinTable(name = "courses", joinColumns = @JoinColumn(name = "id"))
         @Column(name = "course_id")
         private int courseId;
+
+        public SubscriptionKey(int studentId, int courseId) {
+            this.studentId = studentId;
+            this.courseId = courseId;
+        }
+
+        public void setStudentId(int studentId) {
+            this.studentId = studentId;
+        }
+
+        public void setCourseId(int courseId) {
+            this.courseId = courseId;
+        }
 
         public int getStudent() {
             return studentId;
         }
 
-        public void setStudent(int studentId) {
-            this.studentId = studentId;
-        }
-
         public int getCourse() {
             return courseId;
-        }
-
-        public void setCourse(int courseId) {
-            this.courseId = courseId;
         }
 
         @Override
