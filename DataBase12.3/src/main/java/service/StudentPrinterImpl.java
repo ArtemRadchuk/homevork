@@ -1,5 +1,8 @@
 package service;
 
+import dao.Dao;
+import domain.Courses;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,12 @@ public class StudentPrinterImpl implements StudentPrinter {
     public Connection connect;
     Statement state;
     ResultSet result;
+    public Courses courses = new Courses();
+    public Dao dao;
+
+    public StudentPrinterImpl(Dao dao) {
+        this.dao = dao;
+    }
 
     public StudentPrinterImpl(Connection connect) {
         this.connect = connect;
@@ -20,7 +29,7 @@ public class StudentPrinterImpl implements StudentPrinter {
     public void printStudent(int course_id) throws SQLException {
         try {
             state = connect.createStatement();
-            courseSelectService(course_id);
+            courseSelectService(dao, course_id);
             studentSelectService(course_id);
         } catch (SQLException e) {
             System.err.println(e);
@@ -30,11 +39,12 @@ public class StudentPrinterImpl implements StudentPrinter {
     }
 
     @Override
-    public void courseSelectService(int course_id) throws SQLException {
-        result = state.executeQuery("select * from courses where id = " + course_id);
-        while (result.next()) {
+    public void courseSelectService(Dao dao, int course_id) throws SQLException {
+        dao.getCourse(course_id, courses);
+        System.out.println(courses.getName());
+        /*while (result.next()) {
             System.out.println("Курс - " + result.getString("name"));
-        }
+        }*/
     }
 
     @Override
