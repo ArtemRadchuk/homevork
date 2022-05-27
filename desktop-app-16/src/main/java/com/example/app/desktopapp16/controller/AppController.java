@@ -18,7 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.net.URL;
+
 
 public class AppController {
     private Stage stage;
@@ -68,13 +69,11 @@ public class AppController {
             @Override
             public void handle(ActionEvent event) {
                 stage.setTitle("Введите ФИО");
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                stage.setHeight(360);
+                stage.setWidth(300);
+                stage.setScene(AppApplication.scene);
+
+                stage.show();
             }
         });
         Label surNameLabel = new Label(surName.getText());

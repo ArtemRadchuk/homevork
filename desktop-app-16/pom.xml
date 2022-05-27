@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <name>desktop-app-16</name>
 
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.1</junit.version>
@@ -41,6 +43,15 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

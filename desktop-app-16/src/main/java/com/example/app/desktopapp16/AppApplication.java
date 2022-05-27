@@ -11,6 +11,7 @@ import java.io.IOException;
 public class AppApplication extends Application {
     public static Stage stage;
     public static Parent root;
+    public static  Scene scene;
 
     public AppApplication() throws IOException {
     }
@@ -21,7 +22,8 @@ public class AppApplication extends Application {
         stage.setHeight(360);
         stage.setWidth(300);
         root = FXMLLoader.load(getClass().getResource("view.fxml"));
-        stage.setScene(new Scene(root));
+        scene = new Scene(root);
+        stage.setScene(scene);
         this.stage = stage;
         stage.show();
     }
