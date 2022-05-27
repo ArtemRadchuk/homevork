@@ -20,16 +20,21 @@ public class Loader {
     private static HashMap<Voter, Integer> voterCounts = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
+
         long usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        String fileName = "res/data-18M.xml";
-        SAXParserFactory factory = SAXParserFactory.newInstance();
+        String fileName = "res/data-0.2M.xml";
+
+        parseFile(fileName);
+        usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
+        System.out.println(prefixExplore(usage));
+        /*
+        /*SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         XMLHandler handler = new XMLHandler();
         parser.parse(new File(fileName), handler);
-        handler.printDuplicatedVoters();
-        usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
-        System.out.println(prefixExplore(usage).toString() + usage);
+        handler.printDuplicatedVoters();*/
 
+        /*
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         parseFile(fileName);
         //Printing results
@@ -52,7 +57,7 @@ public class Loader {
         }
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
         System.out.println(prefixExplore(usage));
-
+*/
     }
 
     private static void parseFile(String fileName) throws Exception {
@@ -72,12 +77,15 @@ public class Loader {
             NamedNodeMap attributes = node.getAttributes();
 
             String name = attributes.getNamedItem("name").getNodeValue();
-            Date birthDay = birthDayFormat.parse(attributes.getNamedItem("birthDay").getNodeValue());
+           /* Date birthDay = birthDayFormat.parse(attributes.getNamedItem("birthDay").getNodeValue());*/
+            String birthDay = attributes.getNamedItem("birthDay").getNodeValue();
 
-            Voter voter = new Voter(name, birthDay);
+            DBConnection.countVoter(name, birthDay);
+            /*Voter voter = new Voter(name, birthDay);
             Integer count = voterCounts.get(voter);
-            voterCounts.put(voter, count == null ? 1 : count + 1);
+            voterCounts.put(voter, count == null ? 1 : count + 1);*/
         }
+        DBConnection.executeMultiInsert();
     }
     public static StringBuilder prefixExplore(long usage){
         StringBuilder builder =new StringBuilder();
