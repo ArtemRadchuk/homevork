@@ -28,7 +28,7 @@ public class Loader {
         parser.parse(new File(fileName), handler);
         handler.printDuplicatedVoters();
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
-        System.out.println(prefixExplore(usage).toString() + usage);
+        System.out.println(prefixExplore(usage));
 
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         parseFile(fileName);
