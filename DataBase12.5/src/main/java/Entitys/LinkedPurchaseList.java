@@ -12,13 +12,13 @@ public class LinkedPurchaseList implements Serializable {
     }
 
     @EmbeddedId
-    private Linked_key id;
+    private Key id;
 
     @Column(name = "student_id", nullable = false)
-    private Integer student_id;
+    private Integer studentId;
 
     @Column(name = "course_id", nullable = false)
-    private Integer course_id;
+    private Integer courseId;
 
     @ManyToOne
     @JoinColumn(name = "courses_id")
@@ -49,11 +49,11 @@ public class LinkedPurchaseList implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkedPurchaseList that = (LinkedPurchaseList) o;
-        return id.equals(that.id) && student_id.equals(that.student_id) && course_id.equals(that.course_id) && Objects.equals(student, that.student) && Objects.equals(courses, that.courses);
+        return id.equals(that.id) && studentId.equals(that.studentId) && courseId.equals(that.courseId) && Objects.equals(student, that.student) && Objects.equals(courses, that.courses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, student_id, course_id, student, courses);
+        return Objects.hash(id, studentId, courseId, student, courses);
     }
 }

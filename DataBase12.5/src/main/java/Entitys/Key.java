@@ -1,12 +1,19 @@
 package Entitys;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class Key implements Serializable {
+
+    public Key() {
+    }
+
+    public Key(int student_id, int course_id) {
+        this.studentId = student_id;
+        this.courseId = course_id;
+    }
 
     @Column(name = "student_id")
     private int studentId;
@@ -34,8 +41,8 @@ public class Key implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Key key = (Key) o;
-        return studentId == key.studentId && courseId == key.courseId;
+        Key linked_key = (Key) o;
+        return studentId == linked_key.studentId && courseId == linked_key.courseId;
     }
 
     @Override
