@@ -1,17 +1,15 @@
 package domain;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
 @Entity
 @Table (name = "courses")
-public class Courses {
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -19,29 +17,29 @@ public class Courses {
     private int duration;
 
     @Column(name = "type")
-    private String type;
+    private char type;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "teacher_id")
-    private long teacherId;
+    private Integer teacherId;
 
-    @Column(name = "student_count")
+    @Column(name = "students_count")
     private int studentCount;
 
     @Column(name = "price")
     private int price;
 
     @Column(name = "price_per_hour")
-    private int pricePerHour;
+    private float pricePerHour;
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,11 +51,11 @@ public class Courses {
         this.name = name;
     }
 
-    public String getType() {
+    public char getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(char type) {
         this.type = type;
     }
 
@@ -69,11 +67,11 @@ public class Courses {
         this.description = description;
     }
 
-    public long getTeacher_id() {
+    public Integer getTeacher_id() {
         return teacherId;
     }
 
-    public void setTeacher_id(long teacher_id) {
+    public void setTeacher_id(Integer teacher_id) {
         this.teacherId = teacher_id;
     }
 
@@ -93,11 +91,11 @@ public class Courses {
         this.price = price;
     }
 
-    public int getPrice_per_hour() {
+    public float getPrice_per_hour() {
         return pricePerHour;
     }
 
-    public void setPrice_per_hour(int pricePerHour) {
+    public void setPrice_per_hour(float pricePerHour) {
         this.pricePerHour = pricePerHour;
     }
 }
