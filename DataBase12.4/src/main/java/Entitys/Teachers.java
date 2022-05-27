@@ -16,25 +16,11 @@ public class Teachers {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    @Column(name = "salary")
     private Integer salary;
 
-    @Column(name = "age")
     private Integer age;
-
-    @OneToMany(mappedBy = "teacher")
-    private Set<Courses> courses = new LinkedHashSet<>();
-
-    public Set<Courses> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(Set<Courses> courses) {
-        this.courses = courses;
-    }
 
     public Integer getAge() {
         return age;
@@ -73,11 +59,11 @@ public class Teachers {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Teachers teachers = (Teachers) o;
-        return id.equals(teachers.id) && name.equals(teachers.name) && salary.equals(teachers.salary) && age.equals(teachers.age) && courses.equals(teachers.courses);
+        return id.equals(teachers.id) && name.equals(teachers.name) && salary.equals(teachers.salary) && age.equals(teachers.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, salary, age, courses);
+        return Objects.hash(id, name, salary, age);
     }
 }

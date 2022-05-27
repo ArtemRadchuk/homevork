@@ -1,40 +1,31 @@
 package Entitys;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Subscriptions")
+@Table(name = "subscriptions")
+@IdClass(Subscriptions.SubscriptionKey.class)
 public class Subscriptions {
-    @EmbeddedId
-    private Subscriptions_Key id;
 
+    @EmbeddedId
+    private SubscriptionKey subscriptionKey;
+
+    @ManyToOne
+    @JoinTable(name = "students", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
 
+    @ManyToOne
+    @JoinTable(name = "courses", joinColumns = @JoinColumn(name = "course_id"))
     @Column(name = "course_id", insertable = false, updatable = false)
     private int courseId;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "student_id")
-    private Students student;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "course_id", nullable = false)
-    private Courses course;
 
     @Column(name = "subscription_date", nullable = false)
     private LocalDateTime subscriptionDate;
 
-
-    public Students getStudent() {
-        return student;
-    }
-
-    public void setStudent(Students student) {
-        this.student = student;
-    }
 
     public LocalDateTime getSubscriptionDate() {
         return subscriptionDate;
@@ -44,24 +35,57 @@ public class Subscriptions {
         this.subscriptionDate = subscriptionDate;
     }
 
-    public Courses getCourse() {
-        return course;
-    }
-
-    public void setCourse(Courses course) {
-        this.course = course;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscriptions that = (Subscriptions) o;
-        return student.equals(that.student) && course.equals(that.course) && subscriptionDate.equals(that.subscriptionDate);
+        return Objects.equals(subscriptionKey, that.subscriptionKey) && Objects.equals(subscriptionDate, that.subscriptionDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(student, course, subscriptionDate);
+        return Objects.hash(subscriptionKey, subscriptionDate);
     }
+
+    @Embeddable
+    public class SubscriptionKey implements Serializable {
+        @Column(name = "student_id")
+        private int studentId;
+
+        @Column(name = "course_id")
+        private int courseId;
+
+        public int getStudent() {
+            return studentId;
+        }
+
+        public void setStudent(int studentId) {
+            this.studentId = studentId;
+        }
+
+        public int getCourse() {
+            return courseId;
+        }
+
+        public void setCourse(int courseId) {
+            this.courseId = courseId;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            SubscriptionKey that = (SubscriptionKey) o;
+            return studentId == that.studentId && courseId == that.courseId;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(studentId, courseId);
+        }
+    }
+
 }
+
+

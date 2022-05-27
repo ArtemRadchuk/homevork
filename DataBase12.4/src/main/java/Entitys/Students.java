@@ -11,38 +11,19 @@ import java.util.Set;
 @Table(name = "Student")
 public class Students {
 
-    public Students() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @OneToMany
+    @JoinTable(name = "subscriptions")
+    @JoinColumn(name = "student_id")
     private Integer id;
 
-    @ManyToOne
-    @JoinTable(name = "subscription_key", joinColumns = {@JoinColumn(name = "studentId")},
-            inverseJoinColumns = {@JoinColumn(name = "courseId")})
-    private List students;
-
-    @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    @Column(name = "age")
     private Integer age;
 
     @Column(name = "registration_date", nullable = false)
     private LocalDateTime registrationDate;
-
-    @OneToMany(mappedBy = "student")
-    private Set<Subscriptions> subscriptions = new LinkedHashSet<>();
-
-    public Set<Subscriptions> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(Set<Subscriptions> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
 
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
@@ -81,11 +62,11 @@ public class Students {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Students students = (Students) o;
-        return id.equals(students.id) && name.equals(students.name) && age.equals(students.age) && registrationDate.equals(students.registrationDate) && subscriptions.equals(students.subscriptions);
+        return id.equals(students.id) && name.equals(students.name) && age.equals(students.age) && registrationDate.equals(students.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age, registrationDate, subscriptions);
+        return Objects.hash(id, name, age, registrationDate);
     }
 }

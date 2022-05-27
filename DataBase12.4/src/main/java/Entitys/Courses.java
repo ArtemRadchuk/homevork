@@ -6,14 +6,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "Courses")
+@Table(name = "сourses")
 public class Courses {
-    public Courses() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Integer id;
 
     @OneToMany
@@ -27,36 +24,21 @@ public class Courses {
     @Column(name = "duration")
     private Integer duration;
 
-    @Lob
-    @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "description", length = 500)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teachers teacher;
 
     @Column(name = "students_count")
     private Integer studentsCount;
 
-    @Column(name = "price")
     private Integer price;
 
     @Column(name = "price_per_hour")
     private Double pricePerHour;
-
-    @OneToMany(mappedBy = "course")
-    private Set<Subscriptions> subscriptions = new LinkedHashSet<>();
-
-    public Set<Subscriptions> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(Set<Subscriptions> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
 
     public Double getPricePerHour() {
         return pricePerHour;
@@ -135,11 +117,11 @@ public class Courses {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Courses courses = (Courses) o;
-        return id.equals(courses.id) && name.equals(courses.name) && duration.equals(courses.duration) && type.equals(courses.type) && description.equals(courses.description) && teacher.equals(courses.teacher) && studentsCount.equals(courses.studentsCount) && price.equals(courses.price) && pricePerHour.equals(courses.pricePerHour) && subscriptions.equals(courses.subscriptions);
+        return id.equals(courses.id) && name.equals(courses.name) && duration.equals(courses.duration) && type.equals(courses.type) && description.equals(courses.description) && teacher.equals(courses.teacher) && studentsCount.equals(courses.studentsCount) && price.equals(courses.price) && pricePerHour.equals(courses.pricePerHour);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, duration, type, description, teacher, studentsCount, price, pricePerHour, subscriptions);
+        return Objects.hash(id, name, duration, type, description, teacher, studentsCount, price, pricePerHour);
     }
 }
