@@ -1,3 +1,7 @@
+
+import dao.DBConnection;
+import domain.Voter;
+import handler.XMLHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -22,42 +26,17 @@ public class Loader {
     public static void main(String[] args) throws Exception {
 
         long usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        String fileName = "res/data-0.2M.xml";
-
-        parseFile(fileName);
-        usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
-        System.out.println(prefixExplore(usage));
-        /*
-        /*SAXParserFactory factory = SAXParserFactory.newInstance();
+        String fileName = "res/data-1572M.xml";
+        long start = System.currentTimeMillis();
+        DBConnection.getConnection();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
-        XMLHandler handler = new XMLHandler();
+        XMLHandler handler = new handler.XMLHandler();
         parser.parse(new File(fileName), handler);
-        handler.printDuplicatedVoters();*/
+        XMLHandler.getData();
+        System.out.println(System.currentTimeMillis() - start);
 
-        /*
-        usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        parseFile(fileName);
-        //Printing results
-        System.out.println("Voting station work times: ");
-        for(Integer votingStation : voteStationWorkTimes.keySet())
-        {
-            WorkTime workTime = voteStationWorkTimes.get(votingStation);
 
-            System.out.println("\t" + votingStation + " - " + workTime);
-
-        }
-
-        System.out.println("Duplicated voters: ");
-        for(Voter voter : voterCounts.keySet())
-        {
-            Integer count = voterCounts.get(voter);
-            if(count > 1) {
-                System.out.println("\t" + voter + " - " + count);
-            }
-        }
-        usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
-        System.out.println(prefixExplore(usage));
-*/
     }
 
     private static void parseFile(String fileName) throws Exception {
@@ -75,20 +54,16 @@ public class Loader {
         for (int i = 0; i < votersCount; i++) {
             Node node = voters.item(i);
             NamedNodeMap attributes = node.getAttributes();
-
             String name = attributes.getNamedItem("name").getNodeValue();
-           /* Date birthDay = birthDayFormat.parse(attributes.getNamedItem("birthDay").getNodeValue());*/
             String birthDay = attributes.getNamedItem("birthDay").getNodeValue();
 
             DBConnection.countVoter(name, birthDay);
-            /*Voter voter = new Voter(name, birthDay);
-            Integer count = voterCounts.get(voter);
-            voterCounts.put(voter, count == null ? 1 : count + 1);*/
         }
-        DBConnection.executeMultiInsert();
+
     }
-    public static StringBuilder prefixExplore(long usage){
-        StringBuilder builder =new StringBuilder();
+
+    public static StringBuilder prefixExplore(long usage) {
+        StringBuilder builder = new StringBuilder();
         usage = usage / 8;
         int prefixNum = 0;
         for (; usage > 1024; ) {
@@ -99,7 +74,7 @@ public class Loader {
         builder.append(" ");
         switch (prefixNum) {
             case 1:
-                 builder.append("Килобайт");
+                builder.append("Килобайт");
                 break;
             case 2:
                 builder.append("Мегабайт");
