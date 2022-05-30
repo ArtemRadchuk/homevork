@@ -5,6 +5,7 @@ import org.example.util.CsvReader;
 
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class QuestionServiceImpl implements QuestionService {
@@ -19,7 +20,7 @@ CsvReader reader;
     }
 
     @Override
-    public void getQuestions(CsvReader reader) throws IOException {
+    public void getQuestions(CsvReader reader) throws IOException, URISyntaxException {
         reader.readCsv();
         int rightAnswerQuantity = 0;
         for (Question question: reader.questionsList) {

@@ -1,6 +1,11 @@
 package org.example.util;
 
 import org.example.domain.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 
 import java.io.*;
@@ -8,8 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvReader {
+    private ResourceLoader resourceLoader;
     public String url;
     public List<Question> questionsList = new ArrayList<>();
+
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     public CsvReader(String url) {
         this.url = url;
@@ -17,7 +27,9 @@ public class CsvReader {
 
 
     public List<Question> readCsv() throws IOException {
-        File file = new File(url);
+        resourceLoader = new DefaultResourceLoader();
+        Resource resource = resourceLoader.getResource("file:" + url);
+        File file = resource.getFile();
         FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = reader.readLine();
