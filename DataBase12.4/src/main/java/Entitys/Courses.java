@@ -6,16 +6,12 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "сourses")
+@Table(name = "courses")
 public class Courses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-   /* @OneToMany
-    @JoinTable(name = "subscription_key", joinColumns = {@JoinColumn(name = "courseId")},
-            inverseJoinColumns = {@JoinColumn(name = "studentId")})*/
 
     @Column(name = "name", length = 500)
     private String name;
@@ -23,7 +19,9 @@ public class Courses {
     @Column(name = "duration")
     private Integer duration;
 
-    private String type;
+    @Column(columnDefinition = "ENUM('DESIGN', 'PROGRAMMING', 'MARKETING', 'MANAGEMENT', 'BUSINESS')")
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     private String description;
 
@@ -79,11 +77,11 @@ public class Courses {
         this.description = description;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -122,5 +120,9 @@ public class Courses {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, duration, type, description, teacher, studentsCount, price, pricePerHour);
+    }
+
+    enum Type{
+        DESIGN, PROGRAMMING, MARKETING, MANAGEMENT, BUSINESS;
     }
 }
