@@ -5,22 +5,22 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class Key implements Serializable {
+public class SubscriptionKey implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName =("id"))
-    private Students student;
+    private Students students;
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = ("id"))
     private Courses courses;
 
-    public Students getStudent() {
-        return student;
+    public Students getStudents() {
+        return students;
     }
 
-    public void setStudent(Students student) {
-        this.student = student;
+    public void setStudents(Students students) {
+        this.students = students;
     }
 
     public Courses getCourses() {
@@ -35,12 +35,12 @@ public class Key implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Key key = (Key) o;
-        return Objects.equals(student, key.student) && Objects.equals(courses, key.courses);
+        SubscriptionKey that = (SubscriptionKey) o;
+        return Objects.equals(students, that.students) && Objects.equals(courses, that.courses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(student, courses);
+        return Objects.hash(students, courses);
     }
 }
