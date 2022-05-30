@@ -33,7 +33,6 @@ CsvReader reader;
             int answer = Integer.parseInt(new Scanner(System.in).nextLine());
             if (question.getAnswerOption()[answer-1].trim().equals(question.getRightAnswer().trim())){
                 rightAnswerQuantity++;
-                System.out.println(rightAnswerQuantity);
             }
         }
     System.out.println(rightAnswerQuantity + " Ответов из 5 верны");
