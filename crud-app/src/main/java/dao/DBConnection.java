@@ -1,10 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import java.sql.*;
 
 public class DBConnection {
     public static Connection connection;
@@ -16,5 +12,4 @@ public class DBConnection {
         statement = connection.createStatement();
         System.out.println("База данных подключена!");
     }
-
 }
