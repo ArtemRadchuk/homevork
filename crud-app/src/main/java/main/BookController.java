@@ -1,56 +1,52 @@
 package main;
 
-import dao.DBConnection;
-import domain.Book;
-import domain.BookDAO;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
-@RestController
+@Controller
+@RequestMapping(value = "")
 public class BookController {
-    ArrayList<Book> books;
+    private final BookDAO bookDAO;
 
-    public BookController(ArrayList<Book> books) throws SQLException {
-        this.books = BookDAO.bookList;
-        BookDAO.setBookList();
+    @Autowired
+    public BookController(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
     }
 
-    @PostMapping("/book/add")
+
+
+
+/*    @PostMapping("/book/add")
     public List<Book> add(@RequestBody Book book) {
         this.books.add(book);
         return books;
+    }*/
+
+    @GetMapping(value = "/books")
+    public String getBooks(Model model) throws SQLException {
+        model.addAttribute("books", bookDAO.index());
+        return "index";
     }
 
-    @GetMapping("/books")
-    public String getBooks(Model model) throws SQLException {
-    /*    ArrayList<String> bookTitle = new ArrayList<>();
-        for (Book book:books) {
-            bookTitle.add(book.getTitle());
-        }*/
-        model.addAttribute("books", BookDAO.index());
-        return "books/index";
-    }
     @GetMapping("/book/{title}")
     public String getBook(@PathVariable("title") String title, Model model) throws SQLException {
-        model.addAttribute("book",BookDAO.show(title));
+        model.addAttribute("book",bookDAO.show(title));
         return "books/show";
     }
 
-    @DeleteMapping("/book/delete/{title}")
+  /*  @DeleteMapping("/book/delete/{title}")
     public void deleteBook(@PathVariable("title") String title) {
-        for (Book a : books) {
+        for (Book a : BookDAO.books) {
             if (a.getTitle().equals(title)) {
-                books.remove(a);
+                BookDAO.books.remove(a);
             }
-        }
     }
+        }*/
 
 
     /*
