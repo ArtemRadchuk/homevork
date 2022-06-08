@@ -16,8 +16,10 @@ public class BookDAO {
         books = new ArrayList<>();
         ResultSet list = DBConnection.connection.createStatement().executeQuery("SELECT * FROM book;");
         while (list.next()) {
-            books.add((new Book(list.getInt(1), list.getString("title"), list.getString("description"),
-                    list.getString("isbn"), list.getInt("print_year"), list.getBoolean("read_already"))));
+            books.add((new Book(list.getInt(1), list.getString("title"),
+                    list.getString("description"), list.getString("isbn"),
+                    list.getString("author"), list.getString("genre"),
+                    list.getInt("print_year"), list.getBoolean("read_already"))));
         }
     }
 

@@ -2,7 +2,6 @@ package main;
 
 import dao.DBConnection;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import service.BookDAO;
 
 import java.sql.SQLException;
 @SpringBootApplication

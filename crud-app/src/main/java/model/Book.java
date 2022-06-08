@@ -8,11 +8,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(long id, String title, String description, String isbn, int printYear, boolean readAlready) {
+    public Book(long id, String title, String description, String isbn, String author, String genre, int printYear, boolean readAlready) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.isbn = isbn;
+        this.author = author;
+        this.genre = genre;
         this.printYear = printYear;
         this.readAlready = readAlready;
     }
@@ -26,6 +28,10 @@ public class Book {
     public String description;
 
     public String isbn;
+
+    public String author;
+
+    public String genre;
 
     @Column(name = "print_year")
     public int printYear;
@@ -79,6 +85,22 @@ public class Book {
 
     public void setReadAlready(boolean readAlready) {
         this.readAlready = readAlready;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
 
