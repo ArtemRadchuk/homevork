@@ -10,7 +10,7 @@ public interface BookService {
 
     String readBook();
 
-    void updateBook();
+    void updateBook(Book book ,String title, String description, String isbn, int printYear);
 
     void deleteBook(Book book);
 

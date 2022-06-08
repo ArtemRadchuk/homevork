@@ -17,7 +17,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void createBook(Book book) {
-        manager.createQuery("insert into book_list.book(title, description, isbn, print_year, read_already) values ("
+        manager.createQuery("insert into book_list.book(title, description, isbn, author, genre,  print_year, read_already) values ("
                 + book.getTitle() + ", " + book.getDescription() + ", " + book.getIsbn() + ", " +
                 book.getAuthor() + ", " + book.getGenre() + ", " +
                 book.getPrintYear() + ", " + book.readAlready + ");");
@@ -29,8 +29,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateBook() {
-
+    public void updateBook(Book book ,String title, String description, String isbn, int printYear) {
+        manager.createQuery("update book_list.book set(title, description, isbn, print_year) = (" + title + ", " + description
+        + ", " + isbn + ", " + printYear +");");
     }
 
     @Override

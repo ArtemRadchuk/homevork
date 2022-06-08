@@ -30,6 +30,11 @@ public class BookController {
         return "show";
     }
 
+    @GetMapping("/book/{book}/update")
+    public void update(@PathVariable("book")Book book, String title, String description, String isbn, int printYear){
+        bookService.updateBook(book, title,description,isbn,printYear);
+    }
+
     @DeleteMapping("/book/delete/{title}")
     public void deleteBook(@PathVariable("title") String title) {
         bookService.deleteBook(bookService.findBook(title));
