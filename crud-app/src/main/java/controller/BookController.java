@@ -1,5 +1,8 @@
-package main;
+package controller;
 
+import model.Book;
+import service.impl.BookServiceImpl;
+import service.BookDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,42 +14,30 @@ import java.sql.SQLException;
 @Controller
 @RequestMapping(value = "")
 public class BookController {
-    private final BookDAO bookDAO;
+    private BookServiceImpl bookService;
 
-    @Autowired
-    public BookController(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
+
+    @PostMapping("/book/add")
+    public void add(@RequestBody Book book) {
+        bookService.createBook(book);
     }
 
-
-
-
-/*    @PostMapping("/book/add")
-    public List<Book> add(@RequestBody Book book) {
-        this.books.add(book);
-        return books;
-    }*/
-
     @GetMapping(value = "/books")
-    public String getBooks(Model model) throws SQLException {
-        model.addAttribute("books", bookDAO.index());
+    public String getBooks(Model model) {
+        model.addAttribute("books", bookService.allBook());
         return "index";
     }
 
     @GetMapping("/book/{title}")
-    public String getBook(@PathVariable("title") String title, Model model) throws SQLException {
-        model.addAttribute("book",bookDAO.show(title));
-        return "books/show";
+    public String getBook(@PathVariable("title") String title, Model model) {
+        model.addAttribute("book", bookService.findBook(title));
+        return "show";
     }
 
-  /*  @DeleteMapping("/book/delete/{title}")
+    @DeleteMapping("/book/delete/{title}")
     public void deleteBook(@PathVariable("title") String title) {
-        for (Book a : BookDAO.books) {
-            if (a.getTitle().equals(title)) {
-                BookDAO.books.remove(a);
-            }
+        bookService.deleteBook(bookService.findBook(title));
     }
-        }*/
 
 
     /*
