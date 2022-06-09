@@ -14,8 +14,8 @@ public class BookController {
 
 
     @PostMapping("/book/add")
-    public void add(@RequestBody Book book) {
-        bookService.createBook(book);
+    public void add(@RequestBody String title, String description, long isbn, String author, String genre, int print_year, boolean read_already) {
+        bookService.createBook(title, description, isbn, author, genre,  print_year);
     }
 
     @GetMapping(value = "/books")
@@ -26,9 +26,7 @@ public class BookController {
 
     @GetMapping("/book/{title}")
     public String getBook(@PathVariable("title") String title, Model model) {
-        System.out.println(title);
         model.addAttribute("book", bookService.findBook(title));
-        System.out.println("Книга найдена");
         return "show";
     }
 
@@ -37,8 +35,8 @@ public class BookController {
         bookService.updateBook(book, title, description, isbn, printYear);
     }
 
-    @DeleteMapping("/book/delete/{title}")
-    public void deleteBook(@PathVariable("title") String title) {
-        bookService.deleteBook(bookService.findBook(title));
+    @DeleteMapping("/book/delete/{id}")
+    public void deleteBook(@PathVariable("title") int id) {
+        bookService.deleteBook(id);
     }
 }
