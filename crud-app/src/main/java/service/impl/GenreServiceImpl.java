@@ -18,6 +18,7 @@ public class GenreServiceImpl implements GenreService {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("pers");
         manager = factory.createEntityManager();
     }
+
     @Override
     public void createGenre(String name) {
         manager.createQuery("insert into book_list.genre(name) values (" + name + ");");
