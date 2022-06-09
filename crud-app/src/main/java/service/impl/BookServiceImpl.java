@@ -5,22 +5,24 @@ import org.springframework.stereotype.Repository;
 import service.BookService;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class BookServiceImpl implements BookService {
     @PersistenceContext
-    static
-    EntityManager manager;
+    static EntityManager manager;
 
+    public BookServiceImpl() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("pers");
+        manager = factory.createEntityManager();
+    }
 
     @Override
     public void createBook(Book book) {
-        manager.createQuery("insert into book_list.book(title, description, isbn, author, genre,  print_year, read_already) values ("
-                + book.getTitle() + ", " + book.getDescription() + ", " + book.getIsbn() + ", " +
-                book.getAuthor() + ", " + book.getGenre() + ", " +
-                book.getPrintYear() + ", " + book.readAlready + ");");
+        manager.createQuery("insert into book_list.book(title, description, isbn, author, genre,  print_year, read_already) values (" + book.getTitle() + ", " + book.getDescription() + ", " + book.getIsbn() + ", " + book.getAuthor() + ", " + book.getGenre() + ", " + book.getPrintYear() + ", " + book.readAlready + ");");
     }
 
     @Override
@@ -29,9 +31,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateBook(Book book ,String title, String description, String isbn, int printYear) {
-        manager.createQuery("update book_list.book set(title, description, isbn, print_year) = (" + title + ", " + description
-        + ", " + isbn + ", " + printYear +");");
+    public void updateBook(Book book, String title, String description, String isbn, int printYear) {
+        manager.createQuery("update book_list.book set(title, description, isbn, print_year) = (" + title + ", " + description + ", " + isbn + ", " + printYear + ");");
     }
 
     @Override
@@ -41,11 +42,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> allBook() {
-        return manager.createQuery("SELECT * FROM book_list.book;", Book.class).getResultList();
+        return manager.createQuery("FROM book_list.book;", Book.class).getResultList();
     }
 
     @Override
     public Book findBook(String title) {
-        return manager.createQuery("SELECT * FROM book_list.book where title =" + title, Book.class).getSingleResult();
+        System.out.println("Книга");
+        return manager.createQuery("FROM book_list.book where title =" + title, Book.class).getSingleResult();
     }
 }
