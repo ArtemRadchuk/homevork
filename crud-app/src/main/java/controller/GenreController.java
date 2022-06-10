@@ -3,6 +3,7 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import service.impl.GenreServiceImpl;
@@ -21,8 +22,8 @@ public class GenreController {
         model.addAttribute("", genreService.genreList());
     }
 
-    @GetMapping(value = "/genre/delete")
-    public void deleteGenre(int id) {
+    @GetMapping(value = "/genre/delete/{id}")
+    public void deleteGenre(@PathVariable("id") int id) {
         genreService.deleteGenre(id);
     }
 }

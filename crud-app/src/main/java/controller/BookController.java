@@ -1,6 +1,8 @@
 package controller;
 
+import model.Author;
 import model.Book;
+import model.Genre;
 import service.impl.BookServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,7 @@ public class BookController {
 
 
     @PostMapping("/book/add")
-    public void add(@RequestBody String title, String description, long isbn, String author, String genre, int print_year, boolean read_already) {
+    public void add(@RequestBody String title, String description, String isbn, Author author, Genre genre, int print_year) {
         bookService.createBook(title, description, isbn, author, genre,  print_year);
     }
 

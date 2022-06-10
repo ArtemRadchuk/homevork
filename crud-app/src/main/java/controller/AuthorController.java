@@ -1,8 +1,10 @@
 package controller;
 
+import model.Author;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import service.impl.AuthorServiceImpl;
@@ -21,8 +23,14 @@ public class AuthorController {
         model.addAttribute("", authorService.authorList());
     }
 
-    @GetMapping(value = "/author/delete")
-    public void deleteAuthor(int id) {
-        authorService.deleteAuthor(id);
+    @GetMapping(value = "/author/delete/{id}")
+    public void deleteAuthorById(@PathVariable("id") int id) {
+        authorService.deleteAuthorById(id);
     }
+
+    @GetMapping(value = "/author/delete/{author}")
+    public void deleteAuthor(@PathVariable("author") Author author) {
+        authorService.deleteAuthor(author);
+    }
+
 }

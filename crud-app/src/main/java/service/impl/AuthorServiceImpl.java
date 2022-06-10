@@ -1,42 +1,47 @@
 package service.impl;
 
+import lombok.RequiredArgsConstructor;
+
 import model.Author;
-import model.Book;
+import org.springframework.stereotype.Service;
+import repository.impl.AuthorRepositoryImpl;
 import service.AuthorService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
+
+@Service
+@RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
-    @PersistenceContext
-    static EntityManager manager;
 
-    public AuthorServiceImpl() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("pers");
-        manager = factory.createEntityManager();
-    }
-
+    private final AuthorRepositoryImpl authorRepository;
 
     @Override
     public void createAuthor(String name) {
-        manager.createQuery("insert into book_list.author(name) values (" + name + ");");
+        Author author = new Author();
+        author.setName(name);
+        authorRepository.create(author);
     }
 
     @Override
-    public void deleteAuthor(int id) {
-        manager.remove(id);
+    public void deleteAuthorById(int id) {
+        authorRepository.deleteById(id);
     }
 
     @Override
     public List<Author> authorList() {
-        return manager.createQuery("FROM book_list.author;", Author.class).getResultList();
+       return authorRepository.findAll();
     }
 
     @Override
     public Author findAuthor(String name) {
-        return manager.createQuery("FROM book_list.author where name =" + name, Author.class).getSingleResult();
+        return authorRepository.findByName(name);
     }
+
+    @Override
+    public void deleteAuthor(Author author) {
+
+    }
+
+
 }

@@ -8,9 +8,11 @@ public interface AuthorService {
 
     void createAuthor(String name);
 
-    void deleteAuthor(int id);
+    void deleteAuthorById(int id);
 
     List<Author> authorList();
 
     Author findAuthor(String name);
+
+    void deleteAuthor(Author author);
 }

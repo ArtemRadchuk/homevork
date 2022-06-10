@@ -1,41 +1,38 @@
 package service.impl;
 
+import lombok.RequiredArgsConstructor;
 import model.Genre;
+import org.springframework.stereotype.Service;
+import repository.impl.GenreRepositoryImpl;
 import service.GenreService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
 
-    @PersistenceContext
-    static EntityManager manager;
-
-    public GenreServiceImpl() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("pers");
-        manager = factory.createEntityManager();
-    }
+    private final GenreRepositoryImpl genreRepository;
 
     @Override
     public void createGenre(String name) {
-        manager.createQuery("insert into book_list.genre(name) values (" + name + ");");
+        Genre genre = new Genre();
+        genre.setName(name);
+        genreRepository.create(genre);
     }
 
     @Override
     public void deleteGenre(int id) {
-        manager.remove(id);
+        genreRepository.deleteById(id);
     }
 
     @Override
     public List<Genre> genreList() {
-        return manager.createQuery("FROM book_list.genre;", Genre.class).getResultList();
+       return genreRepository.findAll();
     }
 
     @Override
     public Genre findGenre(String name) {
-        return manager.createQuery("FROM book_list.genre where name =" + name, Genre.class).getSingleResult();
+        return  genreRepository.findByName(name);
     }
 }
