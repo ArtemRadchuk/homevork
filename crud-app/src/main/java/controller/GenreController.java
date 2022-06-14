@@ -17,8 +17,9 @@ public class GenreController {
     }
 
     @GetMapping(value = "/genres")
-    public void getGenre(Model model) {
+    public String getGenre(Model model) {
         model.addAttribute("genres", genreService.genreList());
+        return "genreIndex";
     }
 
     @GetMapping(value = "/genre/delete/{id}")
