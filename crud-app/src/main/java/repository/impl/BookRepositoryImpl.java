@@ -24,6 +24,7 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
         entityManager.createQuery("update book_list.book set(title, description, isbn, print_year, read_already) = ("
                 + title + ", " + description + ", " + isbn + ", " + ", " + printYear +
                 ", 0) where id = "  + id +";");
+        entityManager.createQuery("update book_list.book set read_already = 0 where id = " + id);
     }
 
     @Override
