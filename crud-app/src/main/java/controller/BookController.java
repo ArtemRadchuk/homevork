@@ -36,8 +36,11 @@ public class BookController {
     }
 
     @GetMapping("/book/{book}/update")
-    public void update(@PathVariable("book") Book book, String title, String description, String isbn, int printYear) {
-        bookService.updateBook(book, title, description, isbn, printYear);
+    public String update(@RequestParam(name = "id") int id, @RequestParam(name = "title") String title,
+                       @RequestParam(name = "description") String description,@RequestParam(name = "isbn") String isbn,
+                       @RequestParam(name = "print year")int printYear) {
+        bookService.updateBook(id, title, description, isbn, printYear);
+        return "updateBook";
     }
 
     @DeleteMapping("/book/delete/{id}")

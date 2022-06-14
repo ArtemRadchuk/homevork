@@ -31,8 +31,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateBook(Book book, String title, String description, String isbn, int printYear) {
-        bookRepository.updateBook(book, title, description, isbn, printYear);
+    public void updateBook(int id, String title, String description, String isbn, int printYear) {
+        bookRepository.updateBook(id, title, description, isbn, printYear);
     }
 
     @Override
