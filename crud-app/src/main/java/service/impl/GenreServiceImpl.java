@@ -15,10 +15,11 @@ public class GenreServiceImpl implements GenreService {
     private final GenreRepositoryImpl genreRepository;
 
     @Override
-    public void createGenre(String name) {
+    public Genre createGenre(String name) {
         Genre genre = new Genre();
         genre.setName(name);
         genreRepository.create(genre);
+        return genre;
     }
 
     @Override

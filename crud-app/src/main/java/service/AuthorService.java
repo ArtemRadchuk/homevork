@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AuthorService {
 
-    void createAuthor(String name);
+    Object createAuthor(String name);
 
     void deleteAuthorById(int id);
 
@@ -14,5 +14,5 @@ public interface AuthorService {
 
     Author findAuthor(String name);
 
-    void deleteAuthor(Author author);
+  /*  void deleteAuthor(Author author);*/
 }

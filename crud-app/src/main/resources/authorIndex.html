@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Книга</title>
+    <title>Авторы:</title>
 </head>
 <body>
 
-<p th:text="${book.getTitle()}">VALUE</p>
-
+<div th:each="author : ${authors}">
+    <a  th:text="${author.getName}">book</a>
+</div>
 </body>
 </html>

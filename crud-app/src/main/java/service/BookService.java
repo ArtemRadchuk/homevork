@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookService {
 
-    void createBook(String title, String description, String isbn, Author author, Genre genre, int print_year);
+    Object createBook(String title, String description, String isbn, Author author, Genre genre, int print_year);
 
     void updateBook(Book book ,String title, String description, String isbn, int printYear);
 

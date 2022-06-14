@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GenreService {
 
-    void createGenre(String name);
+    Object createGenre(String name);
 
     void deleteGenre(int id);
 

@@ -17,10 +17,11 @@ public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepositoryImpl authorRepository;
 
     @Override
-    public void createAuthor(String name) {
+    public Author createAuthor(String name) {
         Author author = new Author();
         author.setName(name);
         authorRepository.create(author);
+        return author;
     }
 
     @Override
@@ -38,10 +39,10 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findByName(name);
     }
 
-    @Override
+  /*  @Override
     public void deleteAuthor(Author author) {
 
-    }
+    }*/
 
 
 }
