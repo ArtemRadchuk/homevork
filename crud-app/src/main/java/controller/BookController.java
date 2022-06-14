@@ -26,7 +26,7 @@ public class BookController {
     @GetMapping(value = "/books")
     public String getBooks(Model model) {
         model.addAttribute("books", bookService.allBook());
-        return "bookIndex";
+        return "indexBook";
     }
 
     @GetMapping("/book/{title}")
