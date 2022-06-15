@@ -1,10 +1,11 @@
-package service.impl;
+package com.example.service.impl;
 
+import com.example.model.Genre;
+import com.example.repository.impl.GenreRepositoryImpl;
+import com.example.service.GenreService;
 import lombok.RequiredArgsConstructor;
-import model.Genre;
 import org.springframework.stereotype.Service;
-import repository.impl.GenreRepositoryImpl;
-import service.GenreService;
+
 
 import java.util.List;
 

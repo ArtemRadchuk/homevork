@@ -1,12 +1,13 @@
-package service.impl;
+package com.example.service.impl;
 
+import com.example.model.Author;
+import com.example.model.Book;
+import com.example.model.Genre;
+import com.example.repository.impl.BookRepositoryImpl;
+import com.example.service.BookService;
 import lombok.RequiredArgsConstructor;
-import model.Author;
-import model.Book;
-import model.Genre;
 import org.springframework.stereotype.Service;
-import repository.impl.BookRepositoryImpl;
-import service.BookService;
+
 
 import java.util.List;
 

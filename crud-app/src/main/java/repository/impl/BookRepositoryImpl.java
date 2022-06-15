@@ -1,9 +1,11 @@
-package repository.impl;
+package com.example.repository.impl;
 
+
+import com.example.model.Book;
+import com.example.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import model.Book;
+
 import org.springframework.stereotype.Component;
-import repository.BookRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

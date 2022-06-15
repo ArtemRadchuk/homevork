@@ -1,14 +1,16 @@
-package controller;
+package com.example.controller;
 
-import model.Author;
+import com.example.service.impl.AuthorServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import service.impl.AuthorServiceImpl;
+
 
 @Controller
+@RequiredArgsConstructor
 public class AuthorController {
-    private AuthorServiceImpl authorService;
+    private final AuthorServiceImpl authorService;
 
     @PostMapping(value = "/author/add")
     public String add(@RequestParam String name, Model model) {

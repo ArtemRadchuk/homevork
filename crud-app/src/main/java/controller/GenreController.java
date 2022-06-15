@@ -1,14 +1,16 @@
-package controller;
+package com.example.controller;
 
-import org.springframework.boot.Banner;
+import com.example.service.impl.GenreServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import service.impl.GenreServiceImpl;
+
 
 @Controller
+@RequiredArgsConstructor
 public class GenreController {
-    private GenreServiceImpl genreService;
+    private final GenreServiceImpl genreService;
 
     @PostMapping(value = "/genre/add")
     public String add(@RequestParam String name,Model model) {

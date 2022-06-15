@@ -1,9 +1,10 @@
-package repository.impl;
+package com.example.repository.impl;
 
+
+import com.example.model.Genre;
+import com.example.repository.GenreRepository;
 import lombok.RequiredArgsConstructor;
-import model.Genre;
 import org.springframework.stereotype.Component;
-import repository.GenreRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

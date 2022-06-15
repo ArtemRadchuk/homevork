@@ -1,6 +1,8 @@
-package service;
+package com.example.service;
 
-import model.Genre;
+
+
+import com.example.model.Genre;
 
 import java.util.List;
 

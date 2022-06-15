@@ -1,6 +1,7 @@
-package service;
+package com.example.service;
 
-import model.Author;
+
+import com.example.model.Author;
 
 import java.util.List;
 

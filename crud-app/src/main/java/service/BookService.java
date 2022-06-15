@@ -1,8 +1,10 @@
-package service;
+package com.example.service;
 
-import model.Author;
-import model.Book;
-import model.Genre;
+
+
+import com.example.model.Author;
+import com.example.model.Book;
+import com.example.model.Genre;
 
 import java.util.List;
 

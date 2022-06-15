@@ -1,6 +1,6 @@
-package repository;
+package com.example.repository;
 
-import model.Book;
+import com.example.model.Book;
 
 public interface BookRepository<K, T, N extends Number> extends DefaultCrudRepository<Book, String, Integer>{
 
