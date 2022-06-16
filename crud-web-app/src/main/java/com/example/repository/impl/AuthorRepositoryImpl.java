@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -18,17 +19,17 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
 
     @Override
     public List<Author> findAll() {
-        return entityManager.createQuery("FROM book_list.author;", Author.class).getResultList();
+        return entityManager.createNativeQuery("select * FROM book_list.author", Author.class).getResultList();
     }
 
     @Override
     public void create(Author author) {
-        entityManager.createQuery("insert into book_list.author(name) values (" + author.getName() + ");");
+        entityManager.createNativeQuery("insert into book_list.author(name) values (\"" + author.getName() + "\")");
     }
 
     @Override
     public Author findByName(String name) {
-        return entityManager.createQuery("FROM book_list.author where name =" + name, Author.class).getSingleResult();
+        return (Author) entityManager.createNativeQuery("FROM book_list.author where name =" + name, Author.class).getSingleResult();
     }
 
     @Override

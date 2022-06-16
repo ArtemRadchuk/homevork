@@ -18,17 +18,8 @@ public class BookServiceImpl implements BookService {
     private final BookRepositoryImpl bookRepository;
 
     @Override
-    public Book createBook(String title, String description, String isbn, Author author, Genre genre, int print_year) {
-        Book book = new Book();
-        book.setTitle(title);
-        book.setDescription(description);
-        book.setIsbn(isbn);
-        book.setAuthor(author);
-        book.setGenre(genre);
-        book.setPrintYear(print_year);
-        book.setReadAlready(false);
+    public void createBook(Book book) {
         bookRepository.create(book);
-        return book;
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GenreService {
 
-    Object createGenre(String name);
+    void createGenre(Genre genre);
 
     void deleteGenre(int id);
 

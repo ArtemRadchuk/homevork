@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface BookService {
 
-    Object createBook(String title, String description, String isbn, Author author, Genre genre, int print_year);
+    void createBook(Book book);
 
     void updateBook(int id, String title, String description, String isbn, int printYear);
 

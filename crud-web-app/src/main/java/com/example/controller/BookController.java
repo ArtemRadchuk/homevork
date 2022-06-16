@@ -1,7 +1,6 @@
 package com.example.controller;
 
-import com.example.model.Author;
-import com.example.model.Genre;
+import com.example.model.Book;
 import com.example.service.impl.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 
@@ -15,12 +14,15 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     private final BookServiceImpl bookService;
 
-    @PostMapping("/books/add")
-    public String add(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description,
-                      @RequestParam(name = "isbn") String isbn, @RequestParam(name = "author") Author author,
-                      @RequestParam(name = "genre") Genre genre, @RequestParam(name = "print year") int print_year, Model model) {
-        model.addAttribute("book", bookService.createBook(title, description, isbn, author, genre, print_year));
+    @GetMapping("/books/add")
+    public String add(@ModelAttribute("book") Book book) {
         return "addBook";
+    }
+
+    @PostMapping(value = "/books/add")
+    public String create(Book book) {
+        bookService.createBook(book);
+        return "redirect:/indexBook";
     }
 
     @GetMapping("/books")
@@ -29,7 +31,7 @@ public class BookController {
         return "indexBook";
     }
 
-    @GetMapping("/books/{title}")
+    @GetMapping("/books/find/{title}")
     public String getBook(@PathVariable("title") String title, Model model) {
         model.addAttribute("book", bookService.findBook(title));
         return "readBook";

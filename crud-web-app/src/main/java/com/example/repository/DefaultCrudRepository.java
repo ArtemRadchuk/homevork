@@ -1,5 +1,7 @@
 package com.example.repository;
 
+import com.example.model.Author;
+
 import java.util.List;
 
 public interface DefaultCrudRepository<K, T, N> {

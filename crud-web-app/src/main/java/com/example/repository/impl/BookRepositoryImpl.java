@@ -1,6 +1,7 @@
 package com.example.repository.impl;
 
 
+import com.example.model.Author;
 import com.example.model.Book;
 import com.example.repository.BookRepository;
 import lombok.RequiredArgsConstructor;

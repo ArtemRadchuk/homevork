@@ -17,11 +17,8 @@ public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepositoryImpl authorRepository;
 
     @Override
-    public Author createAuthor(String name) {
-        Author author = new Author();
-        author.setName(name);
+    public void createAuthor(Author author) {
         authorRepository.create(author);
-        return author;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> authorList() {
-       return authorRepository.findAll();
+        return authorRepository.findAll();
     }
 
     @Override

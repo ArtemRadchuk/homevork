@@ -1,6 +1,7 @@
 package com.example.repository.impl;
 
 
+import com.example.model.Author;
 import com.example.model.Genre;
 import com.example.repository.GenreRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,17 +18,17 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public List<Genre> findAll() {
-        return entityManager.createQuery("FROM book_list.genre;", Genre.class).getResultList();
+        return entityManager.createNativeQuery("select * FROM book_list.genre;", Genre.class).getResultList();
     }
 
     @Override
     public void create(Genre genre) {
-        entityManager.createQuery("insert into book_list.genre(name) values (" + genre.getName() + ");");
+        entityManager.createNativeQuery("insert into book_list.genre(name) values (" + genre.getName() + ");");
     }
 
     @Override
     public Genre findByName(String name) {
-        return entityManager.createQuery("FROM book_list.genre where name =" + name, Genre.class).getSingleResult();
+        return (Genre) entityManager.createNativeQuery("select * FROM book_list.genre where name =" + name, Genre.class).getSingleResult();
     }
 
     @Override
