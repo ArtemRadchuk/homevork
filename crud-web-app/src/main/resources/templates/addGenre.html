@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/genres/add" th:object="${genre}">
+<form th:method="POST" th:action="@{/genres/add}" th:object="${genre}">
     <label for="name">Enter genre name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/>

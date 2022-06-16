@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 @Component
@@ -23,12 +24,12 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public void create(Genre genre) {
-        entityManager.createNativeQuery("insert into book_list.genre(name) values (" + genre.getName() + ");");
+        entityManager.createNativeQuery("insert into book_list.genre(name) values (\"" + genre.getName() + "\");").executeUpdate();
     }
 
     @Override
-    public Genre findByName(String name) {
-        return (Genre) entityManager.createNativeQuery("select * FROM book_list.genre where name =" + name, Genre.class).getSingleResult();
+    public Genre findById(Integer id) {
+        return (Genre) entityManager.createNativeQuery("select * FROM book_list.genre where id = \"" + id + "\"", Genre.class).getSingleResult();
     }
 
     @Override

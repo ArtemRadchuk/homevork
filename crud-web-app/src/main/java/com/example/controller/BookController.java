@@ -31,22 +31,33 @@ public class BookController {
         return "indexBook";
     }
 
-    @GetMapping("/books/find/{title}")
-    public String getBook(@PathVariable("title") String title, Model model) {
-        model.addAttribute("book", bookService.findBook(title));
+    @GetMapping("/books/{id}")
+    public String getBook(@PathVariable("id") long id, Model model) {
+        model.addAttribute("book", bookService.findBook(id));
         return "readBook";
     }
 
-    @PostMapping("/books/{book}/update")
-    public String update(@RequestParam(name = "id") int id, @RequestParam(name = "title") String title,
-                         @RequestParam(name = "description") String description, @RequestParam(name = "isbn") String isbn,
-                         @RequestParam(name = "print year") int printYear) {
-        bookService.updateBook(id, title, description, isbn, printYear);
+    @GetMapping("/books/{id}/edit")
+    public String updateBook(Model model, @PathVariable("id") long id){
+        model.addAttribute("book", bookService.findBook(id));
         return "updateBook";
     }
 
+    @PatchMapping("/{id}/")
+    public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
+        bookService.updateBook(id, book);
+        return "redirect:/people";
+    }
+
+
+    /*@PostMapping("/books/{id}/update")
+    public String update(Model model,) {
+        bookService.updateBook(id, title, description, isbn, printYear);
+        return "updateBook";
+    }*/
+
     @DeleteMapping("/books/delete/{id}")
-    public void deleteBook(@PathVariable("title") int id) {
+    public void deleteBook(@PathVariable("title")long id) {
         bookService.deleteBook(id);
     }
 }

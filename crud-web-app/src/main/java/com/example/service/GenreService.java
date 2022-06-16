@@ -14,5 +14,5 @@ public interface GenreService {
 
     List<Genre> genreList();
 
-    Genre findGenre(String name);
+    Genre findGenre(int id);
 }

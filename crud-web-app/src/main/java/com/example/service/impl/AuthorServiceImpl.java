@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -17,23 +18,27 @@ public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepositoryImpl authorRepository;
 
     @Override
+    @Transactional
     public void createAuthor(Author author) {
         authorRepository.create(author);
     }
 
     @Override
+    @Transactional
     public void deleteAuthorById(int id) {
         authorRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public List<Author> authorList() {
         return authorRepository.findAll();
     }
 
     @Override
-    public Author findAuthor(String name) {
-        return authorRepository.findByName(name);
+    @Transactional
+    public Author findAuthor(int id) {
+        return authorRepository.findById(id);
     }
 
   /*  @Override

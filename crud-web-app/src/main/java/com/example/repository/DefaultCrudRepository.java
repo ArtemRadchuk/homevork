@@ -1,7 +1,5 @@
 package com.example.repository;
 
-import com.example.model.Author;
-
 import java.util.List;
 
 public interface DefaultCrudRepository<K, T, N> {
@@ -10,11 +8,11 @@ public interface DefaultCrudRepository<K, T, N> {
 
     void create(K k);
 
-    K findByName(T t);
+    K findById(N n);
 
     void delete(K k);
 
-    void deleteById(N n);
+    void deleteById(K k, N n);
 
 
 

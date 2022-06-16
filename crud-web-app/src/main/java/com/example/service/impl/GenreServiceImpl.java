@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,22 +17,26 @@ public class GenreServiceImpl implements GenreService {
     private final GenreRepositoryImpl genreRepository;
 
     @Override
+    @Transactional
     public void createGenre(Genre genre) {
         genreRepository.create(genre);
     }
 
     @Override
+    @Transactional
     public void deleteGenre(int id) {
         genreRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public List<Genre> genreList() {
        return genreRepository.findAll();
     }
 
     @Override
-    public Genre findGenre(String name) {
-        return  genreRepository.findByName(name);
+    @Transactional
+    public Genre findGenre(int id) {
+        return  genreRepository.findById(id);
     }
 }

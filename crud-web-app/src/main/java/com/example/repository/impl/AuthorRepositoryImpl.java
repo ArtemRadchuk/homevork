@@ -24,12 +24,12 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
 
     @Override
     public void create(Author author) {
-        entityManager.createNativeQuery("insert into book_list.author(name) values (\"" + author.getName() + "\")");
+        entityManager.createNativeQuery("insert into book_list.author(name) values (\"" + author.getName() + "\")").executeUpdate();
     }
 
     @Override
-    public Author findByName(String name) {
-        return (Author) entityManager.createNativeQuery("FROM book_list.author where name =" + name, Author.class).getSingleResult();
+    public Author findById(Integer id) {
+        return (Author) entityManager.createNativeQuery("FROM book_list.author where id = \"" + id + "\";", Author.class).getSingleResult();
     }
 
     @Override
