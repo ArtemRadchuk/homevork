@@ -25,9 +25,8 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
 
     public void updateBook(Book book, long id) {
         entityManager.createNativeQuery("update book_list.book set(title, description, isbn, print_year, read_already) = (\""
-                + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \""  + book.getPrintYear() +
+                + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getPrintYear() +
                 "\", \"0\") where id = \"" + id + "\"");
-
     }
 
     @Override
@@ -38,11 +37,10 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     }
 
     @Override
-    public Book findById(long id) {
+    public Book findById(Long id) {
         entityManager.createNativeQuery("update book_list.book set read_already = 1 where id = " + id);
         return entityManager.find(Book.class, id);
     }
-
 
     @Override
     public void delete(Book book) {
@@ -50,7 +48,7 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         entityManager.remove(id);
     }
 }

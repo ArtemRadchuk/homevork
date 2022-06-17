@@ -28,7 +28,7 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
     }
 
     @Override
-    public Genre findById(Integer id) {
+    public Genre findById(Long id) {
         return (Genre) entityManager.createNativeQuery("select * FROM book_list.genre where id = \"" + id + "\"", Genre.class).getSingleResult();
     }
 
@@ -38,7 +38,7 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         entityManager.remove(id);
     }
 }

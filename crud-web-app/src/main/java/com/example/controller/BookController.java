@@ -28,36 +28,30 @@ public class BookController {
     @GetMapping("/books")
     public String getBooks(Model model) {
         model.addAttribute("books", bookService.allBook());
-        return "indexBook";
+        return "book/indexBook";
     }
 
     @GetMapping("/books/{id}")
     public String getBook(@PathVariable("id") long id, Model model) {
         model.addAttribute("book", bookService.findBook(id));
-        return "readBook";
+        return "book/showBook";
     }
 
     @GetMapping("/books/{id}/edit")
-    public String updateBook(Model model, @PathVariable("id") long id){
+    public String editBook(Model model, @PathVariable("id") long id){
         model.addAttribute("book", bookService.findBook(id));
-        return "updateBook";
+        return "book/updateBook";
     }
 
-    @PatchMapping("/{id}/")
+    @PatchMapping(value = "/{id}")
     public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
         bookService.updateBook(id, book);
-        return "redirect:/people";
+        return "redirect:/books";
     }
 
-
-    /*@PostMapping("/books/{id}/update")
-    public String update(Model model,) {
-        bookService.updateBook(id, title, description, isbn, printYear);
-        return "updateBook";
-    }*/
-
     @DeleteMapping("/books/delete/{id}")
-    public void deleteBook(@PathVariable("title")long id) {
+    public String deleteBook(@PathVariable("id")long id) {
         bookService.deleteBook(id);
+        return "redirect:/books";
     }
 }

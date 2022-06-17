@@ -24,7 +24,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     @Transactional
-    public void deleteGenre(int id) {
+    public void deleteGenre(long id) {
         genreRepository.deleteById(id);
     }
 
@@ -36,7 +36,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     @Transactional
-    public Genre findGenre(int id) {
+    public Genre findGenre(long id) {
         return  genreRepository.findById(id);
     }
 }

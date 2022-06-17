@@ -9,11 +9,11 @@ public interface AuthorService {
 
     void createAuthor(Author author);
 
-    void deleteAuthorById(int id);
+    void deleteAuthorById(long id);
 
     List<Author> authorList();
 
-    Author findAuthor(int id);
+    Author findAuthor(long id);
 
     /*  void deleteAuthor(Author author);*/
 }

@@ -16,7 +16,7 @@ public class AuthorController {
     @GetMapping(value = "/authors/add")
     public String add(@ModelAttribute("author") Author author) {
         /*authorService.createAuthor(author);*/
-        return "addAuthor";
+        return "author/addAuthor";
     }
 
     @PostMapping(value = "/authors/add")
@@ -28,12 +28,13 @@ public class AuthorController {
     @GetMapping(value = "/authors")
     public String getAuthors(Model model) {
         model.addAttribute("authors", authorService.authorList());
-        return "indexAuthor";
+        return "author/indexAuthor";
     }
 
-    @GetMapping(value = "/authors/delete/{id}")
-    public void deleteAuthorById(@PathVariable("id") int id) {
+    @DeleteMapping("/authors/delete/{id}")
+    public String deleteAuthorById(@PathVariable("id") Long id) {
         authorService.deleteAuthorById(id);
+        return "redirect:/authors";
     }
 
 /*    @GetMapping(value = "/author/delete/{author}")

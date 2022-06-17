@@ -15,7 +15,7 @@ public class GenreController {
 
     @GetMapping(value = "/genres/add")
     public String add(@ModelAttribute("genre") Genre genre) {
-        return "addGenre";
+        return "genre/addGenre";
     }
 
     @PostMapping(value = "/genres/add")
@@ -27,12 +27,13 @@ public class GenreController {
     @GetMapping(value = "/genres")
     public String getGenre(Model model) {
         model.addAttribute("genres", genreService.genreList());
-        return "indexGenre";
+        return "genre/indexGenre";
     }
 
-    @GetMapping(value = "/genres/delete/{id}")
-    public void deleteGenre(@PathVariable("id") int id) {
+    @DeleteMapping("/genres/delete/{id}")
+    public String  deleteGenre(@PathVariable("id") long id) {
         genreService.deleteGenre(id);
+        return "redirect:/genres";
     }
 }
 
