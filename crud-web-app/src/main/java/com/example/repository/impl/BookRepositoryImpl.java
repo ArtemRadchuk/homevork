@@ -26,14 +26,14 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     public void updateBook(Book book, long id) {
         entityManager.createNativeQuery("update book_list.book set title = \"" + book.getTitle() + "\", description = \""
                 + book.getDescription()+"\", isbn = \"" + book.getIsbn() +"\", print_year = \"" + book.getPrintYear() +"\"" +
-                " where id = " + id + "");
+                " where id = " + id + "").executeUpdate();
     }
 
     @Override
     public void create(Book book) {
         entityManager.createNativeQuery("insert into book_list.book(title, description, isbn, author, genre,  print_year, read_already) values" +
                 " (\"" + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getAuthor() +
-                "\", \"" + book.getGenre() + "\", \"" + book.getPrintYear() + "\", \" 0\")");
+                "\", \"" + book.getGenre() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();
     }
 
     @Override
