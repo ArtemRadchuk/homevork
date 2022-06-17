@@ -16,11 +16,11 @@ public class BookController {
 
     @GetMapping("/books/add")
     public String add(@ModelAttribute("book") Book book) {
-        return "addBook";
+        return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
-    public String create(Book book) {
+    public String create(@ModelAttribute("book") Book book) {
         bookService.createBook(book);
         return "redirect:/indexBook";
     }
@@ -40,10 +40,11 @@ public class BookController {
     @GetMapping("/books/{id}/edit")
     public String editBook(Model model, @PathVariable("id") long id){
         model.addAttribute("book", bookService.findBook(id));
+        /*System.out.println(bookService.findBook(id).getTitle() + " " + bookService.findBook(id).getPrintYear());*/
         return "book/updateBook";
     }
 
-    @PostMapping(value = "/books/{id}")
+    @PatchMapping(value = "/books/{id}")
     public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
         System.out.println("Назвение - " +book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - "+ book.getIsbn()
                 +". Год печати - "+ book.getPrintYear());

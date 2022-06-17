@@ -24,7 +24,7 @@ public class Book {
     public Genre genre;
 
     @Column(name = "print_year")
-    public int printYear;
+    public Integer printYear;
 
     @Column(name = "read_already")
     public boolean readAlready;
@@ -58,6 +58,7 @@ public class Book {
     }
 
     public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public Author getAuthor() {
