@@ -43,8 +43,10 @@ public class BookController {
         return "book/updateBook";
     }
 
-    @PatchMapping(value = "/{id}")
+    @PostMapping(value = "/books/{id}")
     public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
+        System.out.println("Назвение - " +book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - "+ book.getIsbn()
+                +". Год печати - "+ book.getPrintYear());
         bookService.updateBook(id, book);
         return "redirect:/books";
     }

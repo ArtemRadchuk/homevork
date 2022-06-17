@@ -24,9 +24,9 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     }
 
     public void updateBook(Book book, long id) {
-        entityManager.createNativeQuery("update book_list.book set(title, description, isbn, print_year, read_already) = (\""
-                + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getPrintYear() +
-                "\", \"0\") where id = \"" + id + "\"");
+        entityManager.createNativeQuery("update book_list.book set title = \"" + book.getTitle() + "\", description = \""
+                + book.getDescription()+"\", isbn = \"" + book.getIsbn() +"\", print_year = \"" + book.getPrintYear() +"\"" +
+                " where id = " + id + "");
     }
 
     @Override

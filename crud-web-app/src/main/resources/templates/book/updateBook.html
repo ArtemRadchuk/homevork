@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/books/{title}(title=${book.getTitle()})}" th:object="${book}">
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
     <label for="title">Enter new title: </label>
     <input type="text" th:field="*{title}" id="title"/>
 
