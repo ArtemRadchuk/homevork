@@ -16,11 +16,13 @@ public class BookController {
 
     @GetMapping("/books/add")
     public String add(@ModelAttribute("book") Book book) {
+        System.out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getGenre() + " " + book.getPrintYear());
         return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
     public String create(@ModelAttribute("book") Book book) {
+        System.out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getGenre() + " " + book.getPrintYear());
         bookService.createBook(book);
         return "redirect:/indexBook";
     }

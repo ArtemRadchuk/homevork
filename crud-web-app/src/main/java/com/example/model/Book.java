@@ -77,11 +77,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public int getPrintYear() {
+    public Integer getPrintYear() {
         return printYear;
     }
 
-    public void setPrintYear(int printYear) {
+    public void setPrintYear(Integer printYear) {
         this.printYear = printYear;
     }
 

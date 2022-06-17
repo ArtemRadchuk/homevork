@@ -9,5 +9,11 @@
 <div th:each="genre : ${genres}">
     <a th:text="${genre.getName}">genre</a>
 </div>
+
+<br/>
+<hr/>
+
+<form th:action="@{/genres/add}">
+    <input type="submit" value="Add genre"/></form>
 </body>
 </html>
