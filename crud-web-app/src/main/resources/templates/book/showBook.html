@@ -5,13 +5,19 @@
     <title>Книга</title>
 </head>
 <body>
+<p th:text="${book.getId}"></p>
 
 <p th:text="${book.getTitle()}"></p>
-<p th:text="${book.getId}"></p>
+
 <p th:text="${book.getDescription()}"></p>
+
 <p th:text="${book.getIsbn}"></p>
-<p th:text="${book.getAuthor}"></p>
-<p th:text="${book.getGenre}"></p>
+
+<p th:text="${book.getAuthorNameInAuthor()}"></p>
+
+<p th:text="${(book.getGenreNameInGenre())}"></p>
+
+
 
 
 <form th:action="@{/books/{id}/edit(id=${book.getId()})}">

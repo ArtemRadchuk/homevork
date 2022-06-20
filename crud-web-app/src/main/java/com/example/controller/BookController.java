@@ -16,15 +16,13 @@ public class BookController {
 
     @GetMapping("/books/add")
     public String add(@ModelAttribute("book") Book book) {
-        System.out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getGenre() + " " + book.getPrintYear());
         return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
     public String create(@ModelAttribute("book") Book book) {
-        System.out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getGenre() + " " + book.getPrintYear());
         bookService.createBook(book);
-        return "redirect:/indexBook";
+        return "redirect:/books";
     }
 
     @GetMapping("/books")
@@ -44,6 +42,12 @@ public class BookController {
         model.addAttribute("book", bookService.findBook(id));
         /*System.out.println(bookService.findBook(id).getTitle() + " " + bookService.findBook(id).getPrintYear());*/
         return "book/updateBook";
+    }
+
+    @GetMapping("/books/find/{id}")
+    public String findBook(Model model, @PathVariable("id") long id){
+        model.addAttribute("book",bookService.findBook(id));
+        return "redirect:/book/showBook";
     }
 
     @PatchMapping(value = "/books/{id}")

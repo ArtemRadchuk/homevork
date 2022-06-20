@@ -32,8 +32,8 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     @Override
     public void create(Book book) {
         entityManager.createNativeQuery("insert into book_list.book(title, description, isbn, author, genre,  print_year, read_already) values" +
-                " (\"" + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getAuthor() +
-                "\", \"" + book.getGenre() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();
+                " (\"" + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getAuthorName() +
+                "\", \"" + book.getGenreName() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();
     }
 
     @Override

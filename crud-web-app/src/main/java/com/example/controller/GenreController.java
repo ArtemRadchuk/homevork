@@ -24,6 +24,12 @@ public class GenreController {
         return "redirect:/genres";
     }
 
+    @GetMapping("/genres/{id}")
+    public String getGenre(@PathVariable("id") long id, Model model) {
+        model.addAttribute("book",genreService.findGenre(id));
+        return "genre/showGenre";
+    }
+
     @GetMapping(value = "/genres")
     public String getGenre(Model model) {
         model.addAttribute("genres", genreService.genreList());

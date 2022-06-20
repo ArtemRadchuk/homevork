@@ -29,6 +29,34 @@ public class Book {
     @Column(name = "read_already")
     public boolean readAlready;
 
+    public String authorName;
+
+    public String genreName;
+
+    public String getAuthorNameInAuthor() {
+        return author.getName();
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String name) {
+        this.authorName = name;
+    }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
+    public String getGenreNameInGenre() {
+        return genre.getName();
+    }
+
     public long getId() {
         return id;
     }
