@@ -15,7 +15,6 @@ public class AuthorController {
 
     @GetMapping(value = "/authors/add")
     public String add(@ModelAttribute("author") Author author) {
-        /*authorService.createAuthor(author);*/
         return "author/addAuthor";
     }
 
@@ -23,6 +22,12 @@ public class AuthorController {
     public String create(Author author){
         authorService.createAuthor(author);
         return "redirect:/authors";
+    }
+
+    @GetMapping("/authors/{id}")
+    public String getAuthor(@PathVariable("id") long id, Model model) {
+        model.addAttribute("genre", authorService.findAuthor(id));
+        return "author/showAuthor";
     }
 
     @GetMapping(value = "/authors")
@@ -36,10 +41,4 @@ public class AuthorController {
         authorService.deleteAuthorById(id);
         return "redirect:/authors";
     }
-
-/*    @GetMapping(value = "/author/delete/{author}")
-    public void deleteAuthor(@PathVariable("author") Author author) {
-        authorService.deleteAuthor(author);
-    }*/
-
 }

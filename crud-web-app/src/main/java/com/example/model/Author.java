@@ -1,6 +1,10 @@
 package com.example.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +15,11 @@ public class Author {
     public long id;
 
     public String name;
+
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(orphanRemoval = true,
+            mappedBy = "author")
+    private List<Book> books;
 
     public long getId() {
         return id;

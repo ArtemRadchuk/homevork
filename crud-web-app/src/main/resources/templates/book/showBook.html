@@ -5,25 +5,35 @@
     <title>Книга</title>
 </head>
 <body>
+<label>ID: </label>
+<hr/>
 <p th:text="${book.getId}"></p>
-
+<br/>
+<label>Название: </label>
+<hr/>
 <p th:text="${book.getTitle()}"></p>
-
+<br/>
+<label>Описание: </label>
+<hr/>
 <p th:text="${book.getDescription()}"></p>
-
+<br/>
+<label>ISBN: </label>
+<hr/>
 <p th:text="${book.getIsbn}"></p>
-
-<p th:text="${book.getAuthorNameInAuthor()}"></p>
-
-<p th:text="${(book.getGenreNameInGenre())}"></p>
-
-
+<br/>
+<label>Автор: </label>
+<hr/>
+<p th:text="${book.getAuthorName}"></p>
+<br/>
+<label>Жанр: </label>
+<hr/>
+<p th:text="${(book.getGenreName)}"></p>
 
 
 <form th:action="@{/books/{id}/edit(id=${book.getId()})}">
     <input type="submit" value="Edit"/></form>
 
-<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+<form th:method="DELETE" th:action="@{/books/delete/{id}(id=${book.getId()})}">
     <input type="submit" value="Delete"/></form>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class GenreController {
 
     @GetMapping("/genres/{id}")
     public String getGenre(@PathVariable("id") long id, Model model) {
-        model.addAttribute("book",genreService.findGenre(id));
+        model.addAttribute("genre",genreService.findGenre(id));
         return "genre/showGenre";
     }
 

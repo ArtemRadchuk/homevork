@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>New book</title>
+    <meta charset="UTF-8">
+    <title>New book</title>
 </head>
 <body>
 
 <form th:method="POST" th:action="@{/books/add}" th:object="${book}">
-  <label for="title">Enter title: </label>
-  <input type="text" th:field="*{title}" id="title"/>
+    <label for="title">Enter title: </label>
+    <input type="text" th:field="*{title}" id="title"/>
 
-  <label for="description">Enter description: </label>
-  <input type="text" th:field="*{description}" id="description"/>
+    <label for="description">Enter description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
 
-  <label for="isbn">Enter isbn: </label>
-  <input type="text" th:field="*{isbn}" id="isbn"/>
+    <label for="isbn">Enter isbn: </label>
+    <input type="text" th:field="*{isbn}" id="isbn"/>
 
-  <label for="author">Enter author: </label>
-  <input type="text" th:field="*{authorName}" id="author"/>
+    <label for="printYear">Enter print year: </label>
+    <input type="number" th:field="*{printYear}" id="printYear"/>
 
-  <label for="genre">Enter genre: </label>
-  <input type="text" th:field="*{genreName}" id="genre"/>
+    <label for="genreId">Enter genre id: </label>
+    <input type="number" th:field="*{genreId}" id="genreId"/>
 
-  <label for="printYear">Enter print year: </label>
-  <input type="number" th:field="*{printYear}" id="printYear"/>
+    <label for="authorId">Enter author id: </label>
+    <input type="number" th:field="*{authorId}" id="authorId"/>
 
-  <br/>
-  <input type="submit" value="Create!"/>
+    <br/>
+    <input type="submit" value="Create!"/>
 </form>
 
 </body>

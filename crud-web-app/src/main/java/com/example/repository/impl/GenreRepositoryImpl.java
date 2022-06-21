@@ -1,14 +1,11 @@
 package com.example.repository.impl;
 
-
-import com.example.model.Author;
 import com.example.model.Genre;
 import com.example.repository.GenreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.util.List;
 
 @Component
@@ -29,7 +26,7 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public Genre findById(Long id) {
-        return (Genre) entityManager.createNativeQuery("select * FROM book_list.genre where id = \"" + id + "\"", Genre.class).getSingleResult();
+        return entityManager.find(Genre.class, id);
     }
 
     @Override

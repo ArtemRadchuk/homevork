@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Автор</title>
+</head>
+<body>
+
+<p th:text="${author.getId()}"></p>
+<p th:text="${author.getName()}"></p>
+
+
+<form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
+    <input type="submit" value="Delete"/></form>
+</body>
+</html>

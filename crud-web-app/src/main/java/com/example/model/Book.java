@@ -17,10 +17,12 @@ public class Book {
 
     public String isbn;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id")
     public Author author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "genre_id")
     public Genre genre;
 
     @Column(name = "print_year")
@@ -29,31 +31,11 @@ public class Book {
     @Column(name = "read_already")
     public boolean readAlready;
 
-    public String authorName;
-
-    public String genreName;
-
-    public String getAuthorNameInAuthor() {
+    public String getAuthorName() {
         return author.getName();
     }
 
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String name) {
-        this.authorName = name;
-    }
-
     public String getGenreName() {
-        return genreName;
-    }
-
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
-    }
-
-    public String getGenreNameInGenre() {
         return genre.getName();
     }
 

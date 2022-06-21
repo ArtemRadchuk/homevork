@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<p th:text="${genre.getId}"></p>
+<p th:text="${genre.getId()}"></p>
 <p th:text="${genre.getName()}"></p>
 
 
-<form th:method="DELETE" th:action="@{/genres/{id}(id=${genre.getId()})}">
+<form th:method="DELETE" th:action="@{/genres/delete/{id}(id=${genre.getId()})}">
     <input type="submit" value="Delete"/></form>
 </body>
 </html>

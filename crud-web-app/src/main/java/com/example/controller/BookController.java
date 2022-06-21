@@ -1,7 +1,11 @@
 package com.example.controller;
 
+import com.example.model.Author;
 import com.example.model.Book;
+import com.example.repository.impl.GenreRepositoryImpl;
+import com.example.service.impl.AuthorServiceImpl;
 import com.example.service.impl.BookServiceImpl;
+import com.example.service.impl.GenreServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Controller;
@@ -13,14 +17,21 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BookController {
     private final BookServiceImpl bookService;
+    private final GenreServiceImpl genreService;
+    private final AuthorServiceImpl authorService;
 
     @GetMapping("/books/add")
     public String add(@ModelAttribute("book") Book book) {
+        System.out.println(book.getTitle());
         return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
-    public String create(@ModelAttribute("book") Book book) {
+    public String create(@ModelAttribute("book") Book book, @PathVariable("genreId") long genreId, @PathVariable("authorId") long authorId) {
+        System.err.println("Назвение - " +book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - "+ book.getIsbn()
+                +". Год печати - "+ book.getPrintYear());
+        book.setAuthor(authorService.findAuthor(authorId));
+        book.setGenre(genreService.findGenre(genreId));
         bookService.createBook(book);
         return "redirect:/books";
     }
@@ -60,6 +71,7 @@ public class BookController {
 
     @DeleteMapping("/books/delete/{id}")
     public String deleteBook(@PathVariable("id")long id) {
+        System.err.println(id);
         bookService.deleteBook(id);
         return "redirect:/books";
     }
