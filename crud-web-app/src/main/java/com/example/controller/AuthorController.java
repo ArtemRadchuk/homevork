@@ -26,7 +26,7 @@ public class AuthorController {
 
     @GetMapping("/authors/{id}")
     public String getAuthor(@PathVariable("id") long id, Model model) {
-        model.addAttribute("genre", authorService.findAuthor(id));
+        model.addAttribute("author", authorService.findAuthor(id));
         return "author/showAuthor";
     }
 

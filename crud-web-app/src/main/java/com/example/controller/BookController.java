@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.BookInfo;
 import com.example.model.Author;
 import com.example.model.Book;
 import com.example.repository.impl.GenreRepositoryImpl;
@@ -21,17 +22,19 @@ public class BookController {
     private final AuthorServiceImpl authorService;
 
     @GetMapping("/books/add")
-    public String add(@ModelAttribute("book") Book book) {
-        System.out.println(book.getTitle());
+    public String add(@ModelAttribute("bookInfo") BookInfo bookInfo) {
         return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
-    public String create(@ModelAttribute("book") Book book, @PathVariable("genreId") long genreId, @PathVariable("authorId") long authorId) {
-        System.err.println("Назвение - " +book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - "+ book.getIsbn()
-                +". Год печати - "+ book.getPrintYear());
-        book.setAuthor(authorService.findAuthor(authorId));
-        book.setGenre(genreService.findGenre(genreId));
+    public String create(@ModelAttribute("bookInfo") BookInfo bookInfo) {
+        Book book = new Book();
+        book.setAuthor(authorService.findAuthor(bookInfo.getAuthor()));
+        book.setGenre(genreService.findGenre(bookInfo.getGenre()));
+        book.setIsbn(bookInfo.getIsbn());
+        book.setPrintYear(bookInfo.getPrintYear());
+        book.setTitle(bookInfo.getTitle());
+        book.setDescription(bookInfo.getDescription());
         bookService.createBook(book);
         return "redirect:/books";
     }

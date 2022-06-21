@@ -28,7 +28,7 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
 
     @Override
     public Author findById(Long id) {
-        return (Author) entityManager.createNativeQuery("FROM book_list.author where id = \"" + id + "\";", Author.class).getSingleResult();
+        return entityManager.find(Author.class, id);
     }
 
     @Override

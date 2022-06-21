@@ -9,5 +9,8 @@
 <div th:each="author : ${authors}">
     <a th:href="@{/authors/{id}(id=${author.getId()})}" th:text="${author.getName}">author</a>
 </div>
+<form th:action="@{/authors/add}">
+    <input type="submit" value="Add author"/></form>
+
 </body>
 </html>
