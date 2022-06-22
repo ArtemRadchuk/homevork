@@ -36,6 +36,6 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public void deleteById(Long id) {
-        entityManager.remove(id);
+        entityManager.remove(findById(id));
     }
 }

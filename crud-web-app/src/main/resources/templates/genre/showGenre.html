@@ -6,8 +6,7 @@
 </head>
 <body>
 
-<p th:text="${genre.getId()}"></p>
-<p th:text="${genre.getName()}"></p>
+<p th:text="${'Id: ' + genre.getId() + ', Название жанра: ' + genre.getName()}"></p>
 
 
 <form th:method="DELETE" th:action="@{/genres/delete/{id}(id=${genre.getId()})}">

@@ -6,9 +6,7 @@
 </head>
 <body>
 
-<p th:text="${author.getId()}"></p>
-<p th:text="${author.getName()}"></p>
-
+<p th:text="${'Id: ' + author.getId() + ', Имя автора: ' + author.getName()}"></p>
 
 <form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
     <input type="submit" value="Delete"/></form>

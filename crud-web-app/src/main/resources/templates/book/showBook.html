@@ -5,30 +5,22 @@
     <title>Книга</title>
 </head>
 <body>
-<label>ID: </label>
-<hr/>
-<p th:text="${book.getId}"></p>
-<br/>
-<label>Название: </label>
-<hr/>
-<p th:text="${book.getTitle()}"></p>
-<br/>
-<label>Описание: </label>
-<hr/>
-<p th:text="${book.getDescription()}"></p>
-<br/>
-<label>ISBN: </label>
-<hr/>
-<p th:text="${book.getIsbn}"></p>
-<br/>
-<label>Автор: </label>
-<hr/>
-<p th:text="${book.getAuthorName}"></p>
-<br/>
-<label>Жанр: </label>
-<hr/>
-<p th:text="${(book.getGenreName)}"></p>
 
+<hr/>
+<p th:text="${'id: ' + book.getId}"></p>
+<hr/>
+
+<p th:text="${'Название: ' + book.getTitle()}"></p>
+<hr/>
+<label></label>
+<p th:text="${'Описание: '  + book.getDescription()}"></p>
+<hr/>
+<p th:text="${'ISBN: ' + book.getIsbn}"></p>
+<hr/>
+<p th:text="${'Автор: ' + book.getAuthorName}"></p>
+<hr/>
+<p th:text="${'Жанр: ' + book.getGenreName}"></p>
+<hr/>
 
 <form th:action="@{/books/{id}/edit(id=${book.getId()})}">
     <input type="submit" value="Edit"/></form>

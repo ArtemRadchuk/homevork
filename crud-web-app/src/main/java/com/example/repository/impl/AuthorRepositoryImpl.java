@@ -38,6 +38,6 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
 
     @Override
     public void deleteById(Long id) {
-        entityManager.remove(id);
+        entityManager.remove(findById(id));
     }
 }
