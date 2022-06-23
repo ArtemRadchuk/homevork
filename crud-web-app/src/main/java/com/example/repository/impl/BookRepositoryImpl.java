@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
 
     @Override
     public List<Book> findAll() {
-        return entityManager.createNativeQuery("SELECT * FROM book_list.book", Book.class).getResultList();
+        return entityManager.createQuery("select b from Book b", Book.class).getResultList();
     }
 
     public void updateBook(Book book, long id) {
@@ -30,10 +31,16 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     }
 
     @Override
-    public void create(Book book) {
-        entityManager.createNativeQuery("insert into book_list.book(title, description, isbn, author_id, genre_id,  print_year, read_already) values" +
+    public Book create(Book book) {
+        if (Objects.isNull(book.getId())) {
+            entityManager.persist(book);
+            return book;
+        } else {
+            return entityManager.merge(book);
+        }
+        /*entityManager.createNativeQuery("insert into book_list.book(title, description, isbn, author_id, genre_id,  print_year, read_already) values" +
                 " (\"" + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getAuthor().getId() +
-                "\", \"" + book.getGenre().getId() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();
+                "\", \"" + book.getGenre().getId() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();*/
     }
 
     @Override

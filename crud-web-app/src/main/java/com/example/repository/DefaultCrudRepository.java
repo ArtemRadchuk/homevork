@@ -6,7 +6,7 @@ public interface DefaultCrudRepository<K, T, N> {
 
     List<K> findAll();
 
-    void create(K k);
+    K create(K k);
 
     K findById(N n);
 

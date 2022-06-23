@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -16,12 +17,18 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public List<Genre> findAll() {
-        return entityManager.createNativeQuery("select * FROM book_list.genre;", Genre.class).getResultList();
+        return entityManager.createQuery("select g from Genre g", Genre.class).getResultList();
     }
 
     @Override
-    public void create(Genre genre) {
-        entityManager.createNativeQuery("insert into book_list.genre(name) values (\"" + genre.getName() + "\");").executeUpdate();
+    public Genre create(Genre genre) {
+        /*entityManager.createNativeQuery("insert into book_list.genre(name) values (\"" + genre.getName() + "\");").executeUpdate();*/
+        if (Objects.isNull(genre.getId())) {
+            entityManager.persist(genre);
+            return genre;
+        } else {
+            return entityManager.merge(genre);
+        }
     }
 
     @Override
