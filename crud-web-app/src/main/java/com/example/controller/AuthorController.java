@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.Author;
 import com.example.service.impl.AuthorServiceImpl;
+import com.example.service.impl.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthorController {
     private final AuthorServiceImpl authorService;
+    private final BookServiceImpl bookService;
 
     @GetMapping(value = "/authors/add")
     public String add(@ModelAttribute("author") Author author) {
@@ -26,6 +28,7 @@ public class AuthorController {
 
     @GetMapping("/authors/{id}")
     public String getAuthor(@PathVariable("id") long id, Model model) {
+        model.addAttribute("books", bookService.findByAuthor(id));
         model.addAttribute("author", authorService.findAuthor(id));
         return "author/showAuthor";
     }

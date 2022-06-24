@@ -4,7 +4,6 @@ package com.example.repository.impl;
 import com.example.model.Book;
 import com.example.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -52,6 +51,14 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     @Override
     public void delete(Book book) {
         entityManager.remove(book.getId());
+    }
+
+    public List<Book> findByAuthor(long authorId){
+        return entityManager.createQuery("select b from Book b where author_id = " + authorId, Book.class).getResultList();
+    }
+
+    public List<Book> findByGenre(long genreId){
+        return entityManager.createQuery("select b from Book b where genre_id = " + genreId, Book.class).getResultList();
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.example.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -44,5 +43,12 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public Book findBook(long id) {
         return bookRepository.findById(id);
+    }
+
+    public List<Book> findByAuthor(long authorId){
+        return bookRepository.findByAuthor(authorId);
+    }
+    public List<Book> findByGenre(long genreId){
+        return bookRepository.findByGenre(genreId);
     }
 }

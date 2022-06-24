@@ -45,4 +45,6 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
     public void deleteById(Long id) {
         entityManager.remove(findById(id));
     }
+
+
 }

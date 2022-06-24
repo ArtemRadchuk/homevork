@@ -5,10 +5,18 @@
     <title>Автор</title>
 </head>
 <body>
-
+<center>
+    <big>
 <p th:text="${'Id: ' + author.getId() + ', Имя автора: ' + author.getName()}"></p>
-
+<br/>
+<label>Книги:</label>
+<hr/>
+<div th:each="book : ${books}">
+    <p th:text="${book.getTitle + '.  Жанр: ' + book.getGenreName}"></p>
+</div>
 <form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
     <input type="submit" value="Delete"/></form>
+    </big>
+</center>
 </body>
 </html>

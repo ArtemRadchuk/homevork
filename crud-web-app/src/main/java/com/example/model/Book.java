@@ -1,8 +1,13 @@
 package com.example.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "book")
 public class Book {
@@ -37,70 +42,6 @@ public class Book {
 
     public String getGenreName() {
         return genre.getName();
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public Integer getPrintYear() {
-        return printYear;
-    }
-
-    public void setPrintYear(Integer printYear) {
-        this.printYear = printYear;
-    }
-
-    public boolean isReadAlready() {
-        return readAlready;
-    }
-
-    public void setReadAlready(boolean readAlready) {
-        this.readAlready = readAlready;
     }
 
     @Override

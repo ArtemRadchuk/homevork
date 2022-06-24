@@ -1,14 +1,11 @@
 package com.example.controller;
 
 import com.example.BookInfo;
-import com.example.model.Author;
 import com.example.model.Book;
-import com.example.repository.impl.GenreRepositoryImpl;
 import com.example.service.impl.AuthorServiceImpl;
 import com.example.service.impl.BookServiceImpl;
 import com.example.service.impl.GenreServiceImpl;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

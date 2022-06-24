@@ -1,8 +1,5 @@
 package com.example;
 
-import com.example.model.Author;
-import com.example.model.Genre;
-
 public class BookInfo {
 
     public long id;
