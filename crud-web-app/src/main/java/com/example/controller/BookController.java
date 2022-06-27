@@ -15,24 +15,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BookController {
     private final BookServiceImpl bookService;
-    private final GenreServiceImpl genreService;
-    private final AuthorServiceImpl authorService;
+    private  final GenreServiceImpl genreService;
+    private  final AuthorServiceImpl authorService;
 
     @GetMapping("/books/add")
-    public String add(@ModelAttribute("bookInfo") BookInfo bookInfo) {
+    public String add(@ModelAttribute("bookInfo") BookInfo bookInfo, Model model) {
+        model.addAttribute("genres", genreService.genreList());
+        model.addAttribute("authors", authorService.authorList());
         return "book/addBook";
     }
 
     @PostMapping(value = "/books/add")
     public String create(@ModelAttribute("bookInfo") BookInfo bookInfo) {
-        Book book = new Book();
-        book.setAuthor(authorService.findAuthorByName(bookInfo.getAuthor()));
-        book.setGenre(genreService.findGenreByName(bookInfo.getGenre()));
-        book.setIsbn(bookInfo.getIsbn());
-        book.setPrintYear(bookInfo.getPrintYear());
-        book.setTitle(bookInfo.getTitle());
-        book.setDescription(bookInfo.getDescription());
-        bookService.createBook(book);
+        bookService.createBook(bookInfo);
         return "redirect:/books";
     }
 

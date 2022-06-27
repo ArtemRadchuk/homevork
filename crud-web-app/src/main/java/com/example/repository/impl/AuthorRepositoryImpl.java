@@ -2,7 +2,6 @@ package com.example.repository.impl;
 
 
 import com.example.model.Author;
-import com.example.model.Genre;
 import com.example.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

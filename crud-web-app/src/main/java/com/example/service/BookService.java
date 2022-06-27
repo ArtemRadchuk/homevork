@@ -1,12 +1,13 @@
 package com.example.service;
 
+import com.example.BookInfo;
 import com.example.model.Book;
 
 import java.util.List;
 
 public interface BookService {
 
-    void createBook(Book book);
+    void createBook(BookInfo bookInfo);
 
     void updateBook(long id, Book book);
 

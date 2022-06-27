@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.model.Author;
-import com.example.model.Book;
 import com.example.service.impl.AuthorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

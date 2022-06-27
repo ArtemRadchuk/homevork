@@ -19,12 +19,26 @@
     <label for="printYear">Enter print year: </label>
     <input type="number" th:field="*{printYear}" id="printYear"/>
 
-    <label for="genre">Enter genre: </label>
+    <label >Enter genre name: </label>
     <input type="text" th:field="*{genre}" id="genre"/>
+    <label>or select genre: </label>
+    <select th:field="*{genre}">
+        <option th:each="genre : ${genres}"
+                th:value="${genre}"
+                th:text="${genre.getName}">
+        </option>
+    </select>
 
-    <label for="author">Enter author: </label>
+
+    <label >Enter author name: </label>
     <input type="text" th:field="*{author}" id="author"/>
-
+    <label>or select author: </label>
+    <select th:field="*{author}">
+        <option th:each="author : ${authors}"
+                th:value="${author}"
+                th:text="${author.getName}">
+        </option>
+    </select>
     <br/>
     <input type="submit" value="Create!"/>
 </form>
