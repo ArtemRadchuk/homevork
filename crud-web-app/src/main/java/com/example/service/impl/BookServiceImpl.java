@@ -45,10 +45,4 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id);
     }
 
-    public List<Book> findByAuthor(long authorId){
-        return bookRepository.findByAuthor(authorId);
-    }
-    public List<Book> findByGenre(long genreId){
-        return bookRepository.findByGenre(genreId);
-    }
 }

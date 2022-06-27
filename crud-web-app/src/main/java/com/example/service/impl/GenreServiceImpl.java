@@ -38,4 +38,8 @@ public class GenreServiceImpl implements GenreService {
     public Genre findGenre(long id) {
         return  genreRepository.findById(id);
     }
+
+    public Genre findGenreByName(String name){
+        return genreRepository.findGenre(name);
+    }
 }

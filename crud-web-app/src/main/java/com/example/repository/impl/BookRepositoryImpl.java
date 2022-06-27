@@ -37,9 +37,6 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
         } else {
             return entityManager.merge(book);
         }
-        /*entityManager.createNativeQuery("insert into book_list.book(title, description, isbn, author_id, genre_id,  print_year, read_already) values" +
-                " (\"" + book.getTitle() + "\", \"" + book.getDescription() + "\", \"" + book.getIsbn() + "\", \"" + book.getAuthor().getId() +
-                "\", \"" + book.getGenre().getId() + "\", \"" + book.getPrintYear() + "\", \" 0\")").executeUpdate();*/
     }
 
     @Override
@@ -51,14 +48,6 @@ public class BookRepositoryImpl implements BookRepository<Book, String, Integer>
     @Override
     public void delete(Book book) {
         entityManager.remove(book.getId());
-    }
-
-    public List<Book> findByAuthor(long authorId){
-        return entityManager.createQuery("select b from Book b where author_id = " + authorId, Book.class).getResultList();
-    }
-
-    public List<Book> findByGenre(long genreId){
-        return entityManager.createQuery("select b from Book b where genre_id = " + genreId, Book.class).getResultList();
     }
 
     @Override

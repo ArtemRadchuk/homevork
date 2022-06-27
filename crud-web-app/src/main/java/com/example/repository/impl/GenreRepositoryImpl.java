@@ -22,7 +22,6 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
 
     @Override
     public Genre create(Genre genre) {
-        /*entityManager.createNativeQuery("insert into book_list.genre(name) values (\"" + genre.getName() + "\");").executeUpdate();*/
         if (Objects.isNull(genre.getId())) {
             entityManager.persist(genre);
             return genre;
@@ -46,5 +45,12 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
         entityManager.remove(findById(id));
     }
 
-
+    public Genre findGenre(String name){
+        for (Genre g:findAll()) {
+            if (g.getName().equals(name)){
+                return g;
+            }
+        }
+        return null;
+    }
 }

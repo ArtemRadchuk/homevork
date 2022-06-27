@@ -2,6 +2,7 @@ package com.example.repository.impl;
 
 
 import com.example.model.Author;
+import com.example.model.Genre;
 import com.example.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -45,5 +46,14 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
     @Override
     public void deleteById(Long id) {
         entityManager.remove(findById(id));
+    }
+
+    public Author findAuthor(String name){
+        for (Author a:findAll()) {
+            if (a.getName().equals(name)){
+                return a;
+            }
+        }
+        return null;
     }
 }

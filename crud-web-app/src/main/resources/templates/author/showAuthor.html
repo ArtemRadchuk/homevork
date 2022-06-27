@@ -12,7 +12,9 @@
 <label>Книги:</label>
 <hr/>
 <div th:each="book : ${books}">
-    <p th:text="${book.getTitle + '.  Жанр: ' + book.getGenreName}"></p>
+    <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle + '.'}"></a>
+    <a th:text="${'Жанр: '}"></a> <a th:href="@{/genres/{id}(id=${book.getGenre.getId})}"
+                                      th:text="${book.getGenreName}"></a>
 </div>
 <form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
     <input type="submit" value="Delete"/></form>

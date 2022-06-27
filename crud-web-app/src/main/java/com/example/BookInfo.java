@@ -10,9 +10,9 @@ public class BookInfo {
 
     public String isbn;
 
-    public long author;
+    public String author;
 
-    public long genre;
+    public String genre;
 
     public Integer printYear;
 
@@ -50,19 +50,19 @@ public class BookInfo {
         this.isbn = isbn;
     }
 
-    public long getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(long author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public long getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(long genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 

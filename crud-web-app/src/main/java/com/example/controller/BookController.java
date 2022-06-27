@@ -26,8 +26,8 @@ public class BookController {
     @PostMapping(value = "/books/add")
     public String create(@ModelAttribute("bookInfo") BookInfo bookInfo) {
         Book book = new Book();
-        book.setAuthor(authorService.findAuthor(bookInfo.getAuthor()));
-        book.setGenre(genreService.findGenre(bookInfo.getGenre()));
+        book.setAuthor(authorService.findAuthorByName(bookInfo.getAuthor()));
+        book.setGenre(genreService.findGenreByName(bookInfo.getGenre()));
         book.setIsbn(bookInfo.getIsbn());
         book.setPrintYear(bookInfo.getPrintYear());
         book.setTitle(bookInfo.getTitle());

@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.model.Genre;
-import com.example.service.impl.BookServiceImpl;
 import com.example.service.impl.GenreServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class GenreController {
     private final GenreServiceImpl genreService;
-    private final BookServiceImpl bookService;
 
     @GetMapping(value = "/genres/add")
     public String add(@ModelAttribute("genre") Genre genre) {
@@ -28,7 +26,7 @@ public class GenreController {
 
     @GetMapping("/genres/{id}")
     public String getGenre(@PathVariable("id") long id, Model model) {
-        model.addAttribute("books", bookService.findByGenre(id));
+        model.addAttribute("books", genreService.findGenre(id).getBooks());
         model.addAttribute("genre",genreService.findGenre(id));
         return "genre/showGenre";
     }

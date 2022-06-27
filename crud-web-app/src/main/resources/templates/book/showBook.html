@@ -17,9 +17,11 @@
 <hr/>
 <p th:text="${'ISBN: ' + book.getIsbn}"></p>
 <hr/>
-<p th:text="${'Автор: ' + book.getAuthorName}"></p>
+<p th:text="${'Год выпуска: ' + book.getPrintYear}"></p>
 <hr/>
-<p th:text="${'Жанр: ' + book.getGenreName}"></p>
+<a th:href="@{/authors/{id}(id=${book.getAuthor.getId})}" th:text="${'Автор: ' + book.getAuthorName}"></a>
+<hr/>
+<a th:href="@{/genres/{id}(id=${book.getGenre.getId})}" th:text="${'Жанр: ' + book.getGenreName}"></a>
 <hr/>
 
 <form th:action="@{/books/{id}/edit(id=${book.getId()})}">
