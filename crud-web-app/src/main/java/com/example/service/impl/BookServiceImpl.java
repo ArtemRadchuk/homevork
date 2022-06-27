@@ -23,21 +23,33 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public void createBook(BookInfo bookInfo) {
         Book book = new Book();
-        if (authorService.findAuthorByName(bookInfo.getAuthor()) != null) {
-            book.setAuthor(authorService.findAuthorByName(bookInfo.getAuthor()));
-        } else {
-            Author author = new Author();
-            author.setName(bookInfo.getAuthor());
-            authorService.createAuthor(author);
-            book.setAuthor(authorService.findAuthorByName(bookInfo.getAuthor()));
+        String authorName;
+        if(!bookInfo.getAuthor().equals("")){
+            authorName = bookInfo.getAuthor();
+        }else{
+            authorName = bookInfo.getAuthor2();
         }
-        if (genreService.findGenreByName(bookInfo.getGenre()) != null) {
-            book.setGenre(genreService.findGenreByName(bookInfo.getGenre()));
+        if (authorService.findAuthorByName(authorName) != null && authorName != null && !authorName.equals("")) {
+            book.setAuthor(authorService.findAuthorByName(authorName));
+        }else {
+            Author author = new Author();
+            author.setName(authorName);
+            authorService.createAuthor(author);
+            book.setAuthor(authorService.findAuthorByName(authorName));
+        }
+        String genreName;
+        if(!bookInfo.getGenre().equals("")){
+            genreName = bookInfo.getGenre();
+        }else{
+            genreName = bookInfo.getGenre2();
+        }
+        if (genreService.findGenreByName(genreName) != null && genreName != null && !genreName.equals("")) {
+            book.setGenre(genreService.findGenreByName(genreName));
         } else {
             Genre genre = new Genre();
-            genre.setName(bookInfo.getGenre());
+            genre.setName(genreName);
             genreService.createGenre(genre);
-            book.setGenre(genreService.findGenreByName(bookInfo.getGenre()));
+            book.setGenre(genreService.findGenreByName(genreName));
         }
 
         book.setIsbn(bookInfo.getIsbn());
