@@ -30,16 +30,16 @@ public class GenreServiceImpl implements GenreService {
     @Override
     @Transactional
     public List<Genre> genreList() {
-       return genreRepository.findAll();
+        return genreRepository.findAll();
     }
 
     @Override
     @Transactional
     public Genre findGenre(long id) {
-        return  genreRepository.findById(id);
+        return genreRepository.findById(id);
     }
 
-    public Genre findGenreByName(String name){
+    public Genre findGenreByName(String name) {
         return genreRepository.findGenre(name);
     }
 }

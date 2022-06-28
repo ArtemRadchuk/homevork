@@ -47,9 +47,9 @@ public class AuthorRepositoryImpl implements AuthorRepository<Author, String> {
         entityManager.remove(findById(id));
     }
 
-    public Author findAuthor(String name){
-        for (Author a:findAll()) {
-            if (a.getName().equals(name)){
+    public Author findAuthor(String name) {
+        for (Author a : findAll()) {
+            if (a.getName().equals(name)) {
                 return a;
             }
         }

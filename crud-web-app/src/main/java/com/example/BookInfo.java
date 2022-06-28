@@ -28,6 +28,4 @@ public class BookInfo {
     public Integer printYear;
 
     public boolean readAlready;
-
-
 }

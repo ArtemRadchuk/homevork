@@ -19,7 +19,7 @@ public class AuthorController {
     }
 
     @PostMapping(value = "/authors/add")
-    public String create(Author author){
+    public String create(Author author) {
         authorService.createAuthor(author);
         return "redirect:/authors";
     }

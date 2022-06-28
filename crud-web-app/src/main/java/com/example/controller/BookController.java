@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BookController {
     private final BookServiceImpl bookService;
-    private  final GenreServiceImpl genreService;
-    private  final AuthorServiceImpl authorService;
+    private final GenreServiceImpl genreService;
+    private final AuthorServiceImpl authorService;
 
     @GetMapping("/books/add")
     public String add(@ModelAttribute("bookInfo") BookInfo bookInfo, Model model) {
@@ -44,28 +44,28 @@ public class BookController {
     }
 
     @GetMapping("/books/{id}/edit")
-    public String editBook(Model model, @PathVariable("id") long id){
+    public String editBook(Model model, @PathVariable("id") long id) {
         model.addAttribute("book", bookService.findBook(id));
         /*System.out.println(bookService.findBook(id).getTitle() + " " + bookService.findBook(id).getPrintYear());*/
         return "book/updateBook";
     }
 
     @GetMapping("/books/find/{id}")
-    public String findBook(Model model, @PathVariable("id") long id){
-        model.addAttribute("book",bookService.findBook(id));
+    public String findBook(Model model, @PathVariable("id") long id) {
+        model.addAttribute("book", bookService.findBook(id));
         return "redirect:/book/showBook";
     }
 
     @PatchMapping(value = "/books/{id}")
     public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
-        System.out.println("Назвение - " +book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - "+ book.getIsbn()
-                +". Год печати - "+ book.getPrintYear());
+        System.out.println("Назвение - " + book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - " + book.getIsbn()
+                + ". Год печати - " + book.getPrintYear());
         bookService.updateBook(id, book);
         return "redirect:/books";
     }
 
     @DeleteMapping("/books/delete/{id}")
-    public String deleteBook(@PathVariable("id")long id) {
+    public String deleteBook(@PathVariable("id") long id) {
         System.err.println(id);
         bookService.deleteBook(id);
         return "redirect:/books";

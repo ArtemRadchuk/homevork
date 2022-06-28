@@ -40,7 +40,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findById(id);
     }
 
-    public Author findAuthorByName(String name){
+    public Author findAuthorByName(String name) {
         return authorRepository.findAuthor(name);
     }
 }

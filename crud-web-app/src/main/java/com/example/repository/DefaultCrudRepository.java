@@ -13,7 +13,4 @@ public interface DefaultCrudRepository<K, T, N> {
     void delete(K k);
 
     void deleteById(N n);
-
-
-
 }

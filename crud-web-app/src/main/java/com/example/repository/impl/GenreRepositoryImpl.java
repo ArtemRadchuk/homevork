@@ -45,9 +45,9 @@ public class GenreRepositoryImpl implements GenreRepository<Genre, Integer> {
         entityManager.remove(findById(id));
     }
 
-    public Genre findGenre(String name){
-        for (Genre g:findAll()) {
-            if (g.getName().equals(name)){
+    public Genre findGenre(String name) {
+        for (Genre g : findAll()) {
+            if (g.getName().equals(name)) {
                 return g;
             }
         }
