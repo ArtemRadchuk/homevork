@@ -5,16 +5,27 @@
     <title>Жанры:</title>
 </head>
 <body>
-
-<div th:each="genre : ${genres}">
-    <a th:href="@{/genres/{id}(id=${genre.getId()})}" th:text="${genre.getName}">genre</a>
+<div class="container">
+    <div class="card">
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>Жанр:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="genre : ${genres}">
+                    <td><a th:href="@{/genres/{id}(id=${genre.getId()})}" th:text="${genre.getId}">Id</a></td>
+                    <td><a th:href="@{/genres/{id}(id=${genre.getId()})}" th:text="${genre.getName}">Genre</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <form th:action="@{/genres/add}">
+                <input type="submit" value="Add genre"/></form>
+        </div>
+    </div>
 </div>
-
-<br/>
-<hr/>
-
-<form th:action="@{/genres/add}">
-    <input type="submit" value="Add genre"/></form>
-
 </body>
 </html>
