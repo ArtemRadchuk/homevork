@@ -46,7 +46,6 @@ public class BookController {
     @GetMapping("/books/{id}/edit")
     public String editBook(Model model, @PathVariable("id") long id) {
         model.addAttribute("book", bookService.findBook(id));
-        /*System.out.println(bookService.findBook(id).getTitle() + " " + bookService.findBook(id).getPrintYear());*/
         return "book/updateBook";
     }
 
@@ -58,15 +57,12 @@ public class BookController {
 
     @PatchMapping(value = "/books/{id}")
     public String update(@ModelAttribute("book") Book book, @PathVariable("id") long id) {
-        System.out.println("Назвение - " + book.getTitle() + ". Описание - " + book.getDescription() + ". ISBN - " + book.getIsbn()
-                + ". Год печати - " + book.getPrintYear());
         bookService.updateBook(id, book);
         return "redirect:/books";
     }
 
     @DeleteMapping("/books/delete/{id}")
     public String deleteBook(@PathVariable("id") long id) {
-        System.err.println(id);
         bookService.deleteBook(id);
         return "redirect:/books";
     }

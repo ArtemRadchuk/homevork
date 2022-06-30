@@ -24,14 +24,15 @@ public class BookServiceImpl implements BookService {
     public void createBook(BookInfo bookInfo) {
         Book book = new Book();
         String authorName;
-        if (!bookInfo.getAuthor().equals("")) {
+        authorName = !bookInfo.getAuthor().equals("") ? bookInfo.getAuthor() : bookInfo.getAuthor2();
+      /*  if (!bookInfo.getAuthor().equals("")) {
             authorName = bookInfo.getAuthor();
         } else if (bookInfo.getAuthor2() != null) {
             authorName = bookInfo.getAuthor2();
         } else {
             System.err.println("Автор не найден");
             authorName = null;
-        }
+        }*/
         if (authorService.findAuthorByName(authorName) != null && authorName != null) {
             book.setAuthor(authorService.findAuthorByName(authorName));
         } else {
@@ -41,11 +42,12 @@ public class BookServiceImpl implements BookService {
             book.setAuthor(authorService.findAuthorByName(authorName));
         }
         String genreName;
-        if (!bookInfo.getGenre().equals("")) {
+        /*if (!bookInfo.getGenre().equals("")) {
             genreName = bookInfo.getGenre();
         } else {
             genreName = bookInfo.getGenre2();
-        }
+        }*/
+        genreName = !bookInfo.getGenre().equals("") ? bookInfo.getGenre() : bookInfo.getGenre2();
         if (genreService.findGenreByName(genreName) != null && genreName != null) {
             book.setGenre(genreService.findGenreByName(genreName));
         } else {
