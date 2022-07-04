@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Автор</title>
+</head>
+<body>
+<center>
+    <big>
+        <p th:text="${'Id: ' + author.getId() + ', Имя автора: ' + author.getName()}"></p>
+        <br/>
+        <label>Книги:</label>
+        <hr/>
+        <div th:each="book : ${books}">
+            <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle + '.'}"></a>
+            <a th:text="${'Жанр: '}"></a> <a th:href="@{/genres/{id}(id=${book.getGenre.getId})}"
+                                             th:text="${book.getGenreName}"></a>
+        </div>
+        <form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
+            <input type="submit" value="Delete"/></form>
+    </big>
+</center>
+</body>
+</html>
