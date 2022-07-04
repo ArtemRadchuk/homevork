@@ -35,11 +35,13 @@ public class BookServiceImpl implements BookService {
         }*/
         if (authorService.findAuthorByName(authorName) != null && authorName != null) {
             book.setAuthor(authorService.findAuthorByName(authorName));
-        } else {
+        } else if (authorName != null){
             Author author = new Author();
             author.setName(authorName);
             authorService.createAuthor(author);
             book.setAuthor(authorService.findAuthorByName(authorName));
+        }else{
+            throw new NullPointerException("Author name can`t be null");
         }
         String genreName;
         /*if (!bookInfo.getGenre().equals("")) {
@@ -50,11 +52,13 @@ public class BookServiceImpl implements BookService {
         genreName = !bookInfo.getGenre().equals("") ? bookInfo.getGenre() : bookInfo.getGenre2();
         if (genreService.findGenreByName(genreName) != null && genreName != null) {
             book.setGenre(genreService.findGenreByName(genreName));
-        } else {
+        } else if (genreName != null){
             Genre genre = new Genre();
             genre.setName(genreName);
             genreService.createGenre(genre);
             book.setGenre(genreService.findGenreByName(genreName));
+        }else {
+            throw  new NullPointerException("Genre name can`t be null");
         }
 
         book.setIsbn(bookInfo.getIsbn());
