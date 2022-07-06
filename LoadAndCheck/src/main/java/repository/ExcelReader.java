@@ -1,11 +1,11 @@
-package service;
+package repository;
 
 import model.XlsxModel;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import repository.ArticleValidator;
-import repository.SeriesValidator;
-import repository.TypeValidator;
+import service.impl.ArticleValidatorImpl;
+import service.impl.SeriesValidatorImpl;
+import service.impl.TypeValidatorImpl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reader {
+public class ExcelReader {
 
     public List<XlsxModel> reade(String fileLocation) {
         List<XlsxModel> list = new ArrayList<>();
@@ -22,10 +22,9 @@ public class Reader {
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
-                XlsxModel model = new XlsxModel();
-                if (row.getRowNum() != 0) {
+                if (row.getRowNum() > 0) {
+                    XlsxModel model = new XlsxModel();
                     for (Cell cell : row) {
-                        /*System.out.println("Колонка " + cell.getAddress());*/
                         DataFormatter formatter = new DataFormatter();
                         String str;
                         int intNum;
@@ -33,21 +32,21 @@ public class Reader {
                         switch (cell.getAddress().getColumn()) {
                             case 0:
                                 model.setSeries(cell.getStringCellValue());
-                                SeriesValidator validator = new SeriesValidator();
+                                SeriesValidatorImpl validator = new SeriesValidatorImpl();
                                 if (validator.seriesComment(cell.getStringCellValue()) != null) {
                                     model.setCommentSeries(validator.seriesComment(cell.getStringCellValue()));
                                 }
                                 break;
                             case 1:
                                 model.setType(cell.getStringCellValue());
-                                TypeValidator typeValidator = new TypeValidator();
+                                TypeValidatorImpl typeValidator = new TypeValidatorImpl();
                                 if (typeValidator.seriesComment(cell.getStringCellValue()) != null){
                                     model.setCommentType(typeValidator.seriesComment(cell.getStringCellValue()));
                                 }
                                 break;
                             case 2:
                                 model.setArticle(cell.getStringCellValue());
-                                ArticleValidator articleValidator = new ArticleValidator();
+                                ArticleValidatorImpl articleValidator = new ArticleValidatorImpl();
                                 if (articleValidator.articleComment(cell.getStringCellValue()) != null){
                                     model.setCommentArticle(articleValidator.articleComment(cell.getStringCellValue()));
                                 }
@@ -100,8 +99,8 @@ public class Reader {
                                 break;
                         }
                     }
+                    list.add(model);
                 }
-                list.add(model);
                 /*System.err.println(model.getComment0() + model.getType());*/
                 /*System.err.println(model.getCommentArticle() + model.getCommentExecution());
                 System.out.println(model.getSeries() + " Серия, " + model.getArticle() + " Артикуль, " + model.getType() + " Тип, " + model.getHeight() + " Высота.");

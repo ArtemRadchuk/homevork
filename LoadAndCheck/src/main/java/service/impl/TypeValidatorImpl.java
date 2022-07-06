@@ -1,16 +1,20 @@
-package repository;
+package service.impl;
+
+import service.TypeValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TypeValidator {
+public class TypeValidatorImpl implements TypeValidator {
 
-    private boolean validateType(String type) {
+    @Override
+    public boolean validateType(String type) {
         Pattern pattern = Pattern.compile("^[A-Zxх.\\s,\\d-]+$");
         Matcher matcher = pattern.matcher(type);
         return matcher.matches();
     }
 
+    @Override
     public String seriesComment(String series) {
         if (!validateType(series) ) {
             System.err.println("Хз ошибка и все");
