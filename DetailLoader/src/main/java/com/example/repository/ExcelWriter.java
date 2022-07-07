@@ -41,63 +41,63 @@ public class ExcelWriter {
         stepCell.setCellValue("Шаг монтажа");
         int i = 1;
         for (XlsxModel model : modelList) {
-                row = sheet.createRow(i);
-                Cell series = row.createCell(0);
-                if (model.getCommentSeries() != null) {
-                    addComment(workbook, sheet, series.getRowIndex(), series.getColumnIndex(), model.getCommentSeries());
-                }
-                series.setCellValue(model.getSeries());
+            row = sheet.createRow(i);
+            Cell series = row.createCell(0);
+            if (model.getCommentSeries() != null) {
+                addComment(workbook, sheet, series.getRowIndex(), series.getColumnIndex(), model.getCommentSeries());
+            }
+            series.setCellValue(model.getSeries());
 
-                Cell type = row.createCell(1);
-                type.setCellValue(model.getType());
-                if (model.getCommentType() != null) {
-                    addComment(workbook, sheet, type.getRowIndex(), type.getColumnIndex(), model.getCommentType());
-                }
+            Cell type = row.createCell(1);
+            type.setCellValue(model.getType());
+            if (model.getCommentType() != null) {
+                addComment(workbook, sheet, type.getRowIndex(), type.getColumnIndex(), model.getCommentType());
+            }
 
-                Cell article = row.createCell(2);
-                article.setCellValue(model.getArticle());
-                if (model.getCommentArticle() != null) {
-                    addComment(workbook, sheet, article.getRowIndex(), article.getColumnIndex(), model.getCommentArticle());
-                } else if (model.getArticle() == null) {
-                    addComment(workbook, sheet, article.getRowIndex(), article.getColumnIndex(), "Поле \"Артикул\" не может быть пустым");
-                }
+            Cell article = row.createCell(2);
+            article.setCellValue(model.getArticle());
+            if (model.getCommentArticle() != null) {
+                addComment(workbook, sheet, article.getRowIndex(), article.getColumnIndex(), model.getCommentArticle());
+            } else if (model.getArticle() == null) {
+                addComment(workbook, sheet, article.getRowIndex(), article.getColumnIndex(), "Поле \"Артикул\" не может быть пустым");
+            }
 
-                Cell name = row.createCell(3);
-                name.setCellValue(model.getName());
-                if (model.getCommentName() != null) {
-                    addComment(workbook, sheet, name.getRowIndex(), name.getColumnIndex(), model.getCommentName());
-                }
+            Cell name = row.createCell(3);
+            name.setCellValue(model.getName());
+            if (model.getCommentName() != null) {
+                addComment(workbook, sheet, name.getRowIndex(), name.getColumnIndex(), model.getCommentName());
+            }
 
-                Cell execution = row.createCell(4);
-                execution.setCellValue(model.getExecution());
-                if (model.getCommentExecution() != null) {
-                    addComment(workbook, sheet, execution.getRowIndex(), execution.getColumnIndex(), model.getCommentExecution());
-                }
+            Cell execution = row.createCell(4);
+            execution.setCellValue(model.getExecution());
+            if (model.getCommentExecution() != null) {
+                addComment(workbook, sheet, execution.getRowIndex(), execution.getColumnIndex(), model.getCommentExecution());
+            }
 
-                Cell length = row.createCell(5);
-                length.setCellValue(model.getLength());
+            Cell length = row.createCell(5);
+            length.setCellValue(model.getLength());
 
-                Cell width = row.createCell(6);
-                width.setCellValue(model.getWidth());
+            Cell width = row.createCell(6);
+            width.setCellValue(model.getWidth());
 
-                Cell height = row.createCell(7);
-                height.setCellValue(model.getHeight());
+            Cell height = row.createCell(7);
+            height.setCellValue(model.getHeight());
 
-                Cell thickness = row.createCell(8);
-                thickness.setCellValue(model.getThickness());
+            Cell thickness = row.createCell(8);
+            thickness.setCellValue(model.getThickness());
 
-                Cell weight = row.createCell(9);
-                weight.setCellValue(model.getWeight());
-                if (model.getCommentWeight() != null) {
-                    addComment(workbook, sheet, weight.getRowIndex(), weight.getColumnIndex(), model.getCommentWeight());
-                }
+            Cell weight = row.createCell(9);
+            weight.setCellValue(model.getWeight());
+            if (model.getCommentWeight() != null) {
+                addComment(workbook, sheet, weight.getRowIndex(), weight.getColumnIndex(), model.getCommentWeight());
+            }
 
-                Cell perforation = row.createCell(10);
-                perforation.setCellValue(model.getPerforation());
+            Cell perforation = row.createCell(10);
+            perforation.setCellValue(model.getPerforation());
 
-                Cell step = row.createCell(11);
-                step.setCellValue(model.getStep());
-                i++;
+            Cell step = row.createCell(11);
+            step.setCellValue(model.getStep());
+            i++;
 
         }
         sheet.autoSizeColumn(4);

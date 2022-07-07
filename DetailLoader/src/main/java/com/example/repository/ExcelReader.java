@@ -1,6 +1,8 @@
 package com.example.repository;
 
 import com.example.model.XlsxModel;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.impl.ArticleValidatorImpl;
@@ -15,6 +17,10 @@ import java.util.List;
 
 public class ExcelReader {
 
+    @Getter
+    @Setter
+    public boolean findErrors;
+
     public List<XlsxModel> reade(String fileLocation) {
         List<XlsxModel> list = new ArrayList<>();
         try {
@@ -25,7 +31,6 @@ public class ExcelReader {
                 if (row.getRowNum() > 0) {
                     XlsxModel model = new XlsxModel();
                     for (Cell cell : row) {
-                        System.out.println(cell.getAddress());
                         DataFormatter formatter = new DataFormatter();
                         String str;
                         int intNum;
@@ -36,26 +41,30 @@ public class ExcelReader {
                                 SeriesValidatorImpl validator = new SeriesValidatorImpl();
                                 if (validator.seriesComment(cell.getStringCellValue()) != null) {
                                     model.setCommentSeries(validator.seriesComment(cell.getStringCellValue()));
+                                    setFindErrors(false);
                                 }
                                 break;
                             case 1:
                                 model.setType(cell.getStringCellValue());
                                 TypeValidatorImpl typeValidator = new TypeValidatorImpl();
-                                if (typeValidator.seriesComment(cell.getStringCellValue()) != null){
+                                if (typeValidator.seriesComment(cell.getStringCellValue()) != null) {
                                     model.setCommentType(typeValidator.seriesComment(cell.getStringCellValue()));
+                                    setFindErrors(false);
                                 }
                                 break;
                             case 2:
                                 model.setArticle(cell.getStringCellValue());
                                 ArticleValidatorImpl articleValidator = new ArticleValidatorImpl();
-                                if (articleValidator.articleComment(cell.getStringCellValue()) != null){
+                                if (articleValidator.articleComment(cell.getStringCellValue()) != null) {
                                     model.setCommentArticle(articleValidator.articleComment(cell.getStringCellValue()));
+                                    setFindErrors(false);
                                 }
                                 break;
                             case 3:
                                 model.setName(cell.getStringCellValue());
-                                if (model.getName().isEmpty()){
+                                if (model.getName().isEmpty()) {
                                     model.setCommentName("Поле \"Наименование\" не заполнено");
+                                    setFindErrors(false);
                                 }
                                 break;
                             case 4:
@@ -83,8 +92,9 @@ public class ExcelReader {
                                 str = str.replaceAll(",", ".");
                                 dNum = Double.parseDouble(str);
                                 model.setWeight(dNum);
-                                if(str.isEmpty() && model.getWeight() == 0.0){
+                                if (str.isEmpty() && model.getWeight() == 0.0) {
                                     model.setCommentWeight("Поле масса не заполнено");
+                                    setFindErrors(false);
                                 }
                                 break;
                             case 10:
@@ -102,13 +112,30 @@ public class ExcelReader {
                     }
                     list.add(model);
                 }
-                /*System.err.println(model.getComment0() + model.getType());*/
-                /*System.err.println(model.getCommentArticle() + model.getCommentExecution());
-                System.out.println(model.getSeries() + " Серия, " + model.getArticle() + " Артикуль, " + model.getType() + " Тип, " + model.getHeight() + " Высота.");
-           */ }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return list;//Не забыть
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return list;
     }
 }

@@ -10,6 +10,8 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <Label>Файл проверен!</Label>
+    <Label style="-fx-text-fill: red">Найдены ошибки</Label>
+    <Label>Ошибки были помечены комментариями</Label>
+    <Button text="Выберите папку куда сохранится файл" onAction="#locateDirect"/>
     <Button text="Загрузить файл на компьютер" onAction="#writeFile"/>
 </VBox>
