@@ -55,6 +55,9 @@ public class ExcelReader {
                             case 2:
                                 model.setArticle(cell.getStringCellValue());
                                 ArticleValidatorImpl articleValidator = new ArticleValidatorImpl();
+                                if (!repeatArticle(cell.getStringCellValue(), workbook)) {
+                                    model.setCommentArticle("Артикул повторяется");
+                                }
                                 if (articleValidator.articleComment(cell.getStringCellValue()) != null) {
                                     model.setCommentArticle(articleValidator.articleComment(cell.getStringCellValue()));
                                     setFindErrors(false);
@@ -117,5 +120,31 @@ public class ExcelReader {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public List<String> articleList(Workbook workbook) {
+        List<String> articleList = new ArrayList<>();
+        Sheet sheet = workbook.getSheetAt(0);
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                if (cell.getAddress().getColumn() == 2) {
+                    articleList.add(cell.getStringCellValue());
+                }
+            }
+        }
+        return articleList;
+    }
+
+    public boolean repeatArticle(String article, Workbook workbook) {
+        int i = 0;
+        for (String a : articleList(workbook)) {
+            if (a.equals(article)) {
+                i++;
+            }
+            if (i > 1) {
+                return false;
+            }
+        }
+        return true;
     }
 }
