@@ -1,5 +1,6 @@
 package com.example.detailloader.controller;
 
+
 import com.example.detailloader.AppApplication;
 import com.example.model.XlsxModel;
 import com.example.repository.ExcelReader;
@@ -8,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.example.detailloader.AppApplication.stage;
 
@@ -53,7 +51,6 @@ public class AppController {
         ExcelReader reader = new ExcelReader();
         newPath = file.getPath();
         data = reader.reade(newPath);
-        System.err.println(reader.isFindErrors());
         if (!reader.isFindErrors()) {
             FXMLLoader fxmlLoader = new FXMLLoader(AppApplication.class.getResource("copy.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);

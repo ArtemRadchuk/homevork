@@ -12,6 +12,7 @@ public class AppApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println("-----");
         stage = this.stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(AppApplication.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);

@@ -71,6 +71,11 @@ public class ExcelReader {
                                 }
                                 break;
                             case 4:
+                                /*if (cell.getNumericCellValue() > 8){
+                                    model.setCommentExecution("не может быть больше 8");
+                                }else if (cell.getNumericCellValue() < 1){
+                                    model.setCommentExecution("не может быть меньше 1");
+                                }*/
                                 model.setExecution(cell.getStringCellValue());
                                 break;
                             case 5:

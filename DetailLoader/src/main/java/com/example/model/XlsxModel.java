@@ -21,7 +21,7 @@ public class XlsxModel {
     String name;
 
     //Массив, не меньше 1 символа, не больше 8
-    /*int[] execution;*/
+    /*int execution;*/
     //Пока побудет Стрингом
     String execution;
 
