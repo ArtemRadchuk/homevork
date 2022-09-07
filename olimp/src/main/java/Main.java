@@ -11,10 +11,10 @@ public class Main {
     public static final String URL = "URL";
 
     public static void main(String[] args) throws IOException, ParseException {
-        URL website = new URL(URL);
-        ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-        FileOutputStream fos = new FileOutputStream(System.getProperty("user.dir") + "/src/main/resources/json/json.json");
-        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        //URL website = new URL(URL);
+       // ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+        //FileOutputStream fos = new FileOutputStream(System.getProperty("user.dir") + "/src/main/resources/json/json.json");
+       // fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         JsonReader reader = new JsonReader();
         reader.readeJson(System.getProperty("user.dir") + "/src/main/resources/json/jsonformatter.json");
     }

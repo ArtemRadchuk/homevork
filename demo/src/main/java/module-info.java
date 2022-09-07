@@ -2,12 +2,10 @@ module com.example {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
+    requires javafx.base;
+    requires javafx.graphics;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires static lombok;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
 

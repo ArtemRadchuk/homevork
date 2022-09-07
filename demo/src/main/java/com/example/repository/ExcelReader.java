@@ -4,12 +4,8 @@ import com.example.model.XlsxModel;
 import com.example.service.impl.ArticleValidatorImpl;
 import com.example.service.impl.SeriesValidatorImpl;
 import com.example.service.impl.TypeValidatorImpl;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.poi.ss.usermodel.*;
-
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,8 +15,7 @@ import java.util.List;
 
 public class ExcelReader {
 
-    @Getter
-    @Setter
+
     public boolean findErrors;
 
     public List<XlsxModel> reade(String fileLocation) {
@@ -153,5 +148,13 @@ public class ExcelReader {
             }
         }
         return true;
+    }
+
+    public boolean isFindErrors() {
+        return findErrors;
+    }
+
+    public void setFindErrors(boolean findErrors) {
+        this.findErrors = findErrors;
     }
 }

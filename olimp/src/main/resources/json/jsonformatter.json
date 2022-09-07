@@ -1,17 +1,24 @@
 [
   {
     "id": "1",
-    "name": "лоток",
+    "name": "лоток 1",
     "mass": 4.9,
     "thickness": "1.5",
     "diameter": 900,
-    "width": "",
+    "width": "20",
+    "symbol": "L",
+    "symbol_count": "3",
+    "reference_id": [
+      4
+    ],
     "height": "110",
     "shelf_width": 500
   },
   {
     "id": "2",
-    "name": "метиз",
+    "name": "метиз 1",
+    "symbol": "M",
+    "symbol_count": "1",
     "reference_id": [
       1,
       3
@@ -20,31 +27,130 @@
   },
   {
     "id": "3",
-    "name": "уголок",
+    "name": "уголок 1",
+    "symbol": "U",
+    "symbol_count": "1",
     "reference_id": [
       1,
       4
     ],
-    "mass": 0.05
+    "mass": 0.2
   },
   {
     "id": "4",
-    "name": "профиль",
+    "name": "профиль 1",
     "mass": 1.3,
     "thickness": "1.3",
     "width": "50",
-    "height": "32"
+    "height": "500",
+    "symbol": "P",
+    "symbol_count": "13"
   },
   {
     "id": "5",
-    "name": "двутавр",
+    "name": "двутавр 1",
+    "symbol": "D",
+    "symbol_count": "12",
     "reference_id": [
-      1,
       4
     ],
     "mass": 48.9,
     "thickness": "7.5",
     "height": "360",
     "shelf_width": 145
+  },
+  {
+    "id": "6",
+    "name": "уголок 2",
+    "symbol": "U",
+    "symbol_count": "1",
+    "reference_id": [
+      1,
+      4
+    ],
+    "mass": 0.2
+  },
+  {
+    "id": "7",
+    "name": "метиз 2",
+    "symbol": "M",
+    "symbol_count": "1",
+    "reference_id": [
+      1,
+      6
+    ],
+    "mass": 0.05
+  },
+  {
+    "id": "8",
+    "name": "двутавр 2",
+    "symbol": "D",
+    "symbol_count": "12",
+    "reference_id": [
+      4
+    ],
+    "mass": 48.9,
+    "thickness": "7.5",
+    "height": "360",
+    "shelf_width": 145
+  },
+  {
+    "id": "9",
+    "name": "лоток 2",
+    "mass": 4.9,
+    "thickness": "1.5",
+    "diameter": 900,
+    "width": "30",
+    "symbol": "L",
+    "symbol_count": "3",
+    "reference_id": [
+      4
+    ],
+    "height": "110",
+    "shelf_width": 500
+  },
+  {
+    "id": "10",
+    "name": "метиз 3",
+    "symbol": "M",
+    "symbol_count": "1",
+    "reference_id": [
+      9,
+      11
+    ],
+    "mass": 0.05
+  },
+  {
+    "id": "11",
+    "name": "уголок 3",
+    "symbol": "U",
+    "symbol_count": "1",
+    "reference_id": [
+      9,
+      4
+    ],
+    "mass": 0.2
+  },
+  {
+    "id": "12",
+    "name": "метиз 4",
+    "symbol": "M",
+    "symbol_count": "1",
+    "reference_id": [
+      4,
+      8
+    ],
+    "mass": 0.05
+  },
+  {
+    "id": "13",
+    "name": "метиз 5",
+    "symbol": "M",
+    "symbol_count": "1",
+    "reference_id": [
+      4,
+      5
+    ],
+    "mass": 0.05
   }
 ]
