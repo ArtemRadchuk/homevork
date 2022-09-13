@@ -62,6 +62,7 @@ public class JsonReader {
             stringBuilder.append("\n");
         }
         System.out.println(stringBuilder);
+        System.out.println("\n\n\n");
     }
 
     public String[][] rotate(String[][] oldMatrix) {
